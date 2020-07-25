@@ -6,16 +6,6 @@ export class Modal_Class_Form extends React.Component {
       super(props);
       this.state = { classLogin: "hide_modal" };
     }
-  
-    loginSubmit = (e) => {
-        console.log('Ok')
-        e.preventDefault();
-    }
-
-    signupSubmit = (e) => {
-        console.log('Ok')
-        e.preventDefault();
-    }
 
     render() {
       return (
@@ -24,7 +14,7 @@ export class Modal_Class_Form extends React.Component {
             <div class="header_style_external">
               <h2>Check out my modals: </h2>
             </div>
-            <form id="loginForm" onSubmitCapture={this.loginSubmit}>
+            <form id="loginForm">
               <Modal_Class
                 passwordID="loginPassword"
                 emailID="loginEmail"
@@ -49,4 +39,4 @@ export class Modal_Class_Form extends React.Component {
   }
   
   
-//place form submission event after component mounts to DOM 
+//place form submission event after component mounts to DOM so ID can be captured for firebase method 
