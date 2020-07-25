@@ -1,10 +1,10 @@
 import React from 'react'
-import {Modal_Class} from './components/userlogging/loginandsignup/modalcc'
+import {User_Auth_Joiner} from './components/userlogging/loginandsignup/userauthjoiner'
 
 export function App (props) {
     return (
         <div>
-        <Modal_Class />
+        <User_Auth_Joiner />
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Modal_Class_Form} from './modalcc'
 
-export class GroupComponentLoginAndSignup extends React.Component {
+export class User_Auth_Joiner extends React.Component {
     
     constructor(props) {
         super(props)
@@ -12,9 +12,7 @@ export class GroupComponentLoginAndSignup extends React.Component {
     
     render() {
         return (
-            <form>
-            <Modal_Class_Form/>
-            </form>
+        <Modal_Class_Form/>
     )
     }
 }

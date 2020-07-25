@@ -1,4 +1,4 @@
-/* Direct tag styling */
+/* HTML tag styling */
 
 body {
     margin: 0px;
@@ -73,8 +73,17 @@ body {
     margin: 0 auto;
   }
 
+  .toggleButton {
+      height: 20px;
+      width: 50px;
+      border-style: solid;
+      border-width: 2px;
+      border-color: black;
+      background-color: white;
+  }
 
-  /* User auth page styling */
+
+  /* Modal page exterior styling */
 
   .login_modals_graphics {
     z-index: 0;
@@ -91,3 +100,11 @@ body {
     margin-top: 15px;
 }
 
+.buttonDiv {
+    height: 25px;
+    width: 250px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: white;
+}

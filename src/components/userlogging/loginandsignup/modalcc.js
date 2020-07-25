@@ -1,58 +1,52 @@
 import React from 'react'
-import './stylesheet_loginandsignup.css'
-import {Modal_Func} from './modalfc'
-import {Show_button} from './showbuttonfc'
-  
-export class Modal_Class extends React.Component {
+import {Modal_Class} from './UserAuthcc'
+
+export class Modal_Class_Form extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { classLogin: "hide_modal", classSignup: "hide_modal", purpose: this.props.purpose, action: this.props.action
+      this.state = { classLogin: "hide_modal" };
     }
   
-    showModalLogin = () => {
-      this.setState({ classLogin: "show_modal" });
-    };
-  
-    hideModalLogin = () => {
-      this.setState({ classLogin: "hide_modal" });
-    };
-  
-    showModalSignup = () => {
-      this.setState({ classSignup: "show_modal" });
-    };
-  
-    hideModalSignup = () => {
-      this.setState({ classSignup: "hide_modal" });
-    };
-  
+    loginSubmit = (e) => {
+        console.log('Ok')
+        e.preventDefault();
+    }
+
+    signupSubmit = (e) => {
+        console.log('Ok')
+        e.preventDefault();
+    }
 
     render() {
       return (
         <div>
           <div class="login_modals_graphics">
-              <div class='header_style_external'>
-            <h2>Check out my modals: </h2>
+            <div class="header_style_external">
+              <h2>Check out my modals: </h2>
             </div>
-            <Show_button function={this.state.purpose} click={this.showModalLogin} />
-            <Modal_Func
-            show={this.state.classLogin}
-            text={this.state.action}
-            function={this.state.purpose}
-            hide={this.hideModalLogin}
-          />
-          <div class='signup_button_style'>
-            <Show_button function={this.state.purpose} click={this.showModalSignup} />
-            </div>
-            <Modal_Func
-              show={this.state.classSignup}
-              text={this.state.action}
-              function={this.state.action}
-              hide={this.hideModalSignup}
+            <form id="loginForm" onSubmitCapture={this.loginSubmit}>
+              <Modal_Class
+                passwordID="loginPassword"
+                emailID="loginEmail"
+                function="Log in to an account"
+                action="Log in"
+                purpose="Log into an account"
+              />
+            </form>
+            <form id='signupForm'> 
+            <Modal_Class
+              passwordID="signupPassword"
+              emailID="signupEmail"
+              function="Sign up for a new account"
+              action="Sign up"
+              purpose="Sign up with this form"
             />
+            </form>
           </div>
         </div>
       );
     }
   }
   
-  //split into two components; one controls login, other controls signup
+  
+//place form submission event after component mounts to DOM 
