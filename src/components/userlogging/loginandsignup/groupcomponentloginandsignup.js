@@ -19,4 +19,3 @@ export class GroupComponentLoginAndSignup extends React.Component {
     }
 }
 
-//write in the method that processes login and determines if login event is true or not with a setState method call for conditional render(via async- refer to ytube tutorial!)

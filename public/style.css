@@ -1,15 +1,10 @@
+/* Direct tag styling */
+
 body {
     margin: 0px;
   }
 
-.login_modals_graphics {
-    z-index: 0;
-    margin-bottom: 15px;
-    top: 35%;
-    left:65%;
-    position: fixed;
-}
-  
+/* Modal interior styling */
 .show_modal {
     top:0px;
     left:0px;
@@ -57,24 +52,42 @@ body {
     margin-top: 30px;
     width: 150px;
   }
-  
-  .login_one_style {
-    margin-bottom: 15px;
-  }
-  
-  .button_center {
-    display: table;
-    margin: 0 auto;
-  }
-  
   .modal_box_content {
     display: table;
     margin: 0 auto;
     margin-top: 50px;
   }
-  
+
+  .button_center {
+    display: table;
+    margin: 0 auto;
+  }
+
+
+  .login_one_style {
+    margin-bottom: 15px;
+  }
+
   .header_style {
     display: table;
     margin: 0 auto;
   }
+
+
+  /* User auth page styling */
+
+  .login_modals_graphics {
+    z-index: 0;
+    top: 40%;
+    left:65%;
+    position: fixed;
+}
+  
+ .header_style_external {
+    margin-bottom: 25px;
+}
+
+.signup_button_style {
+    margin-top: 15px;
+}
 
