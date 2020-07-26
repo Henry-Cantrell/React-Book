@@ -1,62 +1,54 @@
 import React from 'react'
 import {Modal_Class_Form} from './modalcc'
-import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
 
 export class User_Auth_Joiner extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        loginStatus: false,
-        inputFieldClear: true
-      };
-    }
-  
-    componentDidMount() {
-      //User log in method
-      const loginForm = document.querySelector("#loginForm");
-  
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-  
-        const loginEmail = document.querySelector("#loginEmail").value;
-        const loginPassword = document.querySelector("#loginPassword").value;
-  
-        fireBaseExternalObj.auth.signInWithEmailAndPassword(
-          loginEmail,
-          loginPassword
-        );
-      });
-  
-      //User sign in method
-      const signupForm = document.querySelector("#signupForm");
-  
-      signupForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-  
-       const signupEmail = document.querySelector("#signupEmail").value;
-       const signupPassword = document.querySelector("#signupPassword").value;
-  
-        fireBaseExternalObj.auth.createUserWithEmailAndPassword(
-          signupEmail,
-          signupPassword
-        );
-      });
-    }
-  
-    render() {
-
-      const userAuthPage = <Modal_Class_Form />
-
-      return <div>
-          {userAuthPage}
-      </div>;
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      loginStatus: false,
+      inputFieldClear: true,
+      inputEmailValue: "",
+      inputPasswordValue: ""
+    };
+    this.handleChangeEmail = this.handleChangeEmail.bind(this)
+    this.handleChangePassword = this.handleChangePassword.bind(this)
+    this.clearForm = this.clearForm.bind(this);
   }
-  
 
-//all content for user auth page should be in this cc's render statement for de-mounting on user auth clear
+  clearForm() {
+    this.setState({
+      inputEmailValue: "",
+      inputPasswordValue: ""
+    });
+  }
+
+  handleChangeEmail(event) {
+    this.setState({ inputEmailValue: event.target.value });
+  }
+
+  handleChangePassword(event) {
+    this.setState({ inputPasswordValue: event.target.value });
+  }
+
+  render() {
+    const userAuthPage = (
+      <Modal_Class_Form
+        inputEmailValue={this.state.inputEmailValue}
+        inputPasswordValue={this.state.inputPasswordValue}
+        handleChangeEmail={this.handleChangeEmail}
+        handleChangePassword={this.handleChangePassword}
+      />
+    );
+
+    return <div>{userAuthPage}</div>;
+  }
+}
+
+//handle change evt from this component 
+
+//all final graphics content for user auth page should be in a parent cc's render statement for de-mounting on user auth clear
+
 //to-do list: 
 //add conditional de-mounting on successful sign-up or log in via .then to auth methods
 //capture uid for further use 
 //import and display main page content after user auth page de-mounted (is it actually possible do this?...)
-//

@@ -1,58 +1,106 @@
-//This is perfect and very useful in its current form. DO NOT TOUCH. DO NOT DELETE.
-
 import React from 'react'
+import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
 
 export class Modal_Func extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      inputEmailValue: '',
-      inputPasswordValue: '',
+      inputValueEmail: "",
+      inputValuePassword: "",
     };
-
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.clearForm = this.clearForm.bind(this)
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
-  handleChangeEmail(event) {    
-    this.setState({inputEmailValue: event.target.value});  
+  handleChangeEmail(e) {
+    this.setState({ inputValueEmail: e.target.value });
   }
 
-  handleChangePassword(event) {    
-    this.setState({inputPasswordValue: event.target.value});  
+  handleChangePassword(e) {
+    this.setState({ inputValuePassword: e.target.value });
   }
 
-  clearForm() {
-    this.setState({inputEmailValue: '', inputPasswordValue: ''})
+  componentDidMount() {
+    //User log in method
+    const userAuthForm = document.querySelector(`${this.props.formID}`);
+
+    if (userAuthForm.id === "loginForm") {
+      userAuthForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const loginEmail = document.querySelector("#loginEmail").value;
+        const loginPassword = document.querySelector("#loginPassword").value;
+
+        fireBaseExternalObj.auth.signInWithEmailAndPassword(
+          loginEmail,
+          loginPassword
+        );
+        this.clearForm();
+      });
+    } else {
+      userAuthForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const signupEmail = document.querySelector("#signupEmail").value;
+        const signupPassword = document.querySelector("#signupPassword").value;
+
+        fireBaseExternalObj.auth.createUserWithEmailAndPassword(
+          signupEmail,
+          signupPassword
+        );
+        this.clearForm();
+      });
+    }
   }
 
-      render() {return ( 
+  render() {
+    return (
       <div class={this.props.show}>
-      <div class='modal_box'>
-      <div class='toggle_button'>
-            <div class='toggleButton' onClick={this.props.hide}>hide</div>
+        <form id="loginForm">
+          <div class="modal_box">
+            <div class="toggle_button">
+              <div class="toggleButton" onClick={this.props.hide}>
+                Hide
+              </div>
+            </div>
+            <div class="modal_box_content">
+              <div class="header_style">
+                <h2 class="modal_interior_header">{this.props.text}</h2>
+              </div>
+              <div class="login_one_style">
+                <input
+                  onChange={this.handleChangeEmail}
+                  id={this.props.emailID}
+                  value={this.state.inputValueEmail}
+                  onChange={this.handleChangeEmail}
+                  type="email"
+                  class="login_one"
+                  placeholder="Email"
+                ></input>
+              </div>
+              <div class="login_two_style">
+                <input
+                  onChange={this.handleChangePassword}
+                  id={this.props.passwordID}
+                  value={this.state.inputValuePassword}
+                  onChange={this.handleChangePassword}
+                  type="password"
+                  class="login_two"
+                  placeholder="Password"
+                ></input>
+              </div>
+              <div class="button_center">
+                <button class="login_button" id="lin_button">
+                  {this.props.function}
+                </button>
+              </div>
+            </div>
           </div>
-        <div class='modal_box_content'>
-          <div class='header_style'>
-        <h2 class='modal_interior_header'>{this.props.text}</h2>
-          </div>
-        <div class="login_one_style">
-      <input id={this.props.emailID} value={this.state.inputValue} onChange={this.handleChangeEmail} type='email' class='login_one' placeholder='Email'></input>
-        </div> 
-        <div class='login_two_style'>
-      <input id={this.props.passwordID} value={this.state.inputValue} onChange={this.handleChangePassword} type='password' class='login_two' placeholder='Password'></input>
-        </div>
-        <div class='button_center'>
-        <button class='login_button' id='lin_button' onClick={this.clearForm}>{this.props.function}</button>
-        </div>
-          </div>
-        </div>
-      </div> 
-    )
+        </form>
+      </div>
+    );
   }
 }
 
-
-
+//to-do:
+//pass formID depending on responsibility of component in parent components to this component

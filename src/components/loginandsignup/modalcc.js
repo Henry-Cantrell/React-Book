@@ -4,7 +4,9 @@ import {Modal_Class} from './UserAuthcc'
 export class Modal_Class_Form extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { classLogin: "hide_modal" };
+      this.state = { 
+        classLogin: "hide_modal",
+    };
     }
 
     render() {
@@ -14,24 +16,28 @@ export class Modal_Class_Form extends React.Component {
             <div class="header_style_external">
               <h2>Check out my modals: </h2>
             </div>
-            <form id="loginForm">
               <Modal_Class
+                handleChangeEmail={this.props.handleChangeEmail}
+                handleChangePassword={this.props.handleChangePassword}
+                inputEmailValue={this.props.inputEmailValue}
+                inputPasswordValue={this.props.inputPasswordValue}
                 passwordID="loginPassword"
                 emailID="loginEmail"
                 function="Log in to an account"
                 action="Log in"
                 purpose="Log into an account"
               />
-            </form>
-            <form id='signupForm'> 
             <Modal_Class
+              handleChangeEmail={this.props.handleChangeEmail}
+              handleChangePassword={this.props.handleChangePassword}
+              inputEmailValue={this.props.inputEmailValue}
+              inputPasswordValue={this.props.inputPasswordValue}
               passwordID="signupPassword"
               emailID="signupEmail"
               function="Sign up for a new account"
               action="Sign up"
               purpose="Sign up with this form"
             />
-            </form>
           </div>
         </div>
       );
@@ -39,4 +45,3 @@ export class Modal_Class_Form extends React.Component {
   }
   
   
-//THIS PAGE IS GOOD DO NOT TOUCH IT
