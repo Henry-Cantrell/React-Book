@@ -25,10 +25,7 @@ export class Modal_Class extends React.Component {
           <Show_button function={this.props.function} click={this.showModal} />
         </div>
         <Modal_Func
-          handleChangeEmail={this.props.handleChangeEmail}
-          handleChangePassword={this.props.handleChangePassword}
-          inputEmailValue={this.props.inputEmailValue}
-          inputPasswordValue={this.props.inputPasswordValue}
+          formID={this.props.formID}
           passwordID={this.props.passwordID}
           emailID={this.props.emailID}
           show={this.state.classLogin}

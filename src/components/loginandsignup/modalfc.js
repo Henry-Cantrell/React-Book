@@ -20,12 +20,15 @@ export class Modal_Func extends React.Component {
     this.setState({ inputValuePassword: e.target.value });
   }
 
-  componentDidMount() {
-    //User log in method
-    const userAuthForm = document.querySelector(`${this.props.formID}`);
+  clearForm() {
+    this.setState({inputValuePassword: '', inputValueEmail: ''})
+  }
 
-    if (userAuthForm.id === "loginForm") {
-      userAuthForm.addEventListener("submit", (e) => {
+  componentDidMount() {
+    //User auth method
+
+    if (this.props.formID === "loginForm") {
+      document.getElementById(this.props.formID).addEventListener("submit", (e) => {
         e.preventDefault();
 
         const loginEmail = document.querySelector("#loginEmail").value;
@@ -38,7 +41,7 @@ export class Modal_Func extends React.Component {
         this.clearForm();
       });
     } else {
-      userAuthForm.addEventListener("submit", (e) => {
+      document.getElementById(this.props.formID).addEventListener("submit", (e) => {
         e.preventDefault();
 
         const signupEmail = document.querySelector("#signupEmail").value;
@@ -55,8 +58,8 @@ export class Modal_Func extends React.Component {
 
   render() {
     return (
+      <form id={this.props.formID}>
       <div class={this.props.show}>
-        <form id="loginForm">
           <div class="modal_box">
             <div class="toggle_button">
               <div class="toggleButton" onClick={this.props.hide}>
@@ -96,8 +99,8 @@ export class Modal_Func extends React.Component {
               </div>
             </div>
           </div>
-        </form>
       </div>
+      </form>
     );
   }
 }

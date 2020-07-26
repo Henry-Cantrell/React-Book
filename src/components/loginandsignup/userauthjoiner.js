@@ -6,37 +6,12 @@ export class User_Auth_Joiner extends React.Component {
     super(props);
     this.state = {
       loginStatus: false,
-      inputFieldClear: true,
-      inputEmailValue: "",
-      inputPasswordValue: ""
-    };
-    this.handleChangeEmail = this.handleChangeEmail.bind(this)
-    this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.clearForm = this.clearForm.bind(this);
-  }
-
-  clearForm() {
-    this.setState({
-      inputEmailValue: "",
-      inputPasswordValue: ""
-    });
-  }
-
-  handleChangeEmail(event) {
-    this.setState({ inputEmailValue: event.target.value });
-  }
-
-  handleChangePassword(event) {
-    this.setState({ inputPasswordValue: event.target.value });
+    }
   }
 
   render() {
     const userAuthPage = (
       <Modal_Class_Form
-        inputEmailValue={this.state.inputEmailValue}
-        inputPasswordValue={this.state.inputPasswordValue}
-        handleChangeEmail={this.handleChangeEmail}
-        handleChangePassword={this.handleChangePassword}
       />
     );
 

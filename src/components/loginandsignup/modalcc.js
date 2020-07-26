@@ -17,6 +17,7 @@ export class Modal_Class_Form extends React.Component {
               <h2>Check out my modals: </h2>
             </div>
               <Modal_Class
+                formID='loginForm'
                 handleChangeEmail={this.props.handleChangeEmail}
                 handleChangePassword={this.props.handleChangePassword}
                 inputEmailValue={this.props.inputEmailValue}
@@ -28,6 +29,7 @@ export class Modal_Class_Form extends React.Component {
                 purpose="Log into an account"
               />
             <Modal_Class
+              formID='signupForm'
               handleChangeEmail={this.props.handleChangeEmail}
               handleChangePassword={this.props.handleChangePassword}
               inputEmailValue={this.props.inputEmailValue}
