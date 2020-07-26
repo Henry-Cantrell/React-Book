@@ -5,6 +5,7 @@ body {
   }
 
 /* Modal interior styling */
+
 .show_modal {
     top:0px;
     left:0px;
@@ -63,7 +64,6 @@ body {
     margin: 0 auto;
   }
 
-
   .login_one_style {
     margin-bottom: 15px;
   }
@@ -81,7 +81,6 @@ body {
       border-color: black;
       background-color: white;
   }
-
 
   /* Modal page exterior styling */
 

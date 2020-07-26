@@ -19,3 +19,4 @@ export class GroupComponentLoginAndSignup extends React.Component {
     }
 }
 
+//restructure app.js to exclude this file and delete for final rendering to DOM in index.js

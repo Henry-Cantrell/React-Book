@@ -34,7 +34,7 @@ export class User_Auth_Joiner extends React.Component {
         e.preventDefault();
   
        const signupEmail = document.querySelector("#signupEmail").value;
-        const signupPassword = document.querySelector("#signupPassword").value;
+       const signupPassword = document.querySelector("#signupPassword").value;
   
         fireBaseExternalObj.auth.createUserWithEmailAndPassword(
           signupEmail,
@@ -44,7 +44,12 @@ export class User_Auth_Joiner extends React.Component {
     }
   
     render() {
-      return <Modal_Class_Form />;
+
+      const userAuthPage = <Modal_Class_Form />
+
+      return <div>
+          {userAuthPage}
+      </div>;
     }
   }
   
@@ -54,3 +59,4 @@ export class User_Auth_Joiner extends React.Component {
 //add conditional de-mounting on successful sign-up or log in via .then to auth methods
 //capture uid for further use 
 //import and display main page content after user auth page de-mounted (is it actually possible do this?...)
+//
