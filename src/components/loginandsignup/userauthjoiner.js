@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal_Class_Form} from './modalcc'
+import {MODAL_CLASS_FORM} from './modalcc'
 import { useSelector } from 'react-redux'
 
 export let USER_AUTH_JOINER = () => {
@@ -9,7 +9,7 @@ export let USER_AUTH_JOINER = () => {
     return (
 
     <div>
-      {isLogged ? <h3>HELLO I AM FROM ANCIENT G R E E C E</h3> : <Modal_Class_Form/>}
+      {isLogged ? <h3>HELLO I AM FROM ANCIENT G R E E C E</h3> : <MODAL_CLASS_FORM/>}
     </div>
     )
   }

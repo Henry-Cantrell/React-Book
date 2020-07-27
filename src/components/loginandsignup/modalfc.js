@@ -1,16 +1,12 @@
 import React from 'react'
-import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
-import {useDispatch} from 'react-redux'
-import {logIn} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/logInUser'
 
 export let Modal_Func = (props) => {
+
   let clearForm = (e) => {
     e.preventDefault();
     document.getElementById(`${props.emailID}`).value = "";
     document.getElementById(`${props.passwordID}`).value = "";
   };
-
-  const changeLoginStatus = useDispatch();
 
   return (
     <form id={props.formID} onSubmit={clearForm}>
