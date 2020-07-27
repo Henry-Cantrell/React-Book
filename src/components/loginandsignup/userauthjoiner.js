@@ -16,9 +16,7 @@ export let USER_AUTH_JOINER = () => {
 
 
 //bring together all page graphics here for final placement depending on login status
-//when state.loggedIn is true, render main page via state update to variable definition; simply reverse for false case
 
 //to-do list: 
-//add conditional de-mounting on successful sign-up or log in via .then to auth methods
-//capture uid for further use 
+//capture uid in Redux state for further use 
 //import and display main page content after user auth page de-mounted (is it actually possible do this?...)
