@@ -8,18 +8,9 @@ export class Modal_Func extends React.Component {
     this.state = {
       inputValueEmail: "",
       inputValuePassword: "",
-      logInStatus: this.loginToggle,
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.loginToggle = this.loginToggle.bind(this)
-    this.loginToggleChangeTest = this.loginToggleChangeTest.bind(this)
-  }
-
-  loginToggle = (useSelector(state => state.isLogged))
-
-  loginToggleChangeTest = (param) => {
-    this.loginToggle('SIGN_IN')
   }
 
   handleChangeEmail(e) {
@@ -36,8 +27,6 @@ export class Modal_Func extends React.Component {
 
   componentDidMount() {
     //User auth method
-
-
 
     if (this.props.formID === "loginForm") {
       document.getElementById(this.props.formID).addEventListener("submit", (e) => {

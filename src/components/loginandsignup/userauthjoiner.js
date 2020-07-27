@@ -1,25 +1,21 @@
 import React from 'react'
 import {Modal_Class_Form} from './modalcc'
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 
-export class User_Auth_Joiner extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loginStatus: false,
-    };
+export let USER_AUTH_JOINER = () => {
+
+    const isLogged = useSelector(state => state.isLogged)
+    
+    return (
+
+    <div>
+      {isLogged ? <h3>HELLO I AM FROM ANCIENT G R E E C E</h3> : <Modal_Class_Form/>}
+    </div>
+    )
   }
 
-  testContent = <h3>HELLO I AM FROM ANCIENT G R E E C E</h3>
 
-  render() {
-    const userPage = <Modal_Class_Form />;
-
-    return <div>{userPage}</div>;
-  }
-}
-
-//bring together all page graphics here for final placement 
+//bring together all page graphics here for final placement depending on login status
 //when state.loggedIn is true, render main page via state update to variable definition; simply reverse for false case
 
 //to-do list: 

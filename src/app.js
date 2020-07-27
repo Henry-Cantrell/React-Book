@@ -1,10 +1,10 @@
 import React from 'react'
-import {User_Auth_Joiner} from './components/loginandsignup/userauthjoiner'
+import {USER_AUTH_JOINER} from './components/loginandsignup/userauthjoiner'
 
 export function App (props) {
     return (
         <div>
-        <User_Auth_Joiner />
+        <USER_AUTH_JOINER />
         </div>
     )
 }
