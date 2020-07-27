@@ -1,27 +1,26 @@
 import React from 'react'
 import {Modal_Class_Form} from './modalcc'
+import {useSelector} from 'react-redux'
 
 export class User_Auth_Joiner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loginStatus: false,
-    }
+    };
   }
 
-  render() {
-    const userAuthPage = (
-      <Modal_Class_Form
-      />
-    );
+  testContent = <h3>HELLO I AM FROM ANCIENT G R E E C E</h3>
 
-    return <div>{userAuthPage}</div>;
+  render() {
+    const userPage = <Modal_Class_Form />;
+
+    return <div>{userPage}</div>;
   }
 }
 
-//handle change evt from this component 
-
-//all final graphics content for user auth page should be in a parent cc's render statement for de-mounting on user auth clear
+//bring together all page graphics here for final placement 
+//when state.loggedIn is true, render main page via state update to variable definition; simply reverse for false case
 
 //to-do list: 
 //add conditional de-mounting on successful sign-up or log in via .then to auth methods

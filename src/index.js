@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {App} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/app'
+import {App} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/app'; 
+import {createStore} from 'redux'
+import {allReducers} from './reduxdeps/combineReducers'
+import {Provider} from 'react-redux'
 
-ReactDOM.render(
-  
-    <App />,
-  document.getElementById('root')
+//Combined reducer transfer to store for Redux and firefox devtools setup
+
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-//serviceWorker.unregister();
+//React component rendering to DOM
+
+ReactDOM.render(
+<Provider store={store}>
+  <App />
+</Provider>, 
+document.getElementById("root"));
+
+

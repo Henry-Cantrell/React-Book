@@ -1,5 +1,6 @@
 import React from 'react'
 import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
+import {useSelector} from 'react-redux'
 
 export class Modal_Func extends React.Component {
   constructor(props) {
@@ -7,9 +8,18 @@ export class Modal_Func extends React.Component {
     this.state = {
       inputValueEmail: "",
       inputValuePassword: "",
+      logInStatus: this.loginToggle,
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.loginToggle = this.loginToggle.bind(this)
+    this.loginToggleChangeTest = this.loginToggleChangeTest.bind(this)
+  }
+
+  loginToggle = (useSelector(state => state.isLogged))
+
+  loginToggleChangeTest = (param) => {
+    this.loginToggle('SIGN_IN')
   }
 
   handleChangeEmail(e) {
@@ -26,6 +36,8 @@ export class Modal_Func extends React.Component {
 
   componentDidMount() {
     //User auth method
+
+
 
     if (this.props.formID === "loginForm") {
       document.getElementById(this.props.formID).addEventListener("submit", (e) => {
@@ -106,4 +118,4 @@ export class Modal_Func extends React.Component {
 }
 
 //to-do:
-//pass formID depending on responsibility of component in parent components to this component
+//In Redux, modify value of loggedIn depending on success of firebase auth method on sign-in/sign-up
