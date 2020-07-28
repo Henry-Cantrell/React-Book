@@ -1,9 +1,9 @@
 import React from 'react'
-import {Modal_Func} from './modalfc'
-import {Show_button} from './showbuttonfc'
+import {MODAL_FUNC} from './modalfc'
+import {SHOW_BUTTON} from './showbuttonfc'
 import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
 
-export class Modal_Class extends React.Component {
+export class MODAL_CLASS extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,21 +16,22 @@ export class Modal_Class extends React.Component {
       document
         .getElementById(this.props.formID)
         .addEventListener("submit", (e) => {
+          e.preventDefault()
 
           const loginEmail = document.querySelector("#loginEmail").value;
           const loginPassword = document.querySelector("#loginPassword").value;
 
           fireBaseExternalObj.auth
             .signInWithEmailAndPassword(loginEmail, loginPassword)
-            .then(this.props.loginStateUpdate);
-
-            document.getElementById(`${this.props.emailID}`).value = "";
-            document.getElementById(`${this.props.passwordID}`).value = "";
+            .then(this.props.loginStateUpdate,
+              loginEmail = "",
+              loginPassword = "");
         });
     } else {
       document
         .getElementById(this.props.formID)
         .addEventListener("submit", (e) => {
+          e.preventDefault()
 
           const signupEmail = document.querySelector("#signupEmail").value;
           const signupPassword = document.querySelector("#signupPassword")
@@ -38,10 +39,10 @@ export class Modal_Class extends React.Component {
 
           fireBaseExternalObj.auth
             .createUserWithEmailAndPassword(signupEmail, signupPassword)
-            .then(this.props.loginStateUpdate)
-            
-            document.getElementById(`${this.props.emailID}`).value = "";
-            document.getElementById(`${this.props.passwordID}`).value = "";;
+            .then(this.props.loginStateUpdate,
+                  document.getElementById('signupEmail').value = "",
+                  document.getElementById('signupPassword').value = ""
+              )            
         });
     }
   }
@@ -58,9 +59,9 @@ export class Modal_Class extends React.Component {
     return (
       <div>
         <div class="signup_button_style">
-          <Show_button function={this.props.function} click={this.showModal} />
+          <SHOW_BUTTON function={this.props.function} click={this.showModal} />
         </div>
-        <Modal_Func
+        <MODAL_FUNC
           formID={this.props.formID}
           passwordID={this.props.passwordID}
           emailID={this.props.emailID}

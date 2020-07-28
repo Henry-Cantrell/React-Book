@@ -1,3 +1,5 @@
-export let logIn = {
-    type: 'SIGN_IN'
+export function logIn () {
+    return {
+        type: 'SIGN_IN'
+    }
 }

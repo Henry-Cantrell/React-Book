@@ -1,15 +1,9 @@
 import React from 'react'
 
-export let Modal_Func = (props) => {
-
-  let clearForm = (e) => {
-    e.preventDefault();
-    document.getElementById(`${props.emailID}`).value = "";
-    document.getElementById(`${props.passwordID}`).value = "";
-  };
+export let MODAL_FUNC = (props) => {
 
   return (
-    <form id={props.formID} onSubmit={clearForm}>
+    <form id={props.formID}>
       <div class={props.show}>
         <div class="modal_box">
           <div class="toggle_button">

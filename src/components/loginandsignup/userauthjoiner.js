@@ -14,9 +14,5 @@ export let USER_AUTH_JOINER = () => {
     )
   }
 
-
-//bring together all page graphics here for final placement depending on login status
-
 //to-do list: 
 //capture uid in Redux state for further use 
-//import and display main page content after user auth page de-mounted (is it actually possible do this?...)

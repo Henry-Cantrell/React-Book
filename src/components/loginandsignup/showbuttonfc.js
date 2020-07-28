@@ -1,5 +1,5 @@
 import React from 'react'
 
-export function Show_button (props) {
+export function SHOW_BUTTON (props) {
   return (<div class='buttonDiv' onClick={props.click}>{props.function}</div>)
 }
