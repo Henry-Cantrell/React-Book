@@ -1,19 +1,17 @@
 import React from 'react'
 import {MODAL_CLASS_FORM} from './modalcc'
 import { useSelector } from 'react-redux'
+import {USER_PROFILE_BOTTOM_LEFT_BOX} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox'
 
 export let USER_AUTH_JOINER = () => {
 
     const isLogged = useSelector(state => state.isLogged)
-
     
     return (
 
     <div>
-      {isLogged ? <h3>HELLO I AM FROM ANCIENT G R E E C E</h3> : <MODAL_CLASS_FORM/>}
+      {isLogged ? <USER_PROFILE_BOTTOM_LEFT_BOX/> : <MODAL_CLASS_FORM/>}
     </div>
     )
   }
 
-//to-do list: 
-//create component that accesses uid within store and displays user-specific content from firebase
