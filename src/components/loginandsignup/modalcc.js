@@ -1,7 +1,6 @@
 import React from 'react'
 import {MODAL_CLASS} from './UserAuthcc'
 import {useDispatch} from 'react-redux'
-import {logIn} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/logInUser'
 
 export let MODAL_CLASS_FORM = () => {
 
@@ -14,7 +13,7 @@ export let MODAL_CLASS_FORM = () => {
           <h2> Check out my modals: </h2>
         </div>
         <MODAL_CLASS
-          loginStateUpdate={() => dispatch(logIn())}
+          dispatch={dispatch}
           formID="loginForm"
           passwordID="loginPassword"
           emailID="loginEmail"
@@ -23,7 +22,7 @@ export let MODAL_CLASS_FORM = () => {
           purpose="Log into an account"
         />
         <MODAL_CLASS
-          loginStateUpdate={() => dispatch(logIn())}
+          dispatch={dispatch}
           formID="signupForm"
           passwordID="signupPassword"
           emailID="signupEmail"

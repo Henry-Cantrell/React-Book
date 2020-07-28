@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 export let USER_AUTH_JOINER = () => {
 
     const isLogged = useSelector(state => state.isLogged)
+
     
     return (
 
@@ -15,4 +16,4 @@ export let USER_AUTH_JOINER = () => {
   }
 
 //to-do list: 
-//capture uid in Redux state for further use 
+//create component that accesses uid within store and displays user-specific content from firebase

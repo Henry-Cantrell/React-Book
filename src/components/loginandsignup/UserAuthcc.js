@@ -2,6 +2,7 @@ import React from 'react'
 import {MODAL_FUNC} from './modalfc'
 import {SHOW_BUTTON} from './showbuttonfc'
 import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
+import {uidNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/uidNet'
 
 export class MODAL_CLASS extends React.Component {
   constructor(props) {
@@ -16,22 +17,26 @@ export class MODAL_CLASS extends React.Component {
       document
         .getElementById(this.props.formID)
         .addEventListener("submit", (e) => {
-          e.preventDefault()
+          e.preventDefault();
 
           const loginEmail = document.querySelector("#loginEmail").value;
           const loginPassword = document.querySelector("#loginPassword").value;
 
           fireBaseExternalObj.auth
             .signInWithEmailAndPassword(loginEmail, loginPassword)
-            .then(this.props.loginStateUpdate,
-              loginEmail = "",
-              loginPassword = "");
+            .then(
+              (cred) => {
+                this.props.dispatch(uidNet(cred.user.uid),
+                )},
+              (document.getElementById("loginEmail").value = ""),
+              (document.getElementById("loginPassword").value = "")
+            );
         });
     } else {
       document
         .getElementById(this.props.formID)
         .addEventListener("submit", (e) => {
-          e.preventDefault()
+          e.preventDefault();
 
           const signupEmail = document.querySelector("#signupEmail").value;
           const signupPassword = document.querySelector("#signupPassword")
@@ -39,10 +44,13 @@ export class MODAL_CLASS extends React.Component {
 
           fireBaseExternalObj.auth
             .createUserWithEmailAndPassword(signupEmail, signupPassword)
-            .then(this.props.loginStateUpdate,
-                  document.getElementById('signupEmail').value = "",
-                  document.getElementById('signupPassword').value = ""
-              )            
+            .then(
+              (cred) => {
+                this.props.dispatch(uidNet(cred.user.uid),
+                )},
+              (document.getElementById("signupEmail").value = ""),
+              (document.getElementById("signupPassword").value = "")
+            );
         });
     }
   }
@@ -74,3 +82,6 @@ export class MODAL_CLASS extends React.Component {
     );
   }
 }
+
+
+//capture UID on successful login
