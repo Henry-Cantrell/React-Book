@@ -1,8 +1,7 @@
 import React from 'react'
 import {MODAL_CLASS_FORM} from './modalcc'
 import { useSelector } from 'react-redux'
-import {USER_PROFILE_BOTTOM_LEFT_BOX} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox'
-import firebase from 'firebase'
+import {MAIN_USER_PAGE} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/mainuserpage'
 
 export let USER_AUTH_JOINER = () => {
 
@@ -11,7 +10,7 @@ export let USER_AUTH_JOINER = () => {
     return (
 
     <div>
-      {isLogged ? <USER_PROFILE_BOTTOM_LEFT_BOX/> : <MODAL_CLASS_FORM/>}
+      {isLogged ? <MAIN_USER_PAGE/> : <MODAL_CLASS_FORM/>}
     </div>
     )
   }
