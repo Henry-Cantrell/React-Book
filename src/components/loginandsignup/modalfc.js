@@ -18,7 +18,7 @@ export let MODAL_FUNC = (props) => {
             <div class="login_one_style">
               <input
                 id={props.emailID}
-                type="email"
+                type="text"
                 class="login_one"
                 placeholder="Email"
               ></input>

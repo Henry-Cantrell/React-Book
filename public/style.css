@@ -110,13 +110,22 @@ body {
 
 /* Bottom-left user-info box styling */
 
-#boxMaster {
-  height: 100px;
+#blbMaster {
+  position: fixed;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: block;
+  line-height: 1em; 
+  max-height: 2em; 
+  font-size: medium;
+  height: 125px;
   width: 150px;
   border-style: solid;
   border-width: 2px;
   border-color: black;
   background-color: white;
   left: 25%;
-  top: 75%;
+  top: 90%;
+  transform: translate(-50%, -50%);
 }

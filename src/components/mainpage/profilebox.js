@@ -1,37 +1,16 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import firebase from 'firebase'
 
 export let USER_PROFILE_BOTTOM_LEFT_BOX = (props) => {
 
-    const fireStoreRef = firebase.firestore();
-    const uniqueUID = useSelector((state) => state.uidInt);
-
-    //this method retrieves UID specific email and profile name for display in div box 
-    
-    let getUidFromStore = () => {
-          
-        fireStoreRef
-        .collection("users")
-        .get()
-        .then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            if (doc.data().uid === uniqueUID) {
-              console.log("ok");
-            }
-            });
-          });
-      };
-
-      getUidFromStore();
+    const userEmail = useSelector((state) => state.userEmail)
   
     return (
-        <div id='boxMaster'>
-            <div id='profileName'>
-
+        <div id='blbMaster'>
+            <div id='profileNameBlb'>
             </div>
-            <div id='email'>
-            
+            <div id='emailBlb'>
+            {userEmail}
             </div>
         </div>
     );
