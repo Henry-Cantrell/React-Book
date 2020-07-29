@@ -3,42 +3,40 @@ import {useSelector} from 'react-redux'
 import firebase from 'firebase'
 
 export let USER_PROFILE_BOTTOM_LEFT_BOX = (props) => {
-    //capture uid from state with useSelector method
-    const uniqueUID = useSelector((state) => state.uidInt);
-    //create firestore variable and then push uid to users as document
-    const fireStoreRef = firebase.firestore();
-  
-    let uidToFirestore = (uniqueUID) => {
-      fireStoreRef.collection("users").doc(uniqueUID).set({
-        uid: uniqueUID,
-        name: "stacy",
-      });
-    };
-  
-    uidToFirestore(uniqueUID);
 
-    quickTest(uniqueUID)
-    //where snapshot is the returned data array containing all user objs
-    //loops through snapshot array and returns a specific value from data
-    //this method will be the handler for placing data within my code
-    //the snapshot array can be parsed and conditionally place user object data, which will allow for component creation, etc. 
+    const fireStoreRef = firebase.firestore();
+    const uniqueUID = useSelector((state) => state.uidInt);
+
+    //this method retrieves UID specific email and profile name for display in div box 
+    
     let getUidFromStore = () => {
-      fireStoreRef
+          
+        fireStoreRef
         .collection("users")
         .get()
         .then((snapshot) => {
           snapshot.docs.forEach((doc) => {
             if (doc.data().uid === uniqueUID) {
-              console.log('ok');
+              console.log("ok");
             }
+            });
           });
-        });
-    };
+      };
+
+      getUidFromStore();
   
-    getUidFromStore();
-  
-    return <p>{uniqueUID}</p>;
+    return (
+        <div id='boxMaster'>
+            <div id='profileName'>
+
+            </div>
+            <div id='email'>
+            
+            </div>
+        </div>
+    );
   };
   
 //to-do:
-//create styled div box with user email, profile name and avatar color circle 
+//create styled div box with user email, profile name and (eventually) avatar color circle 
+//create state for user profile name in Redux and also add to firestore 

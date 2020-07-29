@@ -2,7 +2,7 @@ import React from 'react'
 import {MODAL_FUNC} from './modalfc'
 import {SHOW_BUTTON} from './showbuttonfc'
 import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
-import {uidNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/uidNet'
+import {uidNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/uidNet'
 
 export class MODAL_CLASS extends React.Component {
   constructor(props) {
@@ -26,8 +26,9 @@ export class MODAL_CLASS extends React.Component {
             .signInWithEmailAndPassword(loginEmail, loginPassword)
             .then(
               (cred) => {
-                this.props.dispatch(uidNet(cred.user.uid),
+                this.props.dispatch(uidNet(cred.user.uid, loginEmail),
                 )},
+            ).then (
               (document.getElementById("loginEmail").value = ""),
               (document.getElementById("loginPassword").value = "")
             );
@@ -46,10 +47,11 @@ export class MODAL_CLASS extends React.Component {
             .createUserWithEmailAndPassword(signupEmail, signupPassword)
             .then(
               (cred) => {
-                this.props.dispatch(uidNet(cred.user.uid),
+                this.props.dispatch(uidNet(cred.user.uid, signupEmail),
                 )},
-              (document.getElementById("signupEmail").value = ""),
-              (document.getElementById("signupPassword").value = "")
+            ).then(
+              (document.getElementById("loginEmail").value = ""),
+              (document.getElementById("loginPassword").value = "")
             );
         });
     }
@@ -83,5 +85,4 @@ export class MODAL_CLASS extends React.Component {
   }
 }
 
-
-//capture UID on successful login
+//to-do: add window.alert for err throw in .catch(err) method after .then asyncs

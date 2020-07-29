@@ -82,7 +82,7 @@ body {
       background-color: white;
   }
 
-  /* Modal page exterior styling */
+/* Modal page exterior styling */
 
   .login_modals_graphics {
     z-index: 0;
@@ -106,4 +106,17 @@ body {
     border-width: 2px;
     border-color: black;
     background-color: white;
+}
+
+/* Bottom-left user-info box styling */
+
+#boxMaster {
+  height: 100px;
+  width: 150px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: white;
+  left: 25%;
+  top: 75%;
 }
