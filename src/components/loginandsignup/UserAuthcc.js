@@ -31,28 +31,49 @@ export class MODAL_CLASS extends React.Component {
             ).then (
               (document.getElementById("loginEmail").value = ""),
               (document.getElementById("loginPassword").value = "")
-            );
+            ).catch((Error) => {
+              window.alert('Error: incorrect username or password')
+            });
         });
     } else {
       document
         .getElementById(this.props.formID)
         .addEventListener("submit", (e) => {
           e.preventDefault();
-
-          const signupEmail = document.querySelector("#signupEmail").value;
+          
+          const signupEmail = document.querySelector("#signupEmail")
+          .value;
           const signupPassword = document.querySelector("#signupPassword")
-            .value;
+          .value;
+          const signupUsername = document.querySelector('#userNameField')
+          .value;
 
+          if (signupUsername.length <= 12) {
           fireBaseExternalObj.auth
             .createUserWithEmailAndPassword(signupEmail, signupPassword)
             .then(
               (cred) => {
-                this.props.dispatch(uidNet(cred.user.uid, signupEmail),
+                this.props.dispatch(uidNet(cred.user.uid, signupEmail, signupUsername),
+
+                fireBaseExternalObj
+                .dataBase
+                .collection('users')
+                .doc(cred.user.uid)
+                .set({
+                  uid: cred.user.uid,
+                  email: signupEmail,
+                  username: signupUsername
+              })
                 )},
             ).then(
               (document.getElementById("loginEmail").value = ""),
               (document.getElementById("loginPassword").value = "")
-            );
+            ).catch((Error) => {
+              window.alert('Error: user info previously created')
+            })
+          } else {
+            window.alert('Username must be less than 13 characters long')
+          }
         });
     }
   }
@@ -72,6 +93,7 @@ export class MODAL_CLASS extends React.Component {
           <SHOW_BUTTON function={this.props.function} click={this.showModal} />
         </div>
         <MODAL_FUNC
+          nameInputOption={this.props.nameInputOption}
           formID={this.props.formID}
           passwordID={this.props.passwordID}
           emailID={this.props.emailID}
@@ -85,4 +107,5 @@ export class MODAL_CLASS extends React.Component {
   }
 }
 
-//to-do: add window.alert for err throw in .catch(err) method after .then asyncs
+//to-do: 
+//create an entry in documentation explaining functionality and purpose of this file

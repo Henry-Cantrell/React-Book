@@ -6,20 +6,7 @@ import firebase from 'firebase'
 
 export let USER_AUTH_JOINER = () => {
 
-    const fireStoreRef = firebase.firestore();
-    const uniqueUID = useSelector((state) => state.uidInt);
-    const userEmail = useSelector((state) => state.userEmail)
-
-    const isLogged = useSelector(state => state.isLogged)
-
-    let uidAndEmailToFirestore = () => {
-      fireStoreRef.collection("users").doc(uniqueUID).set({
-        uid: uniqueUID,
-        email: userEmail,
-      });
-    };
-    
-    uidAndEmailToFirestore()
+  const isLogged = useSelector((state) => state.isLogged)
 
     return (
 

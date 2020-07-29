@@ -30,6 +30,10 @@ export let MODAL_FUNC = (props) => {
                 class="login_two"
                 placeholder="Password"
               ></input>
+              </div>
+              <div class='login_three_style'>
+                {props.nameInputOption}
+              </div>
             </div>
             <div class="button_center">
               <button class="login_button" id="lin_button">
@@ -38,7 +42,6 @@ export let MODAL_FUNC = (props) => {
             </div>
           </div>
         </div>
-      </div>
     </form>
   );
 };

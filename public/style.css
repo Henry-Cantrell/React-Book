@@ -4,7 +4,7 @@ body {
     margin: 0px;
   }
 
-/* Modal interior styling */
+/* Modal page interior styling */
 
 .show_modal {
     top:0px;
@@ -44,6 +44,16 @@ body {
   }
   
   .login_two {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 300px;
+  }
+
+  .login_three_style {
+    margin-top: 15px;
+  }
+
+  .login_three {
     margin-left: 10px;
     margin-top: 10px;
     width: 300px;
@@ -128,4 +138,8 @@ body {
   left: 25%;
   top: 90%;
   transform: translate(-50%, -50%);
+}
+
+#profileNameBlb {
+  margin-top: 20px;
 }

@@ -5,7 +5,7 @@ import {createStore} from 'redux'
 import {allReducers} from './reduxdeps/reducers/combineReducers'
 import {Provider} from 'react-redux'
 
-//Final pass of composed items to store
+//Final pass of reducers and their respective states to Redux store 
 
 const store = createStore(
   allReducers,

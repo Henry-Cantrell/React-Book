@@ -6,6 +6,8 @@ export let MODAL_CLASS_FORM = () => {
 
   const dispatch = useDispatch()
 
+  const nameInputField = <input placeholder='Username' id='userNameField' class='login_three' type='text'></input>
+
   return (
     <div>
       <div class="login_modals_graphics">
@@ -22,6 +24,7 @@ export let MODAL_CLASS_FORM = () => {
           purpose="Log into an account"
         />
         <MODAL_CLASS
+          nameInputOption={nameInputField}
           dispatch={dispatch}
           formID="signupForm"
           passwordID="signupPassword"
