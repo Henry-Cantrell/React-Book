@@ -3,6 +3,6 @@ export const uidCaptureReducer = (state = 'empty', action) => {
         case 'LOGGED_IN':
             return state = action.payload;
         default: 
-            return state='empty';
+            return state=state
     }
 }

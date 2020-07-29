@@ -3,21 +3,18 @@ import {useSelector} from 'react-redux'
 import { fireBaseExternalObj } from '../../firebasedeps'
 import {useDispatch} from 'react-redux'
 import {userNameNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet'
-import firebase from 'firebase'
 
 export let USER_PROFILE_BOTTOM_LEFT_BOX = (props) => {
 
-    const fireStoreRef = firebase.firestore();
     const dispatch = useDispatch()
-    const uniqueUID = useSelector((state) => state.uidInt)
-    const userEmail = useSelector((state) => state.userEmail)
+    const uniqueUid = (useSelector((state) => state.uidInt))
 
     let getUsernameFromFirestore = () => {
-        const docRef = fireBaseExternalObj.dataBase.collection('users').doc(uniqueUID)
+        const docRef = fireBaseExternalObj.dataBase.collection('users').doc(uniqueUid)
 
         docRef.get().then(function(doc) {
             if (doc.exists) {
-                console.log(dispatch(userNameNet(doc.data().username)));
+                dispatch(userNameNet(doc.data().username));
             } else {
                 window.alert('No username in firebase')
             }
@@ -28,20 +25,7 @@ export let USER_PROFILE_BOTTOM_LEFT_BOX = (props) => {
 
     getUsernameFromFirestore()
 
-    const userNameFromLogin = useSelector((state) => state.usernameFromLogin)
-    const userNameFromSignup = useSelector((state) => state.userNameFromSignIn)
-
-    let userName = ''
-
-    let decideUsernameDefinition = () => {
-        if (userNameFromLogin != 'empty') {
-            userName = userNameFromLogin
-        } else {
-            userName = userNameFromSignup
-        }
-    }
-
-    decideUsernameDefinition()
+    let userName = useSelector((state) => state.userName)
 
     return (
         <div id='blbMaster'>

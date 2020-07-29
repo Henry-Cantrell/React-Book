@@ -3,6 +3,6 @@ export function emailCaptureReducer (state = 'empty', action) {
         case 'LOGGED_IN':
             return state = action.payloadTwo;
         default: 
-            return state='empty';
+            return state=state
     }
 }

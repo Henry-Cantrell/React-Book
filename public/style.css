@@ -129,8 +129,8 @@ body {
   line-height: 1em; 
   max-height: 2em; 
   font-size: medium;
-  height: 125px;
-  width: 150px;
+  height: 145px;
+  width: 160px;
   border-style: solid;
   border-width: 2px;
   border-color: black;
@@ -141,5 +141,5 @@ body {
 }
 
 #profileNameBlb {
-  margin-top: 20px;
+  margin-top: 13px;
 }

@@ -1,8 +1,8 @@
 export const usernameCaptureReducer = (state= 'empty', action) => {
     switch (action.type) {
-        case 'LOGGED_IN':
-            return state = action.payloadThree;
+        case 'USERNAME_CAPTURE':
+            return state = action.payload;
         default:
-            return state = 'empty'
+            return state = state;
     }
 }
