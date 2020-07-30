@@ -9,9 +9,9 @@ export let USER_AUTH_JOINER = () => {
 
     return (
 
-    <div>
+    <>
       {isLogged ? <MAIN_USER_PAGE/> : <MODAL_CLASS_FORM/>}
-    </div>
+    </>
     )
   }
 

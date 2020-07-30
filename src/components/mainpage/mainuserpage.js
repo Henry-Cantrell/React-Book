@@ -1,10 +1,11 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import { fireBaseExternalObj } from '../../firebasedeps'
+import {fireBaseExternalObj} from '../../firebasedeps'
 import {useDispatch} from 'react-redux'
 import {userNameNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet'
 import {USER_PROFILE_BOTTOM_LEFT_BOX} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox'
 import {signOutAction} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/signOutAction'
+import {BANNER_CONTENT} from './bannercontent'
 
 export let MAIN_USER_PAGE = (props) => {
 
@@ -28,16 +29,17 @@ export let MAIN_USER_PAGE = (props) => {
                 window.alert('No username in firebase')
             }
         }).catch(function(error) {
-            window.alert('Error with document retrival method in mainuserpage.js')
+            window.alert('Error with document retrieval method in mainuserpage.js')
         });
     }
 
     getUsernameFromFirestore()
 
-    //where blb = bottom left box 
-
     return (
-        <USER_PROFILE_BOTTOM_LEFT_BOX signOut = {signOutUser} userName={`@${useSelector((state) => state.userName)}`}/>
+        <>
+        <BANNER_CONTENT/>
+        <USER_PROFILE_BOTTOM_LEFT_BOX signOut={signOutUser} userName={`@${useSelector((state) => state.userName)}`}/>
+        </>
     );
   };
   

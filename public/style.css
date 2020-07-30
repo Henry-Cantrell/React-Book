@@ -1,7 +1,12 @@
-/* HTML tag styling */
+/* HTML tags styling */
+
+html {
+  height: 100%;
+}
 
 body {
     margin: 0px;
+    height:100%;
   }
 
 /* Modal page interior styling */
@@ -136,6 +141,7 @@ body {
   left: 22.5%;
   top: 96%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 #usernameBlb {
@@ -147,7 +153,7 @@ body {
   margin-top: 13px;
 }
 
-/* styling for sob on blb */
+/* Styling for sob on blb */
 
 .sobMaster {
   position: fixed;
@@ -170,3 +176,28 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* Styling for banner divs */
+
+#root {
+  display: flex;
+  height:100%;
+  z-index: 0;
+}
+.first {
+  display:flex;
+  width: 33%;
+  background: red;
+}
+.second {
+  display: flex;
+  flex-grow: 1;
+  background: green;
+}
+.third {
+  display: flex;
+  width:33%;
+  background: blue;
+}
+
+/* Styling for banner one content */
