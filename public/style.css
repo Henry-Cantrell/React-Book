@@ -189,6 +189,7 @@ body {
   width: 33%;
   background: red;
 }
+
 .second {
   display: flex;
   flex-grow: 1;
@@ -200,4 +201,29 @@ body {
   background: blue;
 }
 
-/* Styling for banner one content */
+/* Banner one interior styling */
+
+.bannerFlowControlButtons {
+  display: none;
+}
+
+/* Styling for banner two profile page content */
+
+.parentDiv {
+  display: flex;
+  height: 100%;
+}
+
+.topBanner {
+  width: 525px;
+  background-color: purple;
+  height: 55px;
+}
+
+.topBannerInteriorPTag {
+  margin-left: 5%;
+}
+
+.userImage {
+  background-color: grey;
+}

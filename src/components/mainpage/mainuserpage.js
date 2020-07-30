@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux'
 import {userNameNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet'
 import {USER_PROFILE_BOTTOM_LEFT_BOX} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox'
 import {signOutAction} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/signOutAction'
-import {BANNER_CONTENT} from './bannercontent'
+import {BANNER_CONTENT_FLOW_CONTROLLER} from './bannercontent'
 
 export let MAIN_USER_PAGE = (props) => {
 
@@ -37,7 +37,7 @@ export let MAIN_USER_PAGE = (props) => {
 
     return (
         <>
-        <BANNER_CONTENT/>
+        <BANNER_CONTENT_FLOW_CONTROLLER/>
         <USER_PROFILE_BOTTOM_LEFT_BOX signOut={signOutUser} userName={`@${useSelector((state) => state.userName)}`}/>
         </>
     );
