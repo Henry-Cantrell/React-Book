@@ -20,13 +20,11 @@ export let MAIN_USER_PAGE = (props) => {
                 window.alert('No username in firebase')
             }
         }).catch(function(error) {
-            window.alert('Error with document retrival method in profilebox.js')
+            window.alert('Error with document retrival method in mainuserpage.js')
         });
     }
 
     getUsernameFromFirestore()
-
-    let userName = useSelector((state) => state.userName)
 
     //where blb = bottom left box 
 
@@ -35,6 +33,3 @@ export let MAIN_USER_PAGE = (props) => {
     );
   };
   
-//to-do:
-//create styled div box with user email, profile name and (eventually) avatar color circle 
-//create state for user profile name in Redux and also add to firestore 
