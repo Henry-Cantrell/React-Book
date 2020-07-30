@@ -152,13 +152,13 @@ body {
 .sobMaster {
   position: fixed;
   display: block;
-  height: 50px;
-  width: 185px;
+  height: 400px;
+  width: 400px;
   border-style: solid;
   border-width: 2px;
   border-color: black;
   background-color: white;
   left: 50%;
-  top: 50;
+  top: 50%;
   transform: translate(-50%, -50%);
 }

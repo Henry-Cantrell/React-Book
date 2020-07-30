@@ -4,11 +4,19 @@ import { fireBaseExternalObj } from '../../firebasedeps'
 import {useDispatch} from 'react-redux'
 import {userNameNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet'
 import {USER_PROFILE_BOTTOM_LEFT_BOX} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox'
+import {signOutAction} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/signOutAction'
 
 export let MAIN_USER_PAGE = (props) => {
 
     const dispatch = useDispatch()
     const uniqueUid = (useSelector((state) => state.uidInt))
+
+    let signOutUser = () => {
+        fireBaseExternalObj.auth.signOut()
+        .then(
+        dispatch(signOutAction())
+        )
+    }
 
     let getUsernameFromFirestore = () => {
         const docRef = fireBaseExternalObj.dataBase.collection('users').doc(uniqueUid)
@@ -29,7 +37,7 @@ export let MAIN_USER_PAGE = (props) => {
     //where blb = bottom left box 
 
     return (
-        <USER_PROFILE_BOTTOM_LEFT_BOX userName={`@${useSelector((state) => state.userName)}`}/>
+        <USER_PROFILE_BOTTOM_LEFT_BOX signOut = {signOutUser} userName={`@${useSelector((state) => state.userName)}`}/>
     );
   };
   

@@ -6,24 +6,31 @@ export class USER_PROFILE_BOTTOM_LEFT_BOX extends React.Component {
     constructor(props) {
       super(props);
 
-      this.toggleShow = this.toggleShow.bind(this)
+      this.toggleShowFalse = this.toggleShowFalse.bind(this)
+      this.toggleShowTrue = this.toggleShowTrue.bind(this)
 
       this.state = {
         show: false,
       };
     }
 
-    toggleShow = () => {
+    toggleShowTrue = () => {
         this.setState({
             show: true
+        })
+    }
+
+    toggleShowFalse = () => {
+        this.setState({
+            show: false
         })
     }
 
     render() {
       return (
         <div>
-          {this.state.show ? <SIGN_OUT_BOX toggleShow={this.toggleShow}/> : null}
-          <div id="blbMaster" onClick={this.toggleShow}>
+          {this.state.show ? <SIGN_OUT_BOX signOut={this.props.signOut} toggleShow={this.toggleShowFalse}/> : null}
+          <div id="blbMaster" onClick={this.toggleShowTrue}>
             <div id="profileNameBlb"></div>
             <div id="usernameBlb">
               {this.props.userName}
