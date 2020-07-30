@@ -152,13 +152,21 @@ body {
 .sobMaster {
   position: fixed;
   display: block;
-  height: 400px;
-  width: 400px;
+  height: 150px;
+  width: 300px;
   border-style: solid;
   border-width: 2px;
   border-color: black;
   background-color: white;
-  left: 50%;
+  left: 22.2%;
+  top: 83.8%;
+  transform: translate(-50%, -50%);
+}
+
+#sobInteriorSignoutButton {
+  display: block;
+  position: fixed;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
