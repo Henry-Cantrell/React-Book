@@ -3,12 +3,10 @@ import {loggedReducer} from './loggedReducer'
 import {uidCaptureReducer} from './uidCaptureReducer'
 import {emailCaptureReducer} from './emailCaptureReducer'
 import {usernameCaptureReducer} from './usernameCaptureReducer'
-import {blbSobReducer} from './blbSobReducer'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
   uidInt: uidCaptureReducer,
   userEmail: emailCaptureReducer,
   userName : usernameCaptureReducer,
-  sobBlbOn: blbSobReducer,
 })
