@@ -283,7 +283,7 @@ body {
   align-self: center;
 }
 
-#userBio {
+.userBioDisplay {
   border-style: solid;
   border-width: 1px;
   border-color: grey;
