@@ -182,21 +182,18 @@ body {
 #root {
   display: flex;
   height:100%;
-  z-index: 0;
 }
 .first {
-  display:flex;
   width: 33%;
   background: red;
 }
 
 .second {
-  display: flex;
   flex-grow: 1;
   background: green;
+  position: relative;
 }
 .third {
-  display: flex;
   width:33%;
   background: blue;
 }
@@ -210,14 +207,18 @@ body {
 /* Styling for banner two profile page content */
 
 .parentDiv {
-  display: flex;
   height: 100%;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .topBanner {
-  width: 525px;
   background-color: purple;
   height: 55px;
+  align-self: stretch;
 }
 
 .topBannerInteriorPTag {
@@ -226,4 +227,27 @@ body {
 
 .userImage {
   background-color: grey;
+  height:200px;
+  align-self: stretch;
+}
+
+.middleDiv {
+  background-color: yellowgreen;
+  height:175px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfoDisplayBar {
+  background-color: brown;
+  height: 90px;
+  align-self: stretch;
+  margin-top: 70px;
+}
+
+.buttonBar {
+  background-color: burlywood;
+  height: 45px;
+  align-self: stretch;
 }

@@ -5,9 +5,11 @@ export function TOP_DIV_CONTENT() {
   return (
     <>
       <div class="topBanner">
-  <p class="topBannerInteriorPTag">{useSelector((state) => state.userName)}</p>
-  <div class='userImage'></div>
-      </div>
+        <p class="topBannerInteriorPTag">
+          {useSelector((state) => state.userName)}
+        </p>
+        </div>
+      <div class="userImage"></div>
     </>
   );
 }
