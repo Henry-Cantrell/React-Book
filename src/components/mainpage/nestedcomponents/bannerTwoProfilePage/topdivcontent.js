@@ -7,7 +7,6 @@ export function TOP_DIV_CONTENT() {
       <div class="topBanner">
         <p class="topBannerInteriorPTag">
           {useSelector((state) => state.userName)}
-          PROFILE PAGE PROTOTYPE
         </p>
         </div>
       <div class="userImage"></div>

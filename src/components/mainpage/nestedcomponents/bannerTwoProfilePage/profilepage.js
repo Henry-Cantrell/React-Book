@@ -35,3 +35,4 @@ export function PROFILE_PAGE() {
     );
   }
   
+  //userBio info display is dependent on Redux store state, which in turn reads from the firebase uid doc 
