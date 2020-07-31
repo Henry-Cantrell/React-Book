@@ -186,6 +186,7 @@ body {
 .first {
   width: 33%;
   background-color: #657786;
+  display: flex;
 }
 
 .second {
@@ -204,7 +205,9 @@ body {
 /* Banner one interior styling */
 
 .bannerFlowControlButtons {
-  display: none;
+  height: 25px;
+  width: 75px;
+  align-self: right;
 }
 
 /* Styling for banner two profile page content */
@@ -252,10 +255,6 @@ body {
 }
 
 .userInfoDisplayBar {
-  background-color: red;
-  border-style: solid;
-  border-width: 1px;
-  border-color: grey;
   height: 90px;
   align-self: stretch;
   margin-top: 50px;
@@ -269,12 +268,21 @@ body {
   border-width: 1px;
   border-color: grey;
   height: 45px;
-  margin-top: 25px;
-  margin-left: 20px;
+  align-self: stretch;
 }
 
 .userNameDisplayUidbProfilePage {
   height: 25px;
+  margin-left: 20px;
   font-size: medium;
+}
 
+/* Styling for user profile modal content*/
+
+.uidbModalDiv {
+  align-self: center;
+}
+
+#userBio {
+  align-self: center;
 }

@@ -6,7 +6,7 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
         super(props)
 
         this.state={
-            showProfilePage: false,
+            showProfilePage: true,
         }
         this.showProfilePage = this.showProfilePage.bind(this)
         this.hideProfilePage = this.hideProfilePage.bind(this)
@@ -28,10 +28,11 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
     return (
         <>
         <div class="first">
-            <button class='bannerFlowControlButtons' onClick={this.showProfilePage}>Profile</button>
+            <div class='bannerFlowControlButtons'>
+            </div>
         </div>
         <div class="second">
-            <PROFILE_PAGE/>
+            {this.state.showProfilePage ? <PROFILE_PAGE/> : null}
         </div>
         <div class="third"></div>
         </>
@@ -42,5 +43,8 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
 //Note:
 //this file will serve as a component collection and also as a flow controller for all nested content displayed upon triple banners 
 
+//all ternary-operator render-controlled components grouped under div class = 'second'
+
 //to-do:
-//add if statement for profile page flow control
+//populate bannerFlowControlButtons with button list
+//scaffold home page and build tweet functionality 

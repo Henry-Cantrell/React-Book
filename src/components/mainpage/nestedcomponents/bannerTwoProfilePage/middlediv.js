@@ -1,14 +1,44 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
+import {MODAL_USER_PROFILE} from './modalBackgroundUserProfile'
 
-export function MIDDLE_DIV_CONTENT () {
-    return (
-        <div class='middleDiv'>
-            <div class='userInfoDisplayBar'>
-                <div class='userNameDisplayUidbProfilePage'>
-                    {useSelector((state) => state.userName)}
-                    </div>
-                </div>
+export class MIDDLE_DIV_CONTENT extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.toggleShowTrue = this.toggleShowTrue.bind(this)
+      this.toggleShowFalse = this.toggleShowFalse.bind(this)
+  
+      this.state = {
+          show: false,
+      };
+    }
+
+    toggleShowTrue = () => {
+        this.setState({
+            show: true,
+        })
+    }
+
+    toggleShowFalse = () => {
+        this.setState({
+            show: false,
+        })
+    }
+  
+    render() {
+      return (
+        <div class="middleDiv">
+          <div class="userInfoDisplayBar">
+            <div class="userNameDisplayUidbProfilePage">
+              {this.props.userName}
+            </div>
+            <div class="uidbModalDiv">
+              <button class="uidModalButton" onClick={this.toggleShowTrue}>Create profile information</button>
+            </div>
+            {this.state.show ? <MODAL_USER_PROFILE hide={this.toggleShowFalse}/> : null}
+          </div>
         </div>
-    )
-}
+      );
+    }
+  }
+  
