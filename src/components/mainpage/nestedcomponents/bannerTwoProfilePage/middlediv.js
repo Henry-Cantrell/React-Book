@@ -32,6 +32,7 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
             <div class="userNameDisplayUidbProfilePage">
               {this.props.userName}
             </div>
+      <div class='userBioDisplay'>{this.props.userBio}</div>
             <div class="uidbModalDiv">
               <button class="uidModalButton" onClick={this.toggleShowTrue}>Create profile information</button>
             </div>

@@ -62,7 +62,8 @@ export class MODAL_CLASS extends React.Component {
                 .set({
                   uid: cred.user.uid,
                   email: signupEmail,
-                  username: signupUsername
+                  username: signupUsername,
+                  userBio: 'Set up your bio',
               })
                 )},
             ).then(

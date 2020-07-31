@@ -23,7 +23,7 @@ export function MODAL_USER_PROFILE_INPUTS() {
             placeholder="Enter your bio information here"
             id="userBio"
           ></input>
-          <button id="userBioFormSubmit"></button>
+          <button id="userBioFormSubmit">Submit your bio info</button>
         </form>
       </>
     );

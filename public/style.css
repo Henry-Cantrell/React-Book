@@ -284,5 +284,7 @@ body {
 }
 
 #userBio {
-  align-self: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
 }
