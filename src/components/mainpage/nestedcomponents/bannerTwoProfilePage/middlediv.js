@@ -4,7 +4,11 @@ import {useSelector} from 'react-redux'
 export function MIDDLE_DIV_CONTENT () {
     return (
         <div class='middleDiv'>
-            <div class='userInfoDisplayBar'></div>
+            <div class='userInfoDisplayBar'>
+                <div class='userNameDisplayUidbProfilePage'>
+                    {useSelector((state) => state.userName)}
+                    </div>
+                </div>
         </div>
     )
 }
