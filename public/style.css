@@ -187,6 +187,7 @@ body {
   width: 33%;
   background-color: #657786;
   display: flex;
+  flex-direction: column;
 }
 
 .second {
@@ -205,9 +206,8 @@ body {
 /* Banner one interior styling */
 
 .bannerFlowControlButtons {
-  height: 25px;
-  width: 75px;
-  align-self: right;
+  height: 100%;
+  width: 150px;
 }
 
 /* Styling for banner two profile page content */
@@ -280,13 +280,14 @@ body {
 
 .userBioDisplay {
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .userProfileModalInterior {
   display: flex;
   flex-direction: row;
-  top: 100px;
   align-self: center;
+  margin: 0 auto;
 }
 
 #userBio {
@@ -309,5 +310,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   position: relative;
-  display: flex;
+}
+
+.userJoinDateDisplay {
+  margin-left: 20px;
+  margin-bottom: 5px;
 }

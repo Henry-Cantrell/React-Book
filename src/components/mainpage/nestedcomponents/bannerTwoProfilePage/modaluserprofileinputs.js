@@ -8,6 +8,10 @@ export function MODAL_USER_PROFILE_INPUTS() {
     const uniqueUid = useSelector((state) => state.uidInt);
     const dispatch = useDispatch();
   
+    let clearForm = () => {
+        document.getElementById("userBioFormSubmit").value = ""
+    }
+
     let giveBioToFirebase = (e) => {
       e.preventDefault();
   
@@ -21,8 +25,9 @@ export function MODAL_USER_PROFILE_INPUTS() {
           .then(
             dispatch(
               userBioSend(document.getElementById("userBioFormSubmit").value)
-            ),
-            (document.getElementById("userBioFormSubmit").value = "")
+            )
+          ).then(
+              clearForm()
           );
       } else {
         window.alert("Your user bio must be uner 161 characters in length");
@@ -33,7 +38,7 @@ export function MODAL_USER_PROFILE_INPUTS() {
       <>
         <form onSubmit={giveBioToFirebase}>
           <input
-            placeholder="Enter your bio information here"
+            placeholder="Update your bio here"
             id="userBio"
           ></input>
           <div>

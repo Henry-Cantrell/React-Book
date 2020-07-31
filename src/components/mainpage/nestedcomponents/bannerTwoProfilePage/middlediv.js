@@ -32,6 +32,7 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
               Username: {this.props.userName}
             </div>
             <div class="userBioDisplay">Bio: {this.props.userBio}</div>
+      <div class='userJoinDateDisplay'>Joined: {this.props.joinDate}</div>
             <div class="uidbModalDiv">
               <button class="uidModalButton" onClick={this.toggleShowTrue}>
                 Update profile information

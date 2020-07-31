@@ -4,6 +4,7 @@ import {uidCaptureReducer} from './uidCaptureReducer'
 import {emailCaptureReducer} from './emailCaptureReducer'
 import {usernameCaptureReducer} from './usernameCaptureReducer'
 import {userBioCapture} from './userBioCapture'
+import {userJoinDate} from './joinDateReducer'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -11,4 +12,5 @@ export const allReducers = combineReducers({
   userEmail: emailCaptureReducer,
   userName : usernameCaptureReducer,
   userBio : userBioCapture,
+  joinDate : userJoinDate,
 })

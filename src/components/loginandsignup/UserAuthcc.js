@@ -64,6 +64,7 @@ export class MODAL_CLASS extends React.Component {
                   email: signupEmail,
                   username: signupUsername,
                   userBio: 'Set up your bio',
+                  joinDate: ((new Date().getMonth() +1).toString() + '-' + new Date().getFullYear().toString())
               })
                 )},
             ).then(
