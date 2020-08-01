@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux'
 export function TWEED_BOX_FORM(props) {
 
     const uniqueUid = useSelector((state) => state.uidInt)
+    const personalTweedListLength = fireBaseExternalObj.dataBase.collection('users').doc(uniqueUid)
 
     let sendTweedToFirebase = (e) => {
 
