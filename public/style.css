@@ -197,6 +197,8 @@ body {
   border-width: 1px;
   border-color: grey;
   position: relative;
+  display: flex;
+  flex-direction: row;
 }
 .third {
   width:33%;
@@ -208,6 +210,8 @@ body {
 .bannerFlowControlButtons {
   height: 100%;
   width: 150px;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 /* Styling for banner two profile page content */
@@ -315,4 +319,23 @@ body {
 .userJoinDateDisplay {
   margin-left: 20px;
   margin-bottom: 5px;
+}
+
+/* Styling for home page content */
+
+.homePageContainer {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tweedParent {
+  width: 100%;
+  height: 125px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
 }

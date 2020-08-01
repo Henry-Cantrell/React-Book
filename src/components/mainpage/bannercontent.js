@@ -1,26 +1,30 @@
 import React from 'react'
 import {PROFILE_PAGE} from './nestedcomponents/bannerTwoProfilePage/profilepage'
+import {HOME_PAGE} from './homepagecontent/homepage'
 
 export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
     constructor(props){
         super(props)
 
         this.state={
-            showProfilePage: true,
+            showProfilePage: false,
+            showHomePage : true,
         }
         this.showProfilePage = this.showProfilePage.bind(this)
-        this.hideProfilePage = this.hideProfilePage.bind(this)
+        this.showHomePage = this.showHomePage.bind(this)
     }
 
     showProfilePage(){
         this.setState({
-            showProfilePage:true,
+            showProfilePage: true,
+            showHomePage: false,
         })
     }
 
-    hideProfilePage(){
+    showHomePage(){
         this.setState({
-            showProfilePage:false,
+            showHomePage: true,
+            showProfilePage: false,
         })
     }
 
@@ -29,10 +33,13 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
         <>
         <div class="first">
             <div class='bannerFlowControlButtons'>
+                <button onClick={this.showHomePage}>Home page</button>
+                <button onClick={this.showProfilePage}>Profile page</button>
             </div>
         </div>
         <div class="second">
             {this.state.showProfilePage ? <PROFILE_PAGE/> : null}
+            {this.state.showHomePage ? <HOME_PAGE/> : null}
         </div>
         <div class="third"></div>
         </>
@@ -42,8 +49,6 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
   
 //Note:
 //this file will serve as a component collection and also as a flow controller for all nested content displayed upon triple banners 
-
-//all ternary-operator render-controlled components grouped under div class = 'second'
 
 //to-do:
 //populate bannerFlowControlButtons with button list
