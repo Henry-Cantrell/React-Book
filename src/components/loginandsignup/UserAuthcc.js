@@ -111,3 +111,4 @@ export class MODAL_CLASS extends React.Component {
 
 //to-do: 
 //create an entry in documentation explaining functionality and purpose of this file
+//fix broken asyncs for data fetch on signup
