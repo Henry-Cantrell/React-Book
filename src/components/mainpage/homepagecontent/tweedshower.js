@@ -40,3 +40,5 @@ export class TWEED_SHOW extends React.Component {
   
 
 //to-do: 
+//use redux instead of a stateful component for element storage
+//loop and store firebase elements in a component-local array then send to redux
