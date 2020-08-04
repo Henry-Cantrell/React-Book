@@ -10,16 +10,33 @@ export class TWEED_SHOW extends React.Component {
       tweeds: [],
     };
   }
-  
-   
+
+  componentDidMount() {
+    let getTweedsFromFirebase = () => {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(this.props.uniqueUid)
+        .collection("userTweeds")
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.state.tweeds.push(
+              <TWEED_DIV_ON_PAGE tweedText={doc.data().tweed} />
+            );
+          });
+        });
+    };
+
+    getTweedsFromFirebase();
+    console.log(this.state.tweeds);
+  }
 
   render() {
-    return <div className="tweedShowMaster">
-        {}
-    </div>;
+    return <div className="tweedShowMaster">{this.state.tweeds}</div>;
   }
 }
 
-//to-do: access userTweeds col in fb and then --->
-//---> relate it to the state of this component for update rendering
-//use this page as a guide: https://flaviocopes.com/react-how-to-loop/
+  
+
+//to-do: 

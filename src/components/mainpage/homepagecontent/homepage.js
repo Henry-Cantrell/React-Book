@@ -9,21 +9,6 @@ export function HOME_PAGE (props) {
 
     const uniqueUid = useSelector((state) => state.uidInt)
 
-
-    let getTweedsFromFirebase = () => {
-        firebase
-        .firestore()
-        .collection('users')
-        .doc(uniqueUid)
-        .collection('userTweeds')
-        .get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                console.log(doc.data().tweed)
-            })
-        })
-    }
-
     return (
         <div class='homePageContainer'>
             <HEADER_BAR_HOME_PAGE/>
