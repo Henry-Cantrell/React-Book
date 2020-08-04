@@ -8,38 +8,42 @@ import {signOutAction} from '/home/suzuka/Coding/the_odin_project/Projects/websi
 import {BANNER_CONTENT_FLOW_CONTROLLER} from './bannercontent'
 
 export let MAIN_USER_PAGE = (props) => {
-
-    const dispatch = useDispatch()
-    const uniqueUid = (useSelector((state) => state.uidInt))
-
+    const dispatch = useDispatch();
+    const uniqueUid = useSelector((state) => state.uidInt);
+  
     let signOutUser = () => {
-        fireBaseExternalObj.auth.signOut()
-        .then(
-        dispatch(signOutAction())
-        )
-    }
-
+      fireBaseExternalObj.auth.signOut().then(dispatch(signOutAction()));
+    };
+  
     let getUsernameFromFirestore = () => {
-        const docRef = fireBaseExternalObj.dataBase.collection('users').doc(uniqueUid)
-
-        docRef.get().then(function(doc) {
-            if (doc.exists) {
-                dispatch(userNameNet(doc.data().username));
-            } else {
-                window.alert('No username in firebase')
-            }
-        }).catch(function(error) {
-            window.alert('Error with document retrieval method in mainuserpage.js')
+      const docRef = fireBaseExternalObj.dataBase
+        .collection("users")
+        .doc(uniqueUid);
+  
+      docRef
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            dispatch(userNameNet(doc.data().username));
+          } else {
+            window.alert("No username in firebase");
+          }
+        })
+        .catch(function (error) {
+          window.alert("Error with document retrieval method in mainuserpage.js");
         });
-    }
-
-    getUsernameFromFirestore()
-
+    };
+  
+    getUsernameFromFirestore();
+  
     return (
-        <>
-        <BANNER_CONTENT_FLOW_CONTROLLER/>
-        <USER_PROFILE_BOTTOM_LEFT_BOX signOut={signOutUser} userName={`@${useSelector((state) => state.userName)}`}/>
-        </>
+      <>
+        <BANNER_CONTENT_FLOW_CONTROLLER />
+        <USER_PROFILE_BOTTOM_LEFT_BOX
+          signOut={signOutUser}
+          userName={`@${useSelector((state) => state.userName)}`}
+        />
+      </>
     );
   };
   
