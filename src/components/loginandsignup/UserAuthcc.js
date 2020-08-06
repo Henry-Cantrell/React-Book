@@ -22,8 +22,9 @@ export class MODAL_CLASS extends React.Component {
           const loginEmail = document.querySelector("#loginEmail").value;
           const loginPassword = document.querySelector("#loginPassword").value;
 
-          firebase.auth
-            .signIn(loginEmail, loginPassword)
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(loginEmail, loginPassword)
             .then((cred) => {
               this.props.dispatch(uidNet(cred.user.uid, loginEmail));
             })
@@ -42,18 +43,19 @@ export class MODAL_CLASS extends React.Component {
           e.preventDefault();
 
           const signupEmail = document.querySelector("#signupEmail").value;
-          const signupPassword = document.querySelector("#signupPassword")
-            .value;
+          const signupPassword = document.querySelector("#signupPassword").value;
           const signupUsername = document.querySelector("#userNameField").value;
 
           if (signupUsername.length <= 12) {
-            firebase.auth
+            firebase
+              .auth()
               .createUserWithEmailAndPassword(signupEmail, signupPassword)
               .then((cred) => {
                 this.props.dispatch(
                   uidNet(cred.user.uid, signupEmail, signupUsername),
 
-                  firebase.firestore
+                  firebase
+                    .firestore()
                     .collection("users")
                     .doc(cred.user.uid)
                     .set({

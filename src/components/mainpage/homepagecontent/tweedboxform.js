@@ -24,6 +24,8 @@ export function TWEED_BOX_FORM(props) {
         });
     };
   
+    //add method which updates redux with new tweed for rendering to page
+
     return (
       <form onSubmit={sendTweedToFirebase} className="tweedboxform">
         <TWEED_BOX />
@@ -31,8 +33,5 @@ export function TWEED_BOX_FORM(props) {
     );
   }
   
-  
-  //to-do list:
-  //need to research how to loop through a firebase collection to assign tweeds unique IDs --->
-  //---> that can then be accessed through methods throughout codebase?
+
   
