@@ -1,17 +1,13 @@
 import React from "react";
 import firebase from "firebase";
 import { TWEED_DIV_ON_PAGE } from "./tweedDivOnPage";
+import {useDispatch} from 'react-redux'
+import {tweedSend} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendTweeds'
 
-export class TWEED_SHOW extends React.Component {
-  constructor(props) {
-    super(props);
+export function TWEED_SHOW(props) {
 
-    this.state = {
-      tweeds: [],
-    };
-  }
+    const dispatch = useDispatch()
 
-  componentDidMount() {
     let getTweedsFromFirebase = () => {
       firebase
         .firestore()
@@ -21,24 +17,23 @@ export class TWEED_SHOW extends React.Component {
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            this.state.tweeds.push(
-              <TWEED_DIV_ON_PAGE tweedText={doc.data().tweed} />
-            );
+            dispatch(tweedSend(doc.data().tweed));
           });
         });
     };
-
+  
     getTweedsFromFirebase();
     console.log(this.state.tweeds);
+  
+    return this.state.tweeds.map((tweed) => (
+      <TWEED_DIV_ON_PAGE tweedText={tweed} />
+    ));
   }
-
-  render() {
-    return <div className="tweedShowMaster">{this.state.tweeds}</div>;
-  }
-}
-
+  
+  
   
 
-//to-do: 
-//use redux instead of a stateful component for element storage
-//loop and store firebase elements in a component-local array then send to redux
+//to-do:
+//CODE IS BREAKING BECAUSE OF UNDEFINED ASYNC ACTION!!
+//convert this into a function component that watches redux for state updates
+//add timestamp to tweed method and then sort user tweed data from firebase by timestamp

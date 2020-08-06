@@ -1,8 +1,8 @@
-export function tweedCatch (state = [], action) {
+export function tweedCatch (state = {}, action) {
     switch (action.type){
         case 'TWEED_SEND':
-            state += action.payload
+            state += action.tweed
         default:
-            state=state
+            return state=state
     }
 }

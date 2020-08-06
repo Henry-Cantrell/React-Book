@@ -1,8 +1,8 @@
 import React from 'react'
 import {MODAL_FUNC} from './modalfc'
 import {SHOW_BUTTON} from './showbuttonfc'
-import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
 import {uidNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/uidNet'
+import firebase from 'firebase'
 
 export class MODAL_CLASS extends React.Component {
   constructor(props) {
@@ -22,17 +22,17 @@ export class MODAL_CLASS extends React.Component {
           const loginEmail = document.querySelector("#loginEmail").value;
           const loginPassword = document.querySelector("#loginPassword").value;
 
-          fireBaseExternalObj.auth
-            .signInWithEmailAndPassword(loginEmail, loginPassword)
+          firebase.auth
+            .signIn(loginEmail, loginPassword)
+            .then((cred) => {
+              this.props.dispatch(uidNet(cred.user.uid, loginEmail));
+            })
             .then(
-              (cred) => {
-                this.props.dispatch(uidNet(cred.user.uid, loginEmail),
-                )},
-            ).then (
               (document.getElementById("loginEmail").value = ""),
               (document.getElementById("loginPassword").value = "")
-            ).catch((Error) => {
-              window.alert('Error: incorrect username or password')
+            )
+            .catch((Error) => {
+              window.alert("Error: incorrect username or password");
             });
         });
     } else {
@@ -40,41 +40,43 @@ export class MODAL_CLASS extends React.Component {
         .getElementById(this.props.formID)
         .addEventListener("submit", (e) => {
           e.preventDefault();
-          
-          const signupEmail = document.querySelector("#signupEmail")
-          .value;
+
+          const signupEmail = document.querySelector("#signupEmail").value;
           const signupPassword = document.querySelector("#signupPassword")
-          .value;
-          const signupUsername = document.querySelector('#userNameField')
-          .value;
+            .value;
+          const signupUsername = document.querySelector("#userNameField").value;
 
           if (signupUsername.length <= 12) {
-          fireBaseExternalObj.auth
-            .createUserWithEmailAndPassword(signupEmail, signupPassword)
-            .then(
-              (cred) => {
-                this.props.dispatch(uidNet(cred.user.uid, signupEmail, signupUsername),
+            firebase.auth
+              .createUserWithEmailAndPassword(signupEmail, signupPassword)
+              .then((cred) => {
+                this.props.dispatch(
+                  uidNet(cred.user.uid, signupEmail, signupUsername),
 
-                fireBaseExternalObj
-                .dataBase
-                .collection('users')
-                .doc(cred.user.uid)
-                .set({
-                  uid: cred.user.uid,
-                  email: signupEmail,
-                  username: signupUsername,
-                  userBio: 'Set up your bio',
-                  joinDate: ((new Date().getMonth() +1).toString() + '-' + new Date().getFullYear().toString())
+                  firebase.firestore
+                    .collection("users")
+                    .doc(cred.user.uid)
+                    .set({
+                      uid: cred.user.uid,
+                      email: signupEmail,
+                      username: signupUsername,
+                      userBio: "Set up your bio",
+                      joinDate:
+                        (new Date().getMonth() + 1).toString() +
+                        "-" +
+                        new Date().getFullYear().toString(),
+                    })
+                );
               })
-                )},
-            ).then(
-              (document.getElementById("loginEmail").value = ""),
-              (document.getElementById("loginPassword").value = "")
-            ).catch((Error) => {
-              window.alert('Error: user info previously created')
-            })
+              .then(
+                (document.getElementById("loginEmail").value = ""),
+                (document.getElementById("loginPassword").value = "")
+              )
+              .catch((Error) => {
+                window.alert("Error: user info previously created");
+              });
           } else {
-            window.alert('Username must be less than 13 characters long')
+            window.alert("Username must be less than 13 characters long");
           }
         });
     }

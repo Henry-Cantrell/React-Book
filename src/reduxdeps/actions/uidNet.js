@@ -1,8 +1,8 @@
-export function uidNet (param, paramTwo, paramThree) {
+export function uidNet (uid, emailAddress, username) {
     return {
         type: 'LOGGED_IN',
-        payload: param,
-        payloadTwo: paramTwo,
-        payloadThree: paramThree,
+        uid,
+        emailAddress,
+        username
     }
 }

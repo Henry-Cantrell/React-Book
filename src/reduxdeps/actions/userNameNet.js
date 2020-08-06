@@ -1,6 +1,6 @@
-export function userNameNet (param) {
+export function userNameNet (username) {
     return {
         type: 'USERNAME_CAPTURE',
-        payload: param,
+        username,
     }
 }

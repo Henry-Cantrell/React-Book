@@ -20,6 +20,7 @@ export function TWEED_BOX_FORM(props) {
         .collection("userTweeds")
         .add({
           tweed: tweedFetch,
+          created: firebase.firestore.FieldValue.serverTimestamp()
         });
     };
   
