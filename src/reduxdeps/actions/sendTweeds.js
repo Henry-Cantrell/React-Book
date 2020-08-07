@@ -1,6 +1,6 @@
-export function tweedSend ({param}) {
+export function tweedSend (param) {
     return ({
         type: 'TWEED_SEND',
-        tweed: {param}
+        tweed: param
     })
 }
