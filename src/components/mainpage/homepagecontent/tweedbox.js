@@ -7,7 +7,6 @@ export function TWEED_BOX() {
         <div class="tweedButton">
           <button class='submitButton'>Tweed</button>
         </div>
-        <div className = 'borderBlock'/>
       </div>
     );
   }
