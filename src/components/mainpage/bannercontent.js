@@ -39,7 +39,7 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
         </div>
         <div class="second">
             {this.state.showProfilePage ? <PROFILE_PAGE/> : null}
-            {this.state.showHomePage ? <HOME_PAGE/> : null}
+            {this.state.showHomePage ? <HOME_PAGE tweedArray={this.props.tweedArray}/> : null}
         </div>
         <div class="third"></div>
         </>

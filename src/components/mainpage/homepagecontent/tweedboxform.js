@@ -23,8 +23,6 @@ export function TWEED_BOX_FORM(props) {
           created: firebase.firestore.FieldValue.serverTimestamp()
         });
     };
-  
-    //add method which updates redux with new tweed for rendering to page
 
     return (
       <form onSubmit={sendTweedToFirebase} className="tweedboxform">
