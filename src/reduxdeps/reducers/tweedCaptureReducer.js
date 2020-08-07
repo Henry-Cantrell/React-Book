@@ -8,3 +8,4 @@ export function tweedCatch (state = {tweedArray: []}, action) {
             return state=state
     }
 }
+//note: I do not understand the spread operator used on line 4, should study further
