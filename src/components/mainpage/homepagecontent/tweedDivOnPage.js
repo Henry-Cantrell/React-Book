@@ -7,11 +7,11 @@ export function TWEED_DIV_ON_PAGE (props) {
 
     return (
     <div className='tweedBoxHoldingTweeds'>
-        <div className = 'tweedBoxHoldingTweedsTweed'>
-        {props.tweedText}
+        <div className = 'tweedInTweedBox'>
+        {`Username: ${userName}`}
         </div>
         <div className = 'userNameInTweedBox'>
-            {userName}
+        {`Tweed content: ${props.tweedText}`}
         </div>
         </div>
     )

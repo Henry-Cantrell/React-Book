@@ -5,8 +5,9 @@ export function TWEED_BOX() {
       <div class="tweedParent">
         <input id='tweedBox' placeholder="Tweed to tweedur"></input>
         <div class="tweedButton">
-          <button>Tweed</button>
+          <button class='submitButton'>Tweed</button>
         </div>
+        <div className = 'borderBlock'/>
       </div>
     );
   }

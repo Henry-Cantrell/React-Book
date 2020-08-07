@@ -184,6 +184,8 @@ body {
   height:100%;
 }
 .first {
+  height: auto;
+  overflow: scroll;
   width: 33%;
   background-color: #657786;
   display: flex;
@@ -191,6 +193,8 @@ body {
 }
 
 .second {
+  height: auto;
+  overflow: scroll;
   flex-grow: 1;
   background-color: #AAB8C2;
   border-style: solid;
@@ -201,6 +205,8 @@ body {
   flex-direction: row;
 }
 .third {
+  height: auto;
+  overflow: scroll;
   width:33%;
   background: #657786;
 }
@@ -344,6 +350,7 @@ body {
   width:100%;
   background-color: lightgrey;
   height:15px;
+  margin-top: 25px;
 }
 
 .tweedDisplayList {
@@ -351,15 +358,28 @@ body {
   width: 100%;
 }
 
+.submitButton {
+  margin-bottom: 25px;
+}
+
 /* Styling for tweed boxes holding tweeds */
 
 .tweedBoxHoldingTweeds {
   height: 125px;
   width: 100%;
-  display: flex;
+  display: table;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
 }
 
-.tweedBoxHoldingTweedsTweed {
-  align-self: center;
+.tweedInTweedBox {
+  margin-bottom: 40px;
+  display: block;
 }
+
+.userNameInTweedBox {
+  display: block;
+}
+
 
