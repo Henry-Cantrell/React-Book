@@ -9,7 +9,7 @@ export function TWEED_SHOW(props) {
     const dispatch = useDispatch()
   
     return this.state.tweeds.map((tweed) => (
-      <TWEED_DIV_ON_PAGE tweedText={tweed} />
+      <TWEED_DIV_ON_PAGE tweedText={props.tweedText} />
     ));
   }
   

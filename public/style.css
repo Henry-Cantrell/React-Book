@@ -350,3 +350,16 @@ body {
   height: 100%;
   width: 100%;
 }
+
+/* Styling for tweed boxes holding tweeds */
+
+.tweedBoxHoldingTweeds {
+  height: 125px;
+  width: 100%;
+  display: flex;
+}
+
+.tweedBoxHoldingTweedsTweed {
+  align-self: center;
+}
+

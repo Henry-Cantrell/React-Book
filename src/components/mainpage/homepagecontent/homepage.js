@@ -1,30 +1,41 @@
-import React from 'react'
-import {HEADER_BAR_HOME_PAGE} from './headerbarhomepage'
-import {TWEED_BOX_FORM} from './tweedboxform'
-import {TWEED_SHOW} from './tweedshower'
-import {useSelector} from 'react-redux'
-import {useDispatch} from 'react-redux'
+import React from "react";
+import { HEADER_BAR_HOME_PAGE } from "./headerbarhomepage";
+import { TWEED_BOX_FORM } from "./tweedboxform";
+import { TWEED_DIV_ON_PAGE } from "./tweedDivOnPage";
+import { connect } from "react-redux";
 
-export class HOME_PAGE extends React.Component {
-    constructor(props) {
-    super(props)
-
-    this.state = {
-        tweedArrayFromRedux: this.props.tweedArray
-    }}    
-
+class HOME_PAGE extends React.Component {
     render() {
-        console.log(this.state.tweedArrayFromRedux)
-    return (
-      <div class="homePageContainer">
-        <HEADER_BAR_HOME_PAGE />
-        <TWEED_BOX_FORM />
-        <div className="borderBlock"></div>
-        <div className="tweedDisplayList"></div>
-      </div>
-    );
-  }}
+      let noUndefined = (item) => {
+        return item != undefined;
+      };
   
-//to-do:
-//map values from redux tweed array to components via foreach method
-//may help: https://stackoverflow.com/questions/59677967/render-array-of-objects-from-redux-store-as-react-components
+      const testVar = this.props.userTweeds.tweedArray.filter(noUndefined);
+  
+      const tweedsDisplay = testVar.length ? (
+        testVar.map((tweed) => {
+          return <TWEED_DIV_ON_PAGE tweedText={tweed.tweed} />;
+        })
+      ) : (
+        <p>empty!</p>
+      );
+  
+      return (
+        <div class="homePageContainer">
+          <HEADER_BAR_HOME_PAGE />
+          <TWEED_BOX_FORM />
+          <div className="borderBlock"></div>
+          <div className="tweedDisplayList">{tweedsDisplay}</div>
+        </div>
+      );
+    }
+  }
+  
+  const mapStateToProps = (state) => {
+    return {
+      userTweeds: state.userTweeds,
+    };
+  };
+  
+  export default connect(mapStateToProps)(HOME_PAGE);
+  

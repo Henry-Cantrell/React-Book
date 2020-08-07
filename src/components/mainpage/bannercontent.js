@@ -1,6 +1,6 @@
 import React from 'react'
 import {PROFILE_PAGE} from './nestedcomponents/bannerTwoProfilePage/profilepage'
-import {HOME_PAGE} from './homepagecontent/homepage'
+import HOME_PAGE from './homepagecontent/homepage'
 
 export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
     constructor(props){
