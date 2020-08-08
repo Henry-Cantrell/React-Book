@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import {DELETE_BUTTON} from './deletebuttonfortweeds'
 
 export function TWEED_DIV_ON_PAGE (props) {
 
@@ -13,6 +14,7 @@ export function TWEED_DIV_ON_PAGE (props) {
         <div className = 'userNameInTweedBox'>
         {`Tweed content: ${props.tweedText}`}
         </div>
+        <DELETE_BUTTON text='Delete this tweed'/>
         </div>
     )
 }
