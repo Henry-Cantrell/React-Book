@@ -7,6 +7,7 @@ import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects
 import {useDispatch} from 'react-redux'
 import {userBioSend} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userBioSend'
 import {userJoinDateNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userJoinDateNet'
+import TWEED_PROFILE from './usertweedlistprofilepage'
 
 export function PROFILE_PAGE() {
 
@@ -45,6 +46,7 @@ export function PROFILE_PAGE() {
         <TOP_DIV_CONTENT />
         <MIDDLE_DIV_CONTENT joinDate={joinDateFromRedux} userBio={userBioFromRedux} userName={usernameFromRedux}/>
         <BUTTON_BAR />
+        <TWEED_PROFILE />
       </div>
     );
   }

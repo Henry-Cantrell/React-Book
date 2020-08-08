@@ -14,7 +14,7 @@ class HOME_PAGE extends React.Component {
   
       const tweedsDisplay = testVar.length ? (
         testVar.map((tweed) => {
-          return <TWEED_DIV_ON_PAGE created={tweed.created} tweedText={tweed.tweed} />;
+          return <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} />;
         })
       ) : (
         <p>empty!</p>
@@ -38,4 +38,8 @@ class HOME_PAGE extends React.Component {
   };
   
   export default connect(mapStateToProps)(HOME_PAGE);
+
+  //to-do:
+  //make this, but for profile page, to display usertweeds there as well
+  //then starrt building explore page
   
