@@ -15,29 +15,24 @@ export let USER_AUTH_JOINER = () => {
   const dispatch = useDispatch()
 
   let getTweedsFromFirebase = () => {
-
-      firebase
+    firebase
       .firestore()
-      .collection('users')
+      .collection("users")
       .doc(uniqueUid)
-      .collection('userTweeds')
-      .orderBy('created', "asc")
+      .collection("userTweeds")
+      .orderBy("created", "asc")
       .onSnapshot((snapshot) => {
-          dispatch(clearTweedStore())
-          snapshot.forEach(doc => {
-            dispatch(tweedSend({tweed: doc.data().tweed, created: doc.data().created}))
-          });
-      })
-  }
-
-  getTweedsFromFirebase()
-
-
-    return (
-
-    <>
-      {isLogged ? <MAIN_USER_PAGE/> : <MODAL_CLASS_FORM/>}
-    </>
-    )
-  }
+        dispatch(clearTweedStore());
+        snapshot.forEach((doc) => {
+          dispatch(
+            tweedSend({ tweed: doc.data().tweed, created: doc.data().created })
+          );
+        });
+      });
+  };
+  
+  getTweedsFromFirebase();
+  
+  return <>{isLogged ? <MAIN_USER_PAGE /> : <MODAL_CLASS_FORM />}</>
+}
 
