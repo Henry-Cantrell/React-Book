@@ -13,11 +13,10 @@ export function DELETE_BUTTON(props) {
           .collection("userTweeds")
           .orderBy("created", "asc")
           .onSnapshot((snapshot) => {
-            dispatch(clearTweedStore());
             snapshot.forEach((doc) => {
-              dispatch(
-                tweedSend({ tweed: doc.data().tweed, created: doc.data().created })
-              );
+              switch (doc.data().created) {
+                case () :
+              }
             });
           });
       };
