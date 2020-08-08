@@ -9,13 +9,19 @@ export function DELETE_BUTTON(props) {
         firebase
           .firestore()
           .collection("users")
-          .doc(uniqueUid)
+          .doc(uid)
           .collection("userTweeds")
           .orderBy("created", "asc")
           .onSnapshot((snapshot) => {
             snapshot.forEach((doc) => {
-              switch (doc.data().created) {
-                case () :
+              if (doc.data().created === props.created) {
+                firebase
+                .firestore()
+                .collection('users')
+                .doc(uid)
+                .collection('userTweeds')
+                .doc(doc.data())
+                .delete()
               }
             });
           });

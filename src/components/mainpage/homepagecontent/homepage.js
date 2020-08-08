@@ -14,7 +14,7 @@ class HOME_PAGE extends React.Component {
   
       const tweedsDisplay = testVar.length ? (
         testVar.map((tweed) => {
-          return <TWEED_DIV_ON_PAGE tweedText={tweed.tweed} />;
+          return <TWEED_DIV_ON_PAGE created={tweed.created} tweedText={tweed.tweed} />;
         })
       ) : (
         <p>empty!</p>
