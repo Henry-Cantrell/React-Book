@@ -12,7 +12,7 @@ class TWEEDS_PROFILE extends React.Component {
   
       const tweedsDisplay = testVar.length ? (
         testVar.map((tweed) => {
-          return <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} />;
+          return <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} username={tweed.username} />;
         })
       ) : (
         <p>empty!</p>

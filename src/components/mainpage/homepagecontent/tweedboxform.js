@@ -4,48 +4,39 @@ import {useSelector} from 'react-redux'
 import firebase from 'firebase'
 
 export function TWEED_BOX_FORM(props) {
-    const uniqueUid = useSelector((state) => state.uidInt);
-  
-    //this method assigns unique values to the userTweeds col for captured tweed info based on size of userTweeds col size
-  
-    let sendTweedToFirebaseGlobal = (e) => {
-      e.preventDefault();
+  const uniqueUid = useSelector((state) => state.uidInt);
+  const username = useSelector((state) => state.userName)
 
-      const tweedFetch = document.getElementById("tweedBox").value;
+  let sendTweedsToFirebase = (e) => {
+    e.preventDefault();
 
-      firebase
-        .firestore()
-        .collection("globalTweeds")
-        .doc(uniqueUid)
-        .add({
+    const tweedFetch = document.getElementById("tweedBox").value;
+
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(uniqueUid)
+      .collection("userTweeds")
+      .add({
+        tweed: tweedFetch,
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+        username: username
+      })
+      .then(
+        firebase.firestore().collection("globalTweeds").add({
           tweed: tweedFetch,
           created: firebase.firestore.FieldValue.serverTimestamp(),
-          uid: uniqueUid
-        });
-    }
+          username: username
+        })
+      );
+  };
 
-    let sendTweedToFirebase = (e) => {
-      e.preventDefault();
-  
-      const tweedFetch = document.getElementById("tweedBox").value;
-  
-      firebase
-        .firestore()
-        .collection("users")
-        .doc(uniqueUid)
-        .collection("userTweeds")
-        .add({
-          tweed: tweedFetch,
-          created: firebase.firestore.FieldValue.serverTimestamp()
-        });
-    };
+  return (
+    <form onSubmit={sendTweedsToFirebase} className="tweedboxform">
+      <TWEED_BOX />
+    </form>
+  );
+}
 
-    return (
-      <form onSubmit={sendTweedToFirebase, sendTweedToFirebaseGlobal} className="tweedboxform">
-        <TWEED_BOX />
-      </form>
-    );
-  }
-  
 
   

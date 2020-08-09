@@ -25,7 +25,7 @@ export let USER_AUTH_JOINER = () => {
         dispatch(clearTweedStore());
         snapshot.forEach((doc) => {
           dispatch(
-            tweedSend({ tweed: doc.data().tweed, created: doc.data().created, id: doc.id })
+            tweedSend({ tweed: doc.data().tweed, username: doc.data().username, created: doc.data().created, id: doc.id })
           );
         });
       });

@@ -1,7 +1,9 @@
-export function tweedSend (tweed, created) {
+export function tweedSend (tweed, username, created, id) {
     return ({
         type: 'TWEED_SEND',
         tweed,
-        created
+        username,
+        created,
+        id
     })
 }
