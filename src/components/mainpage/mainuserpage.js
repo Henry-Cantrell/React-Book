@@ -10,8 +10,7 @@ import {BANNER_CONTENT_FLOW_CONTROLLER} from './bannercontent'
 export let MAIN_USER_PAGE = (props) => {
     const dispatch = useDispatch();
     const uniqueUid = useSelector((state) => state.uidInt);
-    const tweedArray = useSelector((state) => state.userTweeds)
-  
+
     let signOutUser = () => {
       fireBaseExternalObj.auth.signOut().then(dispatch(signOutAction()));
     };
@@ -39,7 +38,7 @@ export let MAIN_USER_PAGE = (props) => {
   
     return (
       <>
-        <BANNER_CONTENT_FLOW_CONTROLLER tweedArray={tweedArray}/>
+        <BANNER_CONTENT_FLOW_CONTROLLER />
         <USER_PROFILE_BOTTOM_LEFT_BOX
           signOut={signOutUser}
           userName={`@${useSelector((state) => state.userName)}`}
