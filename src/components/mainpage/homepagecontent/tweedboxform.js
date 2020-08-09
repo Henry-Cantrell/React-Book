@@ -2,24 +2,25 @@ import React from 'react'
 import {TWEED_BOX} from './tweedbox'
 import {useSelector} from 'react-redux'
 import firebase from 'firebase'
+import {counterSend} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/counterSend'
+import {useDispatch} from 'react-redux'
 
 export function TWEED_BOX_FORM(props) {
   const uniqueUid = useSelector((state) => state.uidInt);
   const username = useSelector((state) => state.userName)
+  const dispatch = useDispatch()
 
   let counterFromFirebaseToRedux = () => {
     firebase
       .firestore()
       .collection("counterForTweedRelation")
       .onSnapshot((snapshot) => {
-        dispatch(clearTweedStore());
         snapshot.forEach((doc) => {
-          dispatch(counterUpdate({ counter: doc.data().counter }));
+          dispatch(counterSend({ counter: doc.data().counter }));
         });
       });
   };
   
-
   counterFromFirebaseToRedux()
 
   let sendTweedsToFirebase = (e) => {
