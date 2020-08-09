@@ -6,7 +6,11 @@ import {tweedSendGlobal} from '/home/suzuka/Coding/the_odin_project/Projects/web
 
 export let EXPLORE_PAGE = () => {
     
-      return <p>dummytext</p>;
+      return (
+      <p>dummytext</p>
+      )
 
     };
+
+    //to-do: access global tweeds from redux store and display here
   

@@ -21,17 +21,20 @@ export let EXPLORE_PAGE_HANDLER = () => {
                 tweed: doc.data().tweed,
                 created: doc.data().created,
                 id: doc.id,
-                uid: doc.uid
+                uid: doc.uid,
               })
             );
           });
         });
-
+    };
+  
     getGlobalTweedsFromFirebase();
   
-      return <div className='explorePageDiv'>
-          <EXPLORE_PAGE/>
-      </div>;
-    };
+    return (
+      <div className="explorePageDiv">
+        <EXPLORE_PAGE />
+      </div>
+    );
   };
+  
   

@@ -8,8 +8,8 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
       super(props);
   
       this.state = {
-        showProfilePage: false,
         showHomePage: true,
+        showProfilePage: false,       
         showExplorePage: false
       };
       this.showProfilePage = this.showProfilePage.bind(this);
