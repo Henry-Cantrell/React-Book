@@ -39,7 +39,5 @@ class HOME_PAGE extends React.Component {
   
   export default connect(mapStateToProps)(HOME_PAGE);
 
-  //to-do:
-  //make this, but for profile page, to display usertweeds there as well
-  //then starrt building explore page
+
   

@@ -1,6 +1,7 @@
 import React from 'react'
 import {PROFILE_PAGE} from './nestedcomponents/bannerTwoProfilePage/profilepage'
 import HOME_PAGE from './homepagecontent/homepage'
+import {EXPLORE_PAGE_HANDLER} from './explorepagecontent/explorepagehandler'
 
 export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
     constructor(props) {
@@ -9,15 +10,18 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
       this.state = {
         showProfilePage: false,
         showHomePage: true,
+        showExplorePage: false
       };
       this.showProfilePage = this.showProfilePage.bind(this);
       this.showHomePage = this.showHomePage.bind(this);
+      this.showExplorePage = this.showExplorePage.bind(this)
     }
   
     showProfilePage() {
       this.setState({
         showProfilePage: true,
         showHomePage: false,
+        showExplorePage: false
       });
     }
   
@@ -25,7 +29,16 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
       this.setState({
         showHomePage: true,
         showProfilePage: false,
+        showExplorePage: false
       });
+    }
+
+    showExplorePage () {
+      this.setState({
+        showExplorePage: true,
+        showHomePage: false,
+        showProfilePage: false
+      })
     }
   
     render() {
@@ -35,6 +48,7 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
             <div class="bannerFlowControlButtons">
               <button onClick={this.showHomePage}>Home page</button>
               <button onClick={this.showProfilePage}>Profile page</button>
+              <button onClick={this.showExplorePage}>Explore page</button>
             </div>
           </div>
           <div class="second">
@@ -42,6 +56,7 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
             {this.state.showHomePage ? (
               <HOME_PAGE tweedArray={this.props.tweedArray} />
             ) : null}
+            {this.state.showExplorePage ? <EXPLORE_PAGE_HANDLER /> : null}
           </div>
           <div class="third"></div>
         </>

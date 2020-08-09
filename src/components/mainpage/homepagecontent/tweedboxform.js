@@ -8,6 +8,22 @@ export function TWEED_BOX_FORM(props) {
   
     //this method assigns unique values to the userTweeds col for captured tweed info based on size of userTweeds col size
   
+    let sendTweedToFirebaseGlobal = (e) => {
+      e.preventDefault();
+
+      const tweedFetch = document.getElementById("tweedBox").value;
+
+      firebase
+        .firestore()
+        .collection("globalTweeds")
+        .doc(uniqueUid)
+        .add({
+          tweed: tweedFetch,
+          created: firebase.firestore.FieldValue.serverTimestamp(),
+          uid: uniqueUid
+        });
+    }
+
     let sendTweedToFirebase = (e) => {
       e.preventDefault();
   
@@ -25,7 +41,7 @@ export function TWEED_BOX_FORM(props) {
     };
 
     return (
-      <form onSubmit={sendTweedToFirebase} className="tweedboxform">
+      <form onSubmit={sendTweedToFirebase, sendTweedToFirebaseGlobal} className="tweedboxform">
         <TWEED_BOX />
       </form>
     );

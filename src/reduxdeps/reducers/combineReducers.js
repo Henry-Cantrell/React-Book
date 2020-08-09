@@ -6,6 +6,7 @@ import {usernameCaptureReducer} from './usernameCaptureReducer'
 import {userBioCapture} from './userBioCapture'
 import {userJoinDate} from './joinDateReducer'
 import {tweedCatch} from './tweedCaptureReducer'
+import {tweedCatchGlobal} from './tweedCaptureReducerGlobal'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -14,5 +15,6 @@ export const allReducers = combineReducers({
   userName : usernameCaptureReducer,
   userBio : userBioCapture,
   joinDate : userJoinDate,
-  userTweeds : tweedCatch
+  userTweeds : tweedCatch,
+  globalTweeds : tweedCatchGlobal
 })

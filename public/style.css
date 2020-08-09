@@ -245,12 +245,10 @@ body {
 }
 
 .userImage {
-  background-color: #AAB8C2;
-  border-style: solid;
-  border-width: 1px;
-  border-color: grey;
-  height:200px;
+  height: 200px;
   align-self: stretch;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .middleDiv {
@@ -266,11 +264,9 @@ body {
 
 .buttonBar {
   background-color: #AAB8C2;
-  border-style: solid;
-  border-width: 1px;
-  border-color: grey;
   height: 45px;
   align-self: stretch;
+  margin-bottom: 25px;
 }
 
 .userNameDisplayUidbProfilePage {
