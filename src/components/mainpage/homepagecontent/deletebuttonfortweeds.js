@@ -14,7 +14,11 @@ export function DELETE_BUTTON(props) {
       .doc(props.id)
       .delete()
       .then(
-        firebase.firestore().collection("globalTweeds").doc(props.id).delete()
+        firebase
+        .firestore()
+        .collection("globalTweeds")
+        .doc(props.id)
+        .delete()
       );
   };
 

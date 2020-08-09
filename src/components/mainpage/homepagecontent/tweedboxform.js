@@ -7,6 +7,21 @@ export function TWEED_BOX_FORM(props) {
   const uniqueUid = useSelector((state) => state.uidInt);
   const username = useSelector((state) => state.userName)
 
+  let counterFromFirebaseToRedux = () => {
+    firebase
+      .firestore()
+      .collection("counterForTweedRelation")
+      .onSnapshot((snapshot) => {
+        dispatch(clearTweedStore());
+        snapshot.forEach((doc) => {
+          dispatch(counterUpdate({ counter: doc.data().counter }));
+        });
+      });
+  };
+  
+
+  counterFromFirebaseToRedux()
+
   let sendTweedsToFirebase = (e) => {
     e.preventDefault();
 
@@ -17,13 +32,14 @@ export function TWEED_BOX_FORM(props) {
       .collection("users")
       .doc(uniqueUid)
       .collection("userTweeds")
-      .add({
+      .doc('test123')
+      .set({
         tweed: tweedFetch,
         created: firebase.firestore.FieldValue.serverTimestamp(),
         username: username
       })
       .then(
-        firebase.firestore().collection("globalTweeds").add({
+        firebase.firestore().collection("globalTweeds").doc('test123').set({
           tweed: tweedFetch,
           created: firebase.firestore.FieldValue.serverTimestamp(),
           username: username
