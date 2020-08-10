@@ -9,6 +9,8 @@ export function TWEED_BOX_FORM(props) {
   const uniqueUid = useSelector((state) => state.uidInt);
   const username = useSelector((state) => state.userName)
   const dispatch = useDispatch()
+  const counter = useSelector((state) => state.counter)
+  const increment = firebase.firestore.FieldValue.increment(1)
 
   let counterFromFirebaseToRedux = () => {
     firebase
@@ -16,40 +18,54 @@ export function TWEED_BOX_FORM(props) {
       .collection("counterForTweedRelation")
       .onSnapshot((snapshot) => {
         snapshot.forEach((doc) => {
-          dispatch(counterSend({ counter: doc.data().counter }));
+          dispatch(counterSend(doc.data().counter ));
         });
       });
   };
   
   counterFromFirebaseToRedux()
 
-  let sendTweedsToFirebase = (e) => {
+  let sendTweedsToFirebaseAndUpdateCounter = (e) => {
     e.preventDefault();
-
+  
     const tweedFetch = document.getElementById("tweedBox").value;
-
+  
     firebase
       .firestore()
-      .collection("users")
-      .doc(uniqueUid)
-      .collection("userTweeds")
-      .doc('test123')
-      .set({
-        tweed: tweedFetch,
-        created: firebase.firestore.FieldValue.serverTimestamp(),
-        username: username
+      .collection("counterForTweedRelation")
+      .doc('counter')
+      .update({
+        counter: increment,
       })
       .then(
-        firebase.firestore().collection("globalTweeds").doc('test123').set({
-          tweed: tweedFetch,
-          created: firebase.firestore.FieldValue.serverTimestamp(),
-          username: username
-        })
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(uniqueUid)
+          .collection("userTweeds")
+          .doc(`counter${counter}`)
+          .set({
+            tweed: tweedFetch,
+            created: firebase.firestore.FieldValue.serverTimestamp(),
+            username: username,
+          })
+      )
+      .then(
+        firebase
+          .firestore()
+          .collection("globalTweeds")
+          .doc(`counter${counter}`)
+          .set({
+            tweed: tweedFetch,
+            created: firebase.firestore.FieldValue.serverTimestamp(),
+            username: username,
+          })
       );
   };
+  
 
   return (
-    <form onSubmit={sendTweedsToFirebase} className="tweedboxform">
+    <form onSubmit={sendTweedsToFirebaseAndUpdateCounter} className="tweedboxform">
       <TWEED_BOX />
     </form>
   );

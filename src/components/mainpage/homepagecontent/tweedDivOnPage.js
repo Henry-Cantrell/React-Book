@@ -12,7 +12,7 @@ export function TWEED_DIV_ON_PAGE (props) {
         <div className = 'userNameInTweedBox'>
         {`Tweed content: ${props.tweedText}`}
         </div>
-        <DELETE_BUTTON id = {props.id} text='Delete this tweed'/>
+        {props.button}
         </div>
     )
 }
