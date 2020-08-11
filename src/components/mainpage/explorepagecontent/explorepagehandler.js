@@ -7,7 +7,7 @@ import EXPLORE_PAGE from './explorepage'
 
 export let EXPLORE_PAGE_HANDLER = () => {
     const dispatch = useDispatch();
-    const username = useSelector((state) => state.userName)
+    const uniqueUid = useSelector((state) => state.uidInt)
   
     let getGlobalTweedsFromFirebase = () => {
       firebase
@@ -34,7 +34,7 @@ export let EXPLORE_PAGE_HANDLER = () => {
   
     return (
       <div className="explorePageDiv">
-        <EXPLORE_PAGE />
+        <EXPLORE_PAGE uniqueUid = {uniqueUid}/>
       </div>
     );
   };
