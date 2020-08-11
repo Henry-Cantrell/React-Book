@@ -20,7 +20,7 @@ export function TWEED_BOX_FORM(props) {
         snapshot.forEach((doc) => {
           dispatch(counterSend(doc.data().counter ));
         });
-      });
+      })
   };
   
   counterFromFirebaseToRedux()
@@ -48,6 +48,7 @@ export function TWEED_BOX_FORM(props) {
             tweed: tweedFetch,
             created: firebase.firestore.FieldValue.serverTimestamp(),
             username: username,
+            uid: uniqueUid
           })
       )
       .then(
@@ -59,6 +60,7 @@ export function TWEED_BOX_FORM(props) {
             tweed: tweedFetch,
             created: firebase.firestore.FieldValue.serverTimestamp(),
             username: username,
+            uid: uniqueUid
           })
       );
   };

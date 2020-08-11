@@ -1,6 +1,7 @@
 import React from 'react'
 import {TWEED_DIV_ON_PAGE} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/tweedDivOnPage'
 import {connect} from 'react-redux'
+import {DELETE_BUTTON} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/deletebuttonfortweeds'
 
 class TWEEDS_PROFILE extends React.Component {
     render() {
@@ -12,7 +13,7 @@ class TWEEDS_PROFILE extends React.Component {
   
       const tweedsDisplay = testVar.length ? (
         testVar.map((tweed) => {
-          return <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} username={tweed.username} />;
+        return <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} button = {<DELETE_BUTTON id={tweed.id} text='Delete this tweed'/>} username={tweed.username} />;
         })
       ) : (
         <p>empty!</p>

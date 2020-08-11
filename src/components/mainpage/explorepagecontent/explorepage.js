@@ -1,6 +1,7 @@
 import React from 'react'
 import {TWEED_DIV_ON_PAGE} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/tweedDivOnPage'
 import {connect} from 'react-redux'
+import {FOLLOW_BUTTON} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/followbutton'
 
 class EXPLORE_PAGE extends React.Component {
   render() {
@@ -12,7 +13,11 @@ class EXPLORE_PAGE extends React.Component {
 
     const tweedsDisplay = testVar.length ? (
       testVar.map((tweed) => {
-        return <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} button={null} username={tweed.username} />;
+        return (
+        <div className='exploreTweedContainer'>
+        <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} button={<FOLLOW_BUTTON uid={tweed.uid} username={tweed.username} id={tweed.id}/>} username={tweed.username} />
+        </div>
+        )
       })
     ) : (
       <p>empty!</p>

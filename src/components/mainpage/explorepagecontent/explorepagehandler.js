@@ -22,7 +22,8 @@ export let EXPLORE_PAGE_HANDLER = () => {
                 tweed: doc.data().tweed,
                 created: doc.data().created,
                 username: doc.data().username,
-                id: doc.id
+                id: doc.id,
+                uid: doc.data().uid
               })
             );
           });

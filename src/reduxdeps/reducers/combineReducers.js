@@ -8,6 +8,7 @@ import {userJoinDate} from './joinDateReducer'
 import {tweedCatch} from './tweedCaptureReducer'
 import {tweedCatchGlobal} from './tweedCaptureReducerGlobal'
 import {counterReducer} from './counterReducer'
+import {receiveFollowTweeds} from './receivefollowtweeds'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -18,5 +19,6 @@ export const allReducers = combineReducers({
   joinDate : userJoinDate,
   userTweeds : tweedCatch,
   globalTweeds : tweedCatchGlobal,
-  counter : counterReducer
+  counter : counterReducer,
+  tweedsFromFollowed: receiveFollowTweeds
 })

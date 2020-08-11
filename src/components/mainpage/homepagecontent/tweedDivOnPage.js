@@ -1,6 +1,4 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import {DELETE_BUTTON} from './deletebuttonfortweeds'
 
 export function TWEED_DIV_ON_PAGE (props) {
 

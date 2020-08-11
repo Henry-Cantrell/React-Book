@@ -1,7 +1,7 @@
 export function tweedCatch (state = {tweedArray: []}, action) {
     switch (action.type){
         case 'TWEED_SEND':
-            return {...state, tweedArray: [...state.tweedArray, action.tweed, action.username, action.created, action.id]}
+            return {...state, tweedArray: [...state.tweedArray, action.tweed, action.username, action.created, action.id, action.uid]}
         case 'TWEED_CLEAR':
             return state = {tweedArray: []}
         default:
