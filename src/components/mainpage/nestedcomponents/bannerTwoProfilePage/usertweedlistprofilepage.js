@@ -16,6 +16,7 @@ class TWEEDS_PROFILE extends React.Component {
         return <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} button = {<DELETE_BUTTON id={tweed.id} text='Delete this tweed'/>} username={tweed.username} />;
         })
       ) : (
+        
         <p>empty!</p>
       );
   

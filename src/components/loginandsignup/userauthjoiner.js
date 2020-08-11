@@ -6,6 +6,7 @@ import firebase from 'firebase'
 import {tweedSend} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendTweeds'
 import {useDispatch} from 'react-redux'
 import {clearTweedStore} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearTweeds'
+import {followedTweedSend} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/followedTweedSend'
 
 export let USER_AUTH_JOINER = () => {
 
@@ -30,9 +31,33 @@ export let USER_AUTH_JOINER = () => {
         });
       });
   };
-  
+
+  let transferFollowerTweedsToRedux = () => {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(uniqueUid)
+      .collection("followedUserUids")
+      .onSnapshot((snapshot) => {
+        snapshot.forEach((doc) => {
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(doc.data().uid)
+            .collection("userTweeds")
+            .onSnapshot((snapshot) => {
+              snapshot.forEach((doc) => {
+                dispatch(followedTweedSend({ tweed: doc.data().tweed, username: doc.data().username, id: doc.id, uid: doc.data().uid}))
+              });
+            });
+        });
+      });
+  };
+
+  transferFollowerTweedsToRedux()
   getTweedsFromFirebase();
   
   return <>{isLogged ? <MAIN_USER_PAGE /> : <MODAL_CLASS_FORM />}</>
 }
 
+//to-do: in redux store transfer function, get tweeds from uid and 

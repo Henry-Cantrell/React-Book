@@ -21,8 +21,6 @@ export function FOLLOW_BUTTON (props) {
     return (<button onClick={followUser}>Follow</button>);
   }
   
-  //to-do: get uids of followed list and render to home page via redux store transfer and display
-  //(probably do this in userauthjoiner.js)
 
 
 
