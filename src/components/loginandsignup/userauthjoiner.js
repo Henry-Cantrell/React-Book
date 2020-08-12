@@ -50,7 +50,7 @@ export let USER_AUTH_JOINER = () => {
             .collection("users")
             .doc(doc.data().uid)
             .collection("userTweeds")
-            .orderBy('created', 'asc')
+            .orderBy("created", "asc")
             .onSnapshot((snapshot) => {
               snapshot.forEach((doc) => {
                 firebase
@@ -67,15 +67,26 @@ export let USER_AUTH_JOINER = () => {
                     uid: doc.data().uid,
                   })
                   .then(
-                    dispatch(clearTweedFollow()),
-                    dispatch(
-                      followedTweedSend({
-                        tweed: doc.data().tweed,
-                        username: doc.data().username,
-                        id: doc.id,
-                        uid: doc.data().uid,
+                    firebase
+                      .firestore()
+                      .collection("users")
+                      .doc(uniqueUid)
+                      .collection("followerTweeds")
+                      .doc(doc.data().uid)
+                      .collection("tweeds")
+                      .onSnapshot((snapshot) => {
+                        dispatch(clearTweedFollow())
+                        snapshot.forEach((doc) => {
+                          dispatch(
+                            followedTweedSend({
+                              tweed: doc.data().tweed,
+                              username: doc.data().username,
+                              id: doc.id,
+                              uid: doc.data().uid,
+                            })
+                          );
+                        });
                       })
-                    )
                   );
               });
             });
