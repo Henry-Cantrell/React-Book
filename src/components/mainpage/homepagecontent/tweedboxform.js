@@ -60,7 +60,7 @@ export function TWEED_BOX_FORM(props) {
             tweed: tweedFetch,
             created: firebase.firestore.FieldValue.serverTimestamp(),
             username: username,
-            uid: uniqueUid
+            uid: uniqueUid,
           })
       );
   };

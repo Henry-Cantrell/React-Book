@@ -4,6 +4,10 @@ import {connect} from 'react-redux'
 import {FOLLOW_BUTTON} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/followbutton'
 
 class EXPLORE_PAGE extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     let noUndefined = (item) => {
       return item != undefined;
@@ -14,7 +18,7 @@ class EXPLORE_PAGE extends React.Component {
     const tweedsDisplay = testVar.length ? (
       testVar.map((tweed) => {
         return (
-        <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} button={<FOLLOW_BUTTON uid={tweed.uid} username={tweed.username} id={tweed.id}/>} username={tweed.username} />
+        <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} button={<FOLLOW_BUTTON uid={tweed.uid} uniqueUid={this.props.uniqueUid} username={tweed.username} id={tweed.id}/>} username={tweed.username} />
         )
       })
     ) : (

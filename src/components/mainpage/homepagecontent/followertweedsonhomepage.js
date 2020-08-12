@@ -1,18 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import {TWEED_DIV_ON_PAGE} from './tweedDivOnPage'
 import {connect} from 'react-redux'
 
 class FOLLOWER_TWEEDS_ON_HOMEPAGE extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
     render() {
-      let noUndefinedOrSameUserUid = (item) => {
+      let noUndefined = (item) => {
         return item != undefined;
       };
   
       const testVar = this.props.followedTweeds.tweedArray.filter(
-        noUndefinedOrSameUserUid
+        noUndefined
       );
-  
+   
       const tweedsDisplayFollowers = testVar.length
         ? testVar.map((tweed) => {
             return (
@@ -30,7 +33,6 @@ class FOLLOWER_TWEEDS_ON_HOMEPAGE extends React.Component {
     }
   }
   
-
 const mapStateToProps = (state) => {
   return {
     followedTweeds: state.followedTweeds,

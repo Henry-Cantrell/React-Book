@@ -38,7 +38,7 @@ export let MAIN_USER_PAGE = (props) => {
   
     return (
       <>
-        <BANNER_CONTENT_FLOW_CONTROLLER />
+        <BANNER_CONTENT_FLOW_CONTROLLER dispatch={dispatch} uniqueUid={uniqueUid}/>
         <USER_PROFILE_BOTTOM_LEFT_BOX
           signOut={signOutUser}
           userName={`@${useSelector((state) => state.userName)}`}

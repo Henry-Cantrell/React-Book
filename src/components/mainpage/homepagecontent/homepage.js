@@ -2,15 +2,19 @@ import React from "react";
 import { HEADER_BAR_HOME_PAGE } from "./headerbarhomepage";
 import { TWEED_BOX_FORM } from "./tweedboxform";
 import { TWEED_DIV_ON_PAGE } from "./tweedDivOnPage";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import {DELETE_BUTTON} from './deletebuttonfortweeds'
 import FOLLOWER_TWEEDS_ON_HOMEPAGE from './followertweedsonhomepage'
 
 class HOME_PAGE extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
   render() {
     let noUndefined = (item) => {
       return item != undefined;
-    };
+    };  
 
     const testVar = this.props.userTweeds.tweedArray.filter(noUndefined);
 
@@ -26,7 +30,7 @@ class HOME_PAGE extends React.Component {
         );
       })
     ) : (
-      <p>empty!</p>
+      null
     );
 
     return (
@@ -35,7 +39,7 @@ class HOME_PAGE extends React.Component {
         <TWEED_BOX_FORM />
         <div className="borderBlock"></div>
         <div className="tweedDisplayList">
-          {tweedsDisplay} <FOLLOWER_TWEEDS_ON_HOMEPAGE />
+          {tweedsDisplay} <FOLLOWER_TWEEDS_ON_HOMEPAGE dispatch={this.props.dispatch} uniqueUid={this.props.uniqueUid}/>
         </div>
       </div>
     );

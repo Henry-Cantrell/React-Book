@@ -17,15 +17,16 @@ export let EXPLORE_PAGE_HANDLER = () => {
         .onSnapshot((snapshot) => {
           dispatch(clearTweedStoreGlobal());
           snapshot.forEach((doc) => {
+            if (doc.data().uid != uniqueUid){
             dispatch(
               tweedSendGlobal({
                 tweed: doc.data().tweed,
                 created: doc.data().created,
                 username: doc.data().username,
+                uid: doc.data().uid,
                 id: doc.id,
-                uid: doc.data().uid
               })
-            );
+            )};
           });
         });
     };
