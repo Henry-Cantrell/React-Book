@@ -33,63 +33,92 @@ export class FOLLOW_BUTTON extends React.Component {
         .firestore()
         .collection("users")
         .doc(this.props.uniqueUid)
-        .collection("followedTweeds")
+        .collection("followedUserUids")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
-            if (doc.data().uid === this.props.uid) {
-              this.changeFollowedTrue();
-            }
+            if (doc.id === this.props.uid) {
+              if (doc.data().followStatus === 'followed') {
+                this.changeFollowedTrue()
+              } else {
+                this.changeFollowedFalse()
+              }
+            };
           });
         });
+
     };
     isUserFollowed();
   }
 
   followUser = () => {
-    this.changeFollowedTrue()
-      firebase
-        .firestore()
-        .collection("users")
-        .doc(this.props.uid)
-        .collection("userTweeds")
-        .orderBy("created", "asc")
-        .onSnapshot((snapshot) => {
-          snapshot.forEach((doc) => {
+    this.changeFollowedTrue();
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.props.uid)
+      .collection("userTweeds")
+      .orderBy("created", "asc")
+      .get()
+      .then((items) => {
+        items.forEach((doc) => {
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(this.props.uniqueUid)
+            .collection("followedTweeds")
+            .doc()
+            .set({
+              tweed: doc.data().tweed,
+              username: doc.data().username,
+              uid: doc.data().uid,
+            });
+        });
+      })
+      .then(
+        firebase
+          .firestore()
+          .collection('users')
+          .doc(this.props.uniqueUid)
+          .collection('followedUserUids')
+          .doc(this.props.uid)
+          .set({
+            followStatus: 'followed'
+          })
+      );
+  };
+  
+  unfollowUser = () => {
+    this.changeFollowedFalse();
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.props.uniqueUid)
+      .collection("followedTweeds")
+      .get()
+      .then((items) => {
+        items.forEach((doc) => {
+          if (doc.data().uid === this.props.uid) {
             firebase
               .firestore()
               .collection("users")
               .doc(this.props.uniqueUid)
               .collection("followedTweeds")
-              .doc()
-              .set({
-                tweed: doc.data().tweed,
-                username: doc.data().username,
-                uid: doc.data().uid,
-              });
-          });
+              .doc(doc.id)
+              .delete()
+              .then(
+                firebase
+                  .firestore()
+                  .collection('users')
+                  .doc(this.props.uniqueUid)
+                  .collection('followedUserUids')
+                  .doc(this.props.uid)
+                  .set({
+                    followStatus: 'unfollowed'
+                  })
+              )
+          }
         });
-  };
-
-  unfollowUser = () => {
-    this.changeFollowedFalse()
-      firebase
-        .firestore()
-        .collection("users")
-        .doc(this.props.uniqueUid)
-        .collection("followedTweeds")
-        .onSnapshot((snapshot) => {
-          snapshot.forEach((doc) => {
-            if (doc.data().uid === this.props.uid) {
-              firebase
-                .firestore()
-                .collection("users")
-                .doc(this.props.uniqueUid)
-                .collection("followedTweeds")
-                .doc(doc.id)
-                .delete();
-            }
-          });
-        });
+      });
   };
 
   render() {
@@ -105,3 +134,5 @@ export class FOLLOW_BUTTON extends React.Component {
   }
 }
 
+//to-do:
+//diagnose why user cannot re-follow and still have tweed display??
