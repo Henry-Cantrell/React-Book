@@ -66,6 +66,15 @@ export class FOLLOW_BUTTON extends React.Component {
         .collection("followedUserUids")
         .doc(this.props.uid)
         .delete()
+        .then(
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(this.props.uniqueUid)
+            .collection("followerTweeds")
+            .doc(this.props.uid)
+            .delete()
+        )
         .then(this.changeFollowedFalse());
     };
 
