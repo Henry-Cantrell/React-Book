@@ -37,65 +37,29 @@ export let USER_AUTH_JOINER = () => {
       });
   };
 
-  let transferFollowerTweedsToRedux = () => {
+  let transferFollowedTweedsToRedux = () => {
     firebase
       .firestore()
       .collection("users")
       .doc(uniqueUid)
-      .collection("followedUserUids")
+      .collection("followedTweeds")
       .onSnapshot((snapshot) => {
+        dispatch(clearTweedFollow())
         snapshot.forEach((doc) => {
-          firebase
-            .firestore()
-            .collection("users")
-            .doc(doc.data().uid)
-            .collection("userTweeds")
-            .orderBy("created", "asc")
-            .onSnapshot((snapshot) => {
-              snapshot.forEach((doc) => {
-                firebase
-                  .firestore()
-                  .collection("users")
-                  .doc(uniqueUid)
-                  .collection("followerTweeds")
-                  .doc(doc.data().uid)
-                  .collection("tweeds")
-                  .doc(doc.id)
-                  .set({
-                    tweed: doc.data().tweed,
-                    username: doc.data().username,
-                    uid: doc.data().uid,
-                  })
-                  .then(
-                    firebase
-                      .firestore()
-                      .collection("users")
-                      .doc(uniqueUid)
-                      .collection("followerTweeds")
-                      .doc(doc.data().uid)
-                      .collection("tweeds")
-                      .onSnapshot((snapshot) => {
-                        dispatch(clearTweedFollow())
-                        snapshot.forEach((doc) => {
-                          dispatch(
-                            followedTweedSend({
-                              tweed: doc.data().tweed,
-                              username: doc.data().username,
-                              id: doc.id,
-                              uid: doc.data().uid,
-                            })
-                          );
-                        });
-                      })
-                  );
-              });
-            });
+          dispatch(
+            followedTweedSend({
+              tweed: doc.data().tweed,
+              username: doc.data().username,
+              id: doc.id,
+              uid: doc.data().uid,
+            })
+          );
         });
       });
   };
 
   transferUserTweedsToRedux();
-  transferFollowerTweedsToRedux();
+  transferFollowedTweedsToRedux();
 
   return <>{isLogged ? <MAIN_USER_PAGE /> : <MODAL_CLASS_FORM />}</>;
 };
