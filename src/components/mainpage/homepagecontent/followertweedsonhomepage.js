@@ -22,6 +22,8 @@ class FOLLOWER_TWEEDS_ON_HOMEPAGE extends React.Component {
               <TWEED_DIV_ON_PAGE
                 id={tweed.id}
                 button={null}
+                likeButton={}
+                retweedButton={}
                 tweedText={tweed.tweed}
                 username={tweed.username}
               />

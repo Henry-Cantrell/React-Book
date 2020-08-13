@@ -24,6 +24,8 @@ class HOME_PAGE extends React.Component {
           <TWEED_DIV_ON_PAGE
             id={tweed.id}
             button={<DELETE_BUTTON id={tweed.id} text="Delete this tweed" />}
+            likeButton={null}
+            retweedButton={null}
             tweedText={tweed.tweed}
             username={tweed.username}
           />

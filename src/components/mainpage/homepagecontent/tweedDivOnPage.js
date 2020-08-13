@@ -11,6 +11,8 @@ export function TWEED_DIV_ON_PAGE (props) {
         {`Tweed content: ${props.tweedText}`}
         </div>
         {props.button}
+        {props.likeButton}
+        {props.retweedButton}
         </div>
     )
 }
