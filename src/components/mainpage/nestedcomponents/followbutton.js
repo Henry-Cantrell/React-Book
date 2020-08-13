@@ -66,7 +66,7 @@ export class FOLLOW_BUTTON extends React.Component {
             .collection("users")
             .doc(this.props.uniqueUid)
             .collection("followedTweeds")
-            .doc()
+            .doc(doc.id)
             .set({
               tweed: doc.data().tweed,
               username: doc.data().username,

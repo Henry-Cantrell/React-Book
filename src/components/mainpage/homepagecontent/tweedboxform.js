@@ -48,7 +48,8 @@ export function TWEED_BOX_FORM(props) {
             tweed: tweedFetch,
             created: firebase.firestore.FieldValue.serverTimestamp(),
             username: username,
-            uid: uniqueUid
+            uid: uniqueUid,
+            likedCount: 0
           })
       )
       .then(
@@ -61,6 +62,7 @@ export function TWEED_BOX_FORM(props) {
             created: firebase.firestore.FieldValue.serverTimestamp(),
             username: username,
             uid: uniqueUid,
+            likedCount: 0
           })
       );
   };

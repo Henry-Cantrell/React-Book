@@ -18,7 +18,7 @@ class EXPLORE_PAGE extends React.Component {
     const tweedsDisplay = testVar.length ? (
       testVar.map((tweed) => {
         return (
-        <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} button={<FOLLOW_BUTTON uid={tweed.uid} uniqueUid={this.props.uniqueUid} username={tweed.username} id={tweed.id}/>} username={tweed.username} />
+        <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} likeButton={null} retweedButton={null} button={<FOLLOW_BUTTON uid={tweed.uid} uniqueUid={this.props.uniqueUid} username={tweed.username} id={tweed.id}/>} username={tweed.username} />
         )
       })
     ) : (

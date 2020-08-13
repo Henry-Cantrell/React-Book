@@ -1,6 +1,7 @@
 import React from "react";
 import {TWEED_DIV_ON_PAGE} from './tweedDivOnPage'
 import {connect} from 'react-redux'
+import {LIKE_BUTTON_HANDLER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/likebuttonhandler'
 
 class FOLLOWER_TWEEDS_ON_HOMEPAGE extends React.Component {
   constructor(props){
@@ -22,8 +23,8 @@ class FOLLOWER_TWEEDS_ON_HOMEPAGE extends React.Component {
               <TWEED_DIV_ON_PAGE
                 id={tweed.id}
                 button={null}
-                likeButton={}
-                retweedButton={}
+                likeButton={<LIKE_BUTTON_HANDLER id={tweed.id} tweed={tweed.tweed} username={tweed.username} uniqueUid={this.props.uniqueUid} uid={tweed.uid}/>}
+                retweedButton={null}
                 tweedText={tweed.tweed}
                 username={tweed.username}
               />
