@@ -1,5 +1,6 @@
 import React from "react";
 import { MODAL_USER_PROFILE } from "./modalBackgroundUserProfile";
+import {FOLLOWER_AND_FOLLOWED_CONTENT} from './followerandtweedcontent'
 
 export class MIDDLE_DIV_CONTENT extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
             Update profile information
           </button>
           <div className='showFollowAndTweedInts'>
-            
+            <FOLLOWER_AND_FOLLOWED_CONTENT/>
           </div>
         </div>
         {this.state.show ? (

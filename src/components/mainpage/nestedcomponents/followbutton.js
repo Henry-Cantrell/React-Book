@@ -37,20 +37,20 @@ export class FOLLOW_BUTTON extends React.Component {
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
             if (doc.id === this.props.uid) {
-              if (doc.data().followStatus === 'followed') {
-                this.changeFollowedTrue()
+              if (doc.data().followStatus === "followed") {
+                this.changeFollowedTrue();
               } else {
-                this.changeFollowedFalse()
+                this.changeFollowedFalse();
               }
-            };
+            }
           });
         });
-
     };
     isUserFollowed();
   }
 
   followUser = () => {
+    const increment = firebase.firestore.FieldValue.increment(1);
     this.changeFollowedTrue();
     firebase
       .firestore()
@@ -77,17 +77,32 @@ export class FOLLOW_BUTTON extends React.Component {
       .then(
         firebase
           .firestore()
-          .collection('users')
+          .collection("users")
           .doc(this.props.uniqueUid)
-          .collection('followedUserUids')
+          .collection("followedUserUids")
           .doc(this.props.uid)
           .set({
-            followStatus: 'followed'
+            followStatus: "followed",
           })
+      )
+      .then(
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(this.props.uniqueUid)
+          .update({
+            followedCount: increment,
+          })
+      )
+      .then(
+        firebase.firestore().collection("users").doc(this.props.uid).update({
+          followerCount: increment,
+        })
       );
   };
-  
+
   unfollowUser = () => {
+    const decrement = firebase.firestore.FieldValue.increment(-1);
     this.changeFollowedFalse();
     firebase
       .firestore()
@@ -108,17 +123,31 @@ export class FOLLOW_BUTTON extends React.Component {
               .then(
                 firebase
                   .firestore()
-                  .collection('users')
+                  .collection("users")
                   .doc(this.props.uniqueUid)
-                  .collection('followedUserUids')
+                  .collection("followedUserUids")
                   .doc(this.props.uid)
-                  .set({
-                    followStatus: 'unfollowed'
+                  .update({
+                    followStatus: "unfollowed",
                   })
-              )
+              );
           }
         });
-      });
+      })
+      .then(
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(this.props.uniqueUid)
+          .update({
+            followedCount: decrement,
+          })
+      )
+      .then(
+        firebase.firestore().collection("users").doc(this.props.uid).update({
+          followerCount: decrement,
+        })
+      );
   };
 
   render() {
@@ -134,5 +163,3 @@ export class FOLLOW_BUTTON extends React.Component {
   }
 }
 
-//to-do:
-//diagnose why user cannot re-follow and still have tweed display??

@@ -53,12 +53,13 @@ export class MODAL_CLASS extends React.Component {
               .then((cred) => {
                 this.props.dispatch(
                   uidNet(cred.user.uid, signupEmail, signupUsername),
-
                   firebase
                     .firestore()
                     .collection("users")
                     .doc(cred.user.uid)
                     .set({
+                      followedCount: 0,
+                      followerCount: 0,
                       uid: cred.user.uid,
                       email: signupEmail,
                       username: signupUsername,
@@ -76,7 +77,7 @@ export class MODAL_CLASS extends React.Component {
               )
               .catch((Error) => {
                 window.alert("Error: user info previously created");
-              });
+              })
           } else {
             window.alert("Username must be less than 13 characters long");
           }
