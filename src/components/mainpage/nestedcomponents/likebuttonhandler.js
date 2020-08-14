@@ -17,6 +17,7 @@ export class LIKE_BUTTON_HANDLER extends React.Component {
   }
 
   componentDidMount() {
+    
     let checkForExistingLike = () => {
       firebase
         .firestore()
@@ -50,21 +51,26 @@ export class LIKE_BUTTON_HANDLER extends React.Component {
 
   render() {
     return this.state.liked ? (
-        <UNLIKE_BUTTON
-          likeDisplay={<LIKE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />}
-          id={this.props.id}
-          uid={this.props.uid}
-          false={this.toggleLikeFalse}
-        />
-      ) : (
-        <LIKE_BUTTON
-          likeDisplay={<LIKE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />}
-          uid={this.props.uid}
-          id={this.props.id}
-          tweed={this.props.tweed}
-          username={this.props.username}
-          true={this.toggleLikeTrue}
-        />
-      );
+      <UNLIKE_BUTTON
+        likeDisplay={
+          <LIKE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />
+        }
+        id={this.props.id}
+        uid={this.props.uid}
+        false={this.toggleLikeFalse}
+      />
+    ) : (
+      <LIKE_BUTTON
+        likeDisplay={
+          <LIKE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />
+        }
+        uid={this.props.uid}
+        uniqueUid={this.props.uniqueUid}
+        id={this.props.id}
+        tweed={this.props.tweed}
+        username={this.props.username}
+        true={this.toggleLikeTrue}
+      />
+    );
   }
 }

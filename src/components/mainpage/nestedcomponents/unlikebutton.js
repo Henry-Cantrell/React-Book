@@ -7,49 +7,28 @@ export function UNLIKE_BUTTON(props) {
   const decrement = firebase.firestore.FieldValue.increment(-1);
 
   let unlikeTweedInFirebase = () => {
-    props.false()
+    props.false();
+
     firebase
       .firestore()
       .collection("users")
-      .doc(props.uid)
-      .collection("userTweeds")
+      .doc(uniqueUid)
+      .collection("likedTweeds")
       .get()
       .then((items) => {
         items.forEach((doc) => {
-          if (doc.id === props.id) {
+          if (doc.data().id === props.id) {
             firebase
               .firestore()
               .collection("users")
-              .doc(props.uid)
-              .collection("userTweeds")
+              .doc(uniqueUid)
+              .collection("likedTweeds")
               .doc(doc.id)
-              .update({
-                likedCount: decrement,
-              });
+              .delete();
           }
         });
       })
-      .then(
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(uniqueUid)
-          .collection("likedTweeds")
-          .get()
-          .then((items) => {
-            items.forEach((doc) => {
-              if (doc.data().id === props.id) {
-                firebase
-                  .firestore()
-                  .collection("users")
-                  .doc(uniqueUid)
-                  .collection("likedTweeds")
-                  .doc(doc.id)
-                  .delete();
-              }
-            });
-          })
-      )
+
       .then(
         firebase
           .firestore()

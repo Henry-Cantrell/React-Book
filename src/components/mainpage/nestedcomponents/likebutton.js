@@ -20,6 +20,7 @@ export function LIKE_BUTTON(props) {
         username: props.username,
         id: props.id,
         uid: props.uid,
+        usernameOfLiker: props.usernameOfLiker
       })
       .then(
         firebase
@@ -42,15 +43,3 @@ export function LIKE_BUTTON(props) {
   );
 }
 
-//usertweeds array being overwritten by this async???
-//.then(
-//  firebase
-//    .firestore()
-//    .collection("users")
-//    .doc(props.uid)
-//    .collection("userTweeds")
-//    .doc(props.id)
-//    .update({
-//      likedCount: increment,
-//    })
-//);

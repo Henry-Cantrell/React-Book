@@ -9,6 +9,27 @@ class LIKED_TWEEDS_FROM_FOLLOWED extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    let usernameOfLikerGet = () => {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(this.props.uniqueUid)
+        .collection("likedTweeds")
+        .get()
+        .then((items) => {
+          items.forEach((doc) => {
+            if (doc.data().id === this.props.id) {
+              this.setState({
+                usernameOfLiker: doc.data().usernameOfLiker,
+              });
+            }
+          });
+        });
+    };
+    usernameOfLikerGet();
+  }
+
     render() {
       let noUndefined = (item) => {
         return item != undefined;
@@ -27,7 +48,9 @@ class LIKED_TWEEDS_FROM_FOLLOWED extends React.Component {
                 likeButton={<LIKE_BUTTON_HANDLER uid={tweed.uid} id={tweed.id} tweed={tweed.tweed} username={tweed.username} uniqueUid={this.props.uniqueUid}/>}
                 retweedButton={null}
                 tweedText={tweed.tweed}
-                username={`This tweed liked by: ${<USERNAME_LIKED_TWEEDS/>}`}
+                username={tweed.username}
+                likedBy={<USERNAME_LIKED_TWEEDS id={tweed.id} uniqueUid={this.props.uniqueUid}/>}
+                retweetedBy={null}
               />
             );
           })
