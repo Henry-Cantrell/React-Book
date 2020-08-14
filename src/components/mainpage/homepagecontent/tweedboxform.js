@@ -49,7 +49,6 @@ export function TWEED_BOX_FORM(props) {
             created: firebase.firestore.FieldValue.serverTimestamp(),
             username: username,
             uid: uniqueUid,
-            likedCount: 0
           })
       )
       .then(
@@ -62,9 +61,18 @@ export function TWEED_BOX_FORM(props) {
             created: firebase.firestore.FieldValue.serverTimestamp(),
             username: username,
             uid: uniqueUid,
-            likedCount: 0
           })
-      );
+      ).then(
+        firebase
+          .firestore()
+          .collection('users')
+          .doc(uniqueUid)
+          .collection('likeCountForUserTweeds')
+          .doc(`counter${counter}`)
+          .set({
+            likeCount: 0
+          })
+      )
   };
   
 

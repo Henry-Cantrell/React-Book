@@ -8,26 +8,28 @@ export function LIKE_BUTTON(props) {
 
   let likeCountToFirebase = () => {
     props.true();
+  
     firebase
       .firestore()
       .collection("users")
-      .doc(props.uid)
-      .collection("userTweeds")
-      .doc(props.id)
-      .update({
-        likedCount: increment,
+      .doc(uniqueUid)
+      .collection("likedTweeds")
+      .doc()
+      .set({
+        tweed: props.tweed,
+        username: props.username,
+        id: props.id,
+        uid: props.uid,
       })
       .then(
         firebase
           .firestore()
           .collection("users")
-          .doc(uniqueUid)
-          .collection("likedTweeds")
-          .doc()
-          .set({
-            tweed: props.tweed,
-            username: props.username,
-            id: props.id,
+          .doc(props.uid)
+          .collection("likeCountForUserTweeds")
+          .doc(props.id)
+          .update({
+            likeCount: increment,
           })
       );
   };
@@ -35,7 +37,20 @@ export function LIKE_BUTTON(props) {
   return (
     <>
       <button onClick={likeCountToFirebase}>Like</button>
-      <LIKE_COUNT_DISPLAY/>
+      {props.likeDisplay}
     </>
   );
 }
+
+//usertweeds array being overwritten by this async???
+//.then(
+//  firebase
+//    .firestore()
+//    .collection("users")
+//    .doc(props.uid)
+//    .collection("userTweeds")
+//    .doc(props.id)
+//    .update({
+//      likedCount: increment,
+//    })
+//);

@@ -49,12 +49,24 @@ export function UNLIKE_BUTTON(props) {
               }
             });
           })
+      )
+      .then(
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(props.uid)
+          .collection("likeCountForUserTweeds")
+          .doc(props.id)
+          .update({
+            likeCount: decrement,
+          })
       );
   };
 
   return (
     <>
       <button onClick={unlikeTweedInFirebase}>Unlike</button>
+      {props.likeDisplay}
     </>
   );
 }

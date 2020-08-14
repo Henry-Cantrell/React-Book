@@ -11,6 +11,7 @@ import {counterReducer} from './counterReducer'
 import {followedCountReducer} from './followedCountReducer'
 import {followerCountReducer} from './followerCountReducer'
 import {followedTweedsCapture} from './followedTweedsCapture'
+import {likedTweedsFromFollowedCapture} from './likedtweedsfromfollowedcapture'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -24,5 +25,6 @@ export const allReducers = combineReducers({
   counter : counterReducer,
   followedTweeds: followedTweedsCapture,
   followerCount: followerCountReducer,
-  followedCount: followedCountReducer
+  followedCount: followedCountReducer,
+  likedTweedsFromFollowed: likedTweedsFromFollowedCapture
 })

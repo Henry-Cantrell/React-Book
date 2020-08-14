@@ -10,26 +10,27 @@ export class LIKE_COUNT_DISPLAY extends React.Component {
     };
   }
 
-  likedCountFromFb = () => {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(props.uid)
-      .collection("userTweeds")
-      .onSnapshot((snapshot) => {
-        snapshot.forEach((doc) => {
-          if (doc.id === props.id) {
-            this.setState({
-              likedCount: doc.data().likedCount,
-            });
-          }
+  componentDidMount() {
+    let likedCountFromFb = () => {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(this.props.uid)
+        .collection("likeCountForUserTweeds")
+        .onSnapshot((snapshot) => {
+          snapshot.forEach((doc) => {
+            if (doc.id === this.props.id) {
+              this.setState({
+                likedCount: doc.data().likeCount,
+              });
+            }
+          });
         });
-      });
-  };
-  
-
+    };
+    likedCountFromFb()
+  }
 
   render() {
-    <p>{this.state.likedCount}</p>;
+    return <div>Like count: {this.state.likedCount}</div>;
   }
 }
