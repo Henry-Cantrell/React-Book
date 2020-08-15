@@ -21,20 +21,27 @@ export class LIKE_BUTTON_HANDLER extends React.Component {
     let checkForExistingLike = () => {
       firebase
         .firestore()
-        .collection("users")
-        .doc(this.props.uniqueUid)
         .collection("likedTweeds")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
-            if (doc.data().id === this.props.id) {
-              this.setState({
-                liked: true,
-              });
+            if (doc.id === this.props.uniqueUid) {
+              firebase
+                .firestore()
+                .collection("likedTweeds")
+                .doc(doc.id)
+                .collection("tweedsLikedByUser")
+                .onSnapshot((snapshot) => {
+                  snapshot.forEach((doc) => {
+                    if (doc.data().usernameOfLiker === this.props.username) {
+                      this.toggleLikeTrue();
+                    }
+                  });
+                });
             }
           });
         });
     };
-    checkForExistingLike();
+    checkForExistingLike();    
   }
 
   toggleLikeTrue() {

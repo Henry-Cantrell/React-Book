@@ -1,7 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import {fireBaseExternalObj} from '../../firebasedeps'
-import firebase from 'firebase'
 import {useDispatch} from 'react-redux'
 import {userNameNet} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet'
 import {USER_PROFILE_BOTTOM_LEFT_BOX} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox'

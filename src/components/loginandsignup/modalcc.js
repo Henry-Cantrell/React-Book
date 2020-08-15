@@ -12,7 +12,7 @@ export let MODAL_CLASS_FORM = () => {
     <div>
       <div class="login_modals_graphics">
         <div class="header_style_external">
-          <h2> Check out my modals: </h2>
+          <h2> Tweedur in progress. </h2>
         </div>
         <MODAL_CLASS
           dispatch={dispatch}

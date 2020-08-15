@@ -14,6 +14,7 @@ import { clearFollowedLikes } from "/home/suzuka/Coding/the_odin_project/Project
 export let USER_AUTH_JOINER = () => {
   const isLogged = useSelector((state) => state.isLogged);
   const uniqueUid = useSelector((state) => state.uidInt);
+  const usernameOfCurrentUser = useSelector((state) => state.userName);
 
   const dispatch = useDispatch();
 
@@ -60,7 +61,7 @@ export let USER_AUTH_JOINER = () => {
         });
       });
   };
-  
+
   let transferFollowedLikesToRedux = () => {
     firebase
       .firestore()
@@ -76,26 +77,34 @@ export let USER_AUTH_JOINER = () => {
               .collection("likedTweeds")
               .onSnapshot((snapshot) => {
                 snapshot.forEach((docLiked) => {
-                  if (
-                    docLiked.id === docFollowed.id &&
-                    docLiked.data().uid != uniqueUid
-                  ) {
+                  dispatch(clearFollowedLikes());
+                  if (docLiked.id === docFollowed.id) {
                     firebase
                       .firestore()
                       .collection("likedTweeds")
-                      .doc(docFollowed.id)
+                      .doc(docLiked.id)
                       .collection("tweedsLikedByUser")
                       .onSnapshot((snapshot) => {
+                        dispatch(clearFollowedLikes());
                         snapshot.forEach((doc) => {
-                          dispatch(
-                            sendLikedTweedsFromFollowed({
-                              usernameOfLiker: doc.data().usernameOfLiker,
-                              tweed: doc.data().tweed,
-                              username: doc.data().username,
-                              id: doc.id,
-                              uid: doc.data().uid,
-                            })
-                          );
+                          if (
+                            doc.data().usernameOfLiker &&
+                            doc.data().username === usernameOfCurrentUser
+                          ) {
+                            console.log("no issues in: userauthjoiner.js/94");
+                          } else if (doc.data().uid === docFollowed.id) {
+                            console.log("no issues in userauthjoiner/96");
+                          } else {
+                            dispatch(
+                              sendLikedTweedsFromFollowed({
+                                usernameOfLiker: doc.data().usernameOfLiker,
+                                tweed: doc.data().tweed,
+                                username: doc.data().username,
+                                id: doc.id,
+                                uid: doc.data().uid,
+                              })
+                            );
+                          }
                         });
                       });
                   }
@@ -104,8 +113,8 @@ export let USER_AUTH_JOINER = () => {
           }
         });
       });
-  }; 
-
+  };
+  
   transferUserTweedsToRedux();
   transferFollowedTweedsToRedux();
   transferFollowedLikesToRedux();
