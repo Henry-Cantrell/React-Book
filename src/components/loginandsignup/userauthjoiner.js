@@ -33,7 +33,7 @@ export let USER_AUTH_JOINER = () => {
               username: doc.data().username,
               created: doc.data().created,
               id: doc.id,
-              uid: doc.data().uid
+              uid: doc.data().uid,
             })
           );
         });
@@ -60,7 +60,7 @@ export let USER_AUTH_JOINER = () => {
         });
       });
   };
-
+  
   let transferFollowedLikesToRedux = () => {
     firebase
       .firestore()
@@ -68,28 +68,43 @@ export let USER_AUTH_JOINER = () => {
       .doc(uniqueUid)
       .collection("followedUserUids")
       .onSnapshot((snapshot) => {
-        snapshot.forEach((doc) => {
-          firebase
-            .firestore()
-            .collection("users")
-            .doc(doc.id)
-            .collection("likedTweeds")
-            .onSnapshot((snapshot) => {
-              dispatch(clearFollowedLikes());
-              snapshot.forEach((doc) => {
-                dispatch(
-                  sendLikedTweedsFromFollowed({
-                    tweed: doc.data().tweed,
-                    username: doc.data().username,
-                    id: doc.id,
-                    uid: doc.data().uid
-                  })
-                );
+        dispatch(clearFollowedLikes());
+        snapshot.forEach((docFollowed) => {
+          if (docFollowed.data().followStatus === "followed") {
+            firebase
+              .firestore()
+              .collection("likedTweeds")
+              .onSnapshot((snapshot) => {
+                snapshot.forEach((docLiked) => {
+                  if (
+                    docLiked.id === docFollowed.id &&
+                    docLiked.data().uid != uniqueUid
+                  ) {
+                    firebase
+                      .firestore()
+                      .collection("likedTweeds")
+                      .doc(docFollowed.id)
+                      .collection("tweedsLikedByUser")
+                      .onSnapshot((snapshot) => {
+                        snapshot.forEach((doc) => {
+                          dispatch(
+                            sendLikedTweedsFromFollowed({
+                              usernameOfLiker: doc.data().usernameOfLiker,
+                              tweed: doc.data().tweed,
+                              username: doc.data().username,
+                              id: doc.id,
+                              uid: doc.data().uid,
+                            })
+                          );
+                        });
+                      });
+                  }
+                });
               });
-            });
+          }
         });
       });
-  };
+  }; 
 
   transferUserTweedsToRedux();
   transferFollowedTweedsToRedux();

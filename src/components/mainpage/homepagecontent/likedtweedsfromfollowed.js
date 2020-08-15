@@ -7,30 +7,11 @@ import {USERNAME_LIKED_TWEEDS} from './usernameforlikedtweedsfromfollow'
 class LIKED_TWEEDS_FROM_FOLLOWED extends React.Component {
   constructor(props){
     super(props)
-  }
 
-  componentDidMount() {
-    let usernameOfLikerGet = () => {
-      firebase
-        .firestore()
-        .collection("users")
-        .doc(this.props.uniqueUid)
-        .collection("likedTweeds")
-        .get()
-        .then((items) => {
-          items.forEach((doc) => {
-            if (doc.data().id === this.props.id) {
-              this.setState({
-                usernameOfLiker: doc.data().usernameOfLiker,
-              });
-            }
-          });
-        });
-    };
-    usernameOfLikerGet();
   }
 
     render() {
+
       let noUndefined = (item) => {
         return item != undefined;
       };
@@ -45,11 +26,11 @@ class LIKED_TWEEDS_FROM_FOLLOWED extends React.Component {
               <TWEED_DIV_ON_PAGE
                 id={tweed.id}
                 button={null}
-                likeButton={<LIKE_BUTTON_HANDLER uid={tweed.uid} id={tweed.id} tweed={tweed.tweed} username={tweed.username} uniqueUid={this.props.uniqueUid}/>}
+                likeButton={<LIKE_BUTTON_HANDLER uid={tweed.uid} id={tweed.id} tweed={tweed.tweed} usernameTweed={tweed.username} username ={this.props.username} uniqueUid={this.props.uniqueUid}/>}
                 retweedButton={null}
                 tweedText={tweed.tweed}
                 username={tweed.username}
-                likedBy={<USERNAME_LIKED_TWEEDS id={tweed.id} uniqueUid={this.props.uniqueUid}/>}
+                likedBy={`This tweed liked by: ${tweed.usernameOfLiker}`}
                 retweetedBy={null}
               />
             );

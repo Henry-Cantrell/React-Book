@@ -47,7 +47,7 @@ class HOME_PAGE extends React.Component {
             dispatch={this.props.dispatch}
             uniqueUid={this.props.uniqueUid}
           />
-          <LIKED_TWEEDS_FROM_FOLLOWED uniqueUid={this.props.uniqueUid}/>
+          <LIKED_TWEEDS_FROM_FOLLOWED username={this.props.username} uniqueUid={this.props.uniqueUid}/>
         </div>
       </div>
     );

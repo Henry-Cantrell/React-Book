@@ -54,7 +54,7 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
           <div class="second">
             {this.state.showProfilePage ? <PROFILE_PAGE /> : null}
             {this.state.showHomePage ? (
-              <HOME_PAGE dispatch={this.props.dispatch} uniqueUid={this.props.uniqueUid}/>
+              <HOME_PAGE dispatch={this.props.dispatch} username={this.props.username} uniqueUid={this.props.uniqueUid}/>
             ) : null}
             {this.state.showExplorePage ? <EXPLORE_PAGE_HANDLER /> : null}
           </div>

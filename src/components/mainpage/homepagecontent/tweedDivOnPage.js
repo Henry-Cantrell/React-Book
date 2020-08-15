@@ -5,7 +5,7 @@ export function TWEED_DIV_ON_PAGE (props) {
     return (
     <div className='tweedBoxHoldingTweeds'>
         <div className = 'tweedInTweedBox'>
-        {props.likedBy}
+        <div>{props.likedBy}</div>
         {props.retweetedBy}
         {props.username}
         </div>

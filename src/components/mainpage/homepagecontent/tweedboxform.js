@@ -65,8 +65,6 @@ export function TWEED_BOX_FORM(props) {
       ).then(
         firebase
           .firestore()
-          .collection('users')
-          .doc(uniqueUid)
           .collection('likeCountForUserTweeds')
           .doc(`counter${counter}`)
           .set({

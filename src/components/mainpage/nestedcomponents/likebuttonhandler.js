@@ -69,6 +69,8 @@ export class LIKE_BUTTON_HANDLER extends React.Component {
         id={this.props.id}
         tweed={this.props.tweed}
         username={this.props.username}
+        usernameOfLiker={this.props.usernameOfLiker}
+        usernameTweed= {this.props.usernameTweed}
         true={this.toggleLikeTrue}
       />
     );

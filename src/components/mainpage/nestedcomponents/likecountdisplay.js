@@ -14,8 +14,6 @@ export class LIKE_COUNT_DISPLAY extends React.Component {
     let likedCountFromFb = () => {
       firebase
         .firestore()
-        .collection("users")
-        .doc(this.props.uid)
         .collection("likeCountForUserTweeds")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {

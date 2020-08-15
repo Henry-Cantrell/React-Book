@@ -28,12 +28,9 @@ export function UNLIKE_BUTTON(props) {
           }
         });
       })
-
       .then(
         firebase
           .firestore()
-          .collection("users")
-          .doc(props.uid)
           .collection("likeCountForUserTweeds")
           .doc(props.id)
           .update({
