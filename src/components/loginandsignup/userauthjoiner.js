@@ -71,50 +71,77 @@ export let USER_AUTH_JOINER = () => {
       .onSnapshot((snapshot) => {
         dispatch(clearFollowedLikes());
         snapshot.forEach((docFollowed) => {
-          if (docFollowed.data().followStatus === "followed") {
-            firebase
-              .firestore()
-              .collection("likedTweeds")
-              .onSnapshot((snapshot) => {
-                snapshot.forEach((docLiked) => {
-                  dispatch(clearFollowedLikes());
-                  if (docLiked.id === docFollowed.id) {
-                    firebase
-                      .firestore()
-                      .collection("likedTweeds")
-                      .doc(docLiked.id)
-                      .collection("tweedsLikedByUser")
-                      .onSnapshot((snapshot) => {
-                        dispatch(clearFollowedLikes());
-                        snapshot.forEach((doc) => {
-                          if (
-                            doc.data().usernameOfLiker &&
-                            doc.data().username === usernameOfCurrentUser
-                          ) {
-                            console.log("no issues in: userauthjoiner.js/94");
-                          } else if (doc.data().uid === docFollowed.id) {
-                            console.log("no issues in userauthjoiner/96");
-                          } else {
-                            dispatch(
-                              sendLikedTweedsFromFollowed({
-                                usernameOfLiker: doc.data().usernameOfLiker,
-                                tweed: doc.data().tweed,
-                                username: doc.data().username,
-                                id: doc.id,
-                                uid: doc.data().uid,
-                              })
-                            );
-                          }
-                        });
-                      });
-                  }
-                });
+          firebase
+            .firestore()
+            .collection("likedTweeds")
+            .get()
+            .then((items) => {
+              items.forEach((doc) => {
+                firebase
+                  .firestore()
+                  .collection("likedTweeds")
+                  .doc(doc.id)
+                  .collection("tweedsLikedByUser")
+                  .get()
+                  .then((items) => {
+                    items.forEach((doc) => {
+                      if (doc.data().uid === docFollowed.id) {
+                        console.log("whatevs");
+                      } else if (
+                        docFollowed.data().followStatus === "followed"
+                      ) {
+                        firebase
+                          .firestore()
+                          .collection("likedTweeds")
+                          .onSnapshot((snapshot) => {
+                            snapshot.forEach((docLiked) => {
+                              dispatch(clearFollowedLikes());
+                              if (docLiked.id === docFollowed.id) {
+                                firebase
+                                  .firestore()
+                                  .collection("likedTweeds")
+                                  .doc(docLiked.id)
+                                  .collection("tweedsLikedByUser")
+                                  .onSnapshot((snapshot) => {
+                                    dispatch(clearFollowedLikes());
+                                    snapshot.forEach((docLikedTweed) => {
+                                      if (
+                                        (docLikedTweed.data().usernameOfLiker &&
+                                          docLikedTweed.data().username ===
+                                            usernameOfCurrentUser) ||
+                                        docLikedTweed.data().uid ===
+                                          docFollowed.id
+                                      ) {
+                                        console.log(
+                                          "no issues in: userauthjoiner.js/94"
+                                        );
+                                      } else {
+                                        dispatch(
+                                          sendLikedTweedsFromFollowed({
+                                            usernameOfLiker: docLikedTweed.data()
+                                              .usernameOfLiker,
+                                            tweed: docLikedTweed.data().tweed,
+                                            username: docLikedTweed.data()
+                                              .username,
+                                            id: docLikedTweed.id,
+                                            uid: docLikedTweed.data().uid,
+                                          })
+                                        );
+                                      }
+                                    });
+                                  });
+                              }
+                            });
+                          });
+                      }
+                    });
+                  });
               });
-          }
+            });
         });
       });
   };
-  
+
   transferUserTweedsToRedux();
   transferFollowedTweedsToRedux();
   transferFollowedLikesToRedux();
