@@ -2,45 +2,8 @@ import React from "react";
 import {TWEED_DIV_ON_PAGE} from './tweedDivOnPage'
 import {connect} from 'react-redux'
 import {LIKE_BUTTON_HANDLER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/likebuttonhandler'
-import firebase from 'firebase'
-import { sendLikedTweedsFromFollowed } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendlikedtweedsfromfollowed";
-import {useDispatch} from 'react-redux'
 
 function LIKED_TWEEDS_FROM_FOLLOWED(props) {
-  const dispatch = useDispatch();
-
-  let filterTweedArrayForFollowedUids = () => {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(props.uniqueUid)
-      .collection("followedUserUids")
-      .onSnapshot((snapshot) => {
-        snapshot.forEach((docInFollowed) => {
-          firebase
-            .firestore()
-            .collection("likedTweeds")
-            .doc(docInFollowed.id)
-            .collection("tweedsLikedByUser")
-            .onSnapshot((snapshot) => {
-              snapshot.forEach((docLikedTweed) => {
-                if (docLikedTweed.data().uid != docInFollowed.id) {
-                  dispatch(
-                    sendLikedTweedsFromFollowed({
-                      usernameOfLiker: docLikedTweed.data().usernameOfLiker,
-                      tweed: docLikedTweed.data().tweed,
-                      username: docLikedTweed.data().username,
-                      id: docLikedTweed.id,
-                      uid: docLikedTweed.data().uid,
-                    })
-                  );
-                }
-              });
-            });
-        });
-      });
-  };
-  
 
   let noUndefined = (item) => {
     return item != undefined;
@@ -76,8 +39,6 @@ function LIKED_TWEEDS_FROM_FOLLOWED(props) {
               
       })
     : null;
-
-  filterTweedArrayForFollowedUids();
 
   return <>{tweedsDisplayFollowedLiked}</>;
 }

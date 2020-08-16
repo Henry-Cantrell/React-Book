@@ -9,13 +9,13 @@ import { clearTweedStore } from "/home/suzuka/Coding/the_odin_project/Projects/w
 import { followedTweedSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/followedTweedSend";
 import { clearTweedFollow } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearTweedFollow";
 import { sendLikedTweedsFromFollowed } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendlikedtweedsfromfollowed";
-import { clearFollowedLikes } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearfollowedlikes";
+import {clearFollowedLikes} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearfollowedlikes'
 
 export let USER_AUTH_JOINER = () => {
   const isLogged = useSelector((state) => state.isLogged);
   const uniqueUid = useSelector((state) => state.uidInt);
-  const usernameOfCurrentUser = useSelector((state) => state.userName);
-
+  const usernameOfCurrentUser = useSelector((state) => state.userName)
+ 
   const dispatch = useDispatch();
 
   let transferUserTweedsToRedux = () => {
@@ -40,7 +40,7 @@ export let USER_AUTH_JOINER = () => {
         });
       });
   };
-
+  
   let transferFollowedTweedsToRedux = () => {
     firebase
       .firestore()
@@ -61,7 +61,7 @@ export let USER_AUTH_JOINER = () => {
         });
       });
   };
-
+  
   let transferFollowedLikesToRedux = () => {
     firebase
       .firestore()
@@ -69,53 +69,118 @@ export let USER_AUTH_JOINER = () => {
       .doc(uniqueUid)
       .collection("followedUserUids")
       .onSnapshot((snapshot) => {
-        dispatch(clearFollowedLikes());
         snapshot.forEach((docFollowed) => {
-          if (docFollowed.data().followStatus === "followed") {
-            firebase
-              .firestore()
-              .collection("likedTweeds")
-              .onSnapshot((snapshot) => {
-                snapshot.forEach((docLiked) => {
-                  dispatch(clearFollowedLikes());
-                  if (docLiked.id === docFollowed.id) {
-                    firebase
-                      .firestore()
-                      .collection("likedTweeds")
-                      .doc(docLiked.id)
-                      .collection("tweedsLikedByUser")
-                      .onSnapshot((snapshot) => {
-                        dispatch(clearFollowedLikes());
-                        snapshot.forEach((docLikedTweed) => {
-                          if (
-                            docLikedTweed.data().usernameOfLiker &&
-                            docLikedTweed.data().username === usernameOfCurrentUser
-                          ) {
-                            console.log("no issues in: userauthjoiner.js/114");
-                          } else {
-                            dispatch(
-                              sendLikedTweedsFromFollowed({
-                                usernameOfLiker: docLikedTweed.data().usernameOfLiker,
-                                tweed: docLikedTweed.data().tweed,
-                                username: docLikedTweed.data().username,
-                                id: docLikedTweed.id,
-                                uid: docLikedTweed.data().uid,
-                              })
-                            );
-                          }
-                        });
+          if (docFollowed.data().followStatus === 'followed') {
+          firebase
+            .firestore()
+            .collection("likedTweedsByFollowedForFeed")
+            .doc(uniqueUid)
+            .set({
+              dnd: "dnd",
+            })
+            .then(
+              firebase
+                .firestore()
+                .collection("likedTweedsByFollowedForFeed")
+                .doc(uniqueUid)
+                .collection("tweedsLikedByFollowed")
+                .doc(docFollowed.id)
+                .set({
+                  dnd: "dnd",
+                })
+                .then(
+                  firebase
+                    .firestore()
+                    .collection("likedTweeds")
+                    .doc(docFollowed.id)
+                    .collection("tweedsLikedByUser")
+                    .onSnapshot((snapshot) => {
+                      snapshot.forEach((docLikedByFollowed) => {
+                        firebase
+                          .firestore()
+                          .collection("likedTweedsByFollowedForFeed")
+                          .doc(uniqueUid)
+                          .collection("tweedsLikedByFollowed")
+                          .doc(docFollowed.id)
+                          .collection("tweeds")
+                          .doc(docLikedByFollowed.id)
+                          .set({
+                            usernameOfLiker: docLikedByFollowed.data().usernameOfLiker,
+                            tweed: docLikedByFollowed.data().tweed,
+                            username: docLikedByFollowed.data().username,
+                            id: docLikedByFollowed.id,
+                            uid: docLikedByFollowed.data().uid,
+                          });
                       });
-                  }
-                });
-              });
-          }
-        });
+                    })
+                )
+            )
+            .then(
+              firebase
+                .firestore()
+                .collection("likedTweedsByFollowedForFeed")
+                .doc(uniqueUid)
+                .collection("tweedsLikedByFollowed")
+                .doc(docFollowed.id)
+                .collection("tweeds")
+                .onSnapshot((snapshotLayerThree) => {
+                  dispatch(clearFollowedLikes());
+                  snapshotLayerThree.forEach((docLikedByFollowedLayerTwo) => {
+                    dispatch(
+                      sendLikedTweedsFromFollowed({
+                        usernameOfLiker: docLikedByFollowedLayerTwo.data().usernameOfLiker,
+                        tweed: docLikedByFollowedLayerTwo.data().tweed,
+                        username: docLikedByFollowedLayerTwo.data().username,
+                        id: docLikedByFollowedLayerTwo.id,
+                        uid: docLikedByFollowedLayerTwo.data().uid,
+                      })
+                    );
+                  });
+                })
+            );
+        }});
       });
   };
-
+  
+  let deleteFollowedLikePostsFromUsersFollowedInFb = () => {
+    firebase
+      .firestore()
+      .collection('likedTweedsByFollowedForFeed')
+      .doc(uniqueUid)
+      .collection('tweedsLikedByFollowed')
+      .onSnapshot((snapshot) => {
+        snapshot.forEach((docLikedByFollowed) => {
+          firebase
+            .firestore()
+            .collection('likedTweedsByFollowedForFeed')
+            .doc(uniqueUid)
+            .collection('tweedsLikedByFollowed')
+            .doc(docLikedByFollowed.id)
+            .collection('tweeds')
+            .onSnapshot((snapshot) => {
+              snapshot.forEach((docLikedByFollowedLayerTwo) => {
+                if (docLikedByFollowedLayerTwo.data().uid === docLikedByFollowed.id) {
+                  firebase
+                    .firestore()
+                    .collection('likedTweedsByFollowedForFeed')
+                    .doc(uniqueUid)
+                    .collection('tweedsLikedByFollowed')
+                    .doc(docLikedByFollowed.id)
+                    .collection('tweeds')
+                    .doc(docLikedByFollowedLayerTwo.id)
+                    .delete()
+              }})
+            })
+        })
+      })
+  };
+  
   transferUserTweedsToRedux();
   transferFollowedTweedsToRedux();
   transferFollowedLikesToRedux();
+  deleteFollowedLikePostsFromUsersFollowedInFb();
 
   return <>{isLogged ? <MAIN_USER_PAGE /> : <MODAL_CLASS_FORM />}</>;
 };
+
+//to-do: put redux/fb interaction funcs into seperate modules and then import for run on component load
