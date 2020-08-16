@@ -47,6 +47,7 @@ export class FOLLOW_BUTTON extends React.Component {
         });
     };
     isUserFollowed();
+    
   }
 
   followUser = () => {
@@ -74,7 +75,7 @@ export class FOLLOW_BUTTON extends React.Component {
             });
         });
       })
-      .then( 
+      .then(
         firebase
           .firestore()
           .collection("users")
@@ -83,6 +84,24 @@ export class FOLLOW_BUTTON extends React.Component {
           .doc(this.props.uid)
           .set({
             followStatus: "followed",
+          })
+      )
+      .then(
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(this.props.uid)
+          .get()
+          .then((doc) => {
+            firebase
+              .firestore()
+              .collection("users")
+              .doc(this.props.uniqueUid)
+              .collection("followedUserUids")
+              .doc(this.props.uid)
+              .update({
+                username: doc.data().username,
+              });
           })
       )
       .then(
@@ -100,7 +119,7 @@ export class FOLLOW_BUTTON extends React.Component {
         })
       );
   };
-
+  
   unfollowUser = () => {
     const decrement = firebase.firestore.FieldValue.increment(-1);
     this.changeFollowedFalse();
@@ -149,7 +168,7 @@ export class FOLLOW_BUTTON extends React.Component {
         })
       );
   };
-
+  
   render() {
     return (
       <>

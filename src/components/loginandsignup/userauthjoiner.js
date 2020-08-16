@@ -39,6 +39,7 @@ export let USER_AUTH_JOINER = () => {
           );
         });
       });
+      //good
   };
   
   let transferFollowedTweedsToRedux = () => {
@@ -60,6 +61,7 @@ export let USER_AUTH_JOINER = () => {
           );
         });
       });
+      //good
   };
   
   let sortTweedsLikedByFollowed = () => {
@@ -76,8 +78,9 @@ export let USER_AUTH_JOINER = () => {
             .collection('likedTweeds')
             .doc(docFollowed.id)
             .collection('tweedsLikedByUser')
-            .onSnapshot((snapshot) => {
-              snapshot.forEach((docLikedByFollowed) => {
+            .get()
+            .then((items) => {
+              items.forEach((docLikedByFollowed) => {
                 firebase
                   .firestore()
                   .collection('likedTweedsOfFollowedUsers')
@@ -104,6 +107,11 @@ export let USER_AUTH_JOINER = () => {
             })
         }})
       })
+      //Module status:
+      //determine why tweedPool not properly updating on follow/unfollow action.
+
+      //Troubleshooting progress:
+      //On unfollow event, tweed correctly re-written into tweedpool, then incorrectly deleted by DLTOFU algo?
   }
 
   let deleteLikedTweedsOfFollowedUsers = () => {
@@ -114,14 +122,15 @@ export let USER_AUTH_JOINER = () => {
       .collection("followedUserUids")
       .onSnapshot((snapshot) => {
         snapshot.forEach((docFollowed) => {
-          firebase
-            .firestore()
-            .collection("likedTweedsOfFollowedUsers")
-            .doc(uniqueUid)
-            .collection("tweedPool")
-            .onSnapshot((snapshot) => {
-              if (snapshot.size != 0) {
-                snapshot.forEach((docLikedByFollowed) => {
+          if (docFollowed.data().followStatus === "followed") {
+            firebase
+              .firestore()
+              .collection("likedTweedsOfFollowedUsers")
+              .doc(uniqueUid)
+              .collection("tweedPool")
+              .get()
+              .then((docLikedByFollowed) => {
+                if (snapshot.size != 0) {
                   if (
                     docLikedByFollowed.data().uid === docFollowed.id ||
                     docLikedByFollowed.data().username === usernameOfCurrentUser
@@ -134,35 +143,74 @@ export let USER_AUTH_JOINER = () => {
                       .doc(docLikedByFollowed.id)
                       .delete();
                   }
-                });
-              }
-            });
+                }
+              });
+          } else if (docFollowed.data().followStatus === "unfollowed") {
+            firebase
+              .firestore()
+              .collection("likedTweedsOfFollowedUsers")
+              .doc(uniqueUid)
+              .collection("tweedPool")
+              .get()
+              .then((items) => {
+                if (items.size != 0) {
+                  items.forEach((docLikedByFollowed) => {
+                    if (
+                      docFollowed.data().username ===
+                      docLikedByFollowed.data().usernameOfLiker
+                    ) {
+                      firebase
+                        .firestore()
+                        .collection("likedTweedsOfFollowedUsers")
+                        .doc(uniqueUid)
+                        .collection("tweedPool")
+                        .doc(docLikedByFollowed.id)
+                        .delete();
+                    }
+                  });
+                }
+              });
+          }
         });
       });
+    //Troubleshooting progress:
+    //double check all onSnapshot block scopes for unwanted deletion
   };
+  
   
   let tweedsLikedByFollowedToRedux = () => {
     firebase
       .firestore()
-      .collection("likedTweedsOfFollowedUsers")
+      .collection('users')
       .doc(uniqueUid)
-      .collection("tweedPool")
+      .collection('followedUserUids')
       .onSnapshot((snapshot) => {
-        dispatch(clearFollowedLikes());
-        if (snapshot.size != 0) {
-          snapshot.forEach((doc) => {
-            dispatch(
-              sendLikedTweedsFromFollowed({
-                usernameOfLiker: doc.data().usernameOfLiker,
-                tweed: doc.data().tweed,
-                username: doc.data().username,
-                id: doc.id,
-                uid: doc.data().uid,
-              })
-            );
+        snapshot.forEach((docFollowed) => {
+          firebase
+          .firestore()
+          .collection("likedTweedsOfFollowedUsers")
+          .doc(uniqueUid)
+          .collection("tweedPool")
+          .onSnapshot((snapshot) => {
+            dispatch(clearFollowedLikes());
+            if (snapshot.size != 0) {
+              snapshot.forEach((docLikedByFollowed) => {
+                dispatch(
+                  sendLikedTweedsFromFollowed({
+                    usernameOfLiker: docLikedByFollowed.data().usernameOfLiker,
+                    tweed: docLikedByFollowed.data().tweed,
+                    username: docLikedByFollowed.data().username,
+                    id: docLikedByFollowed.id,
+                    uid: docLikedByFollowed.data().uid,
+                  })
+                );
+              });
+            }
           });
-        }
-      });
+        })
+      })
+      //Module status:
+      //in prog
   };
   
   
@@ -175,5 +223,8 @@ export let USER_AUTH_JOINER = () => {
   return <>{isLogged ? <MAIN_USER_PAGE /> : <MODAL_CLASS_FORM />}</>;
 };
 
-//to-do: put redux/fb interaction funcs into seperate modules and then import for run on component load
-//need to actually modify tweedpool to trigger onsnapshot
+//to-do for component: put redux/fb interaction funcs into seperate modules and then import for run on component load
+
+//TS issues:
+//tweedPool needs to rewrite after follow/unfollow action
+//adjust algos to update to reflect new follow/unfollow status
