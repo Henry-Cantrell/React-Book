@@ -50,5 +50,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(LIKED_TWEEDS_FROM_FOLLOWED);
-
-//stuck in loop for redux store transfer???

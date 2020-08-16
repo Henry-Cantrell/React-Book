@@ -74,7 +74,7 @@ export class FOLLOW_BUTTON extends React.Component {
             });
         });
       })
-      .then(
+      .then( 
         firebase
           .firestore()
           .collection("users")
