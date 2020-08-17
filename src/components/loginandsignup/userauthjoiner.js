@@ -67,150 +67,120 @@ export let USER_AUTH_JOINER = () => {
   let sortTweedsLikedByFollowed = () => {
     firebase
       .firestore()
-      .collection('users')
-      .doc(uniqueUid)
-      .collection('followedUserUids')
-      .onSnapshot((snapshot) => {
-        snapshot.forEach((docFollowed) => {
-          if (docFollowed.data().followStatus === 'followed') {
-          firebase
-            .firestore()
-            .collection('likedTweeds')
-            .doc(docFollowed.id)
-            .collection('tweedsLikedByUser')
-            .get()
-            .then((items) => {
-              items.forEach((docLikedByFollowed) => {
-                firebase
-                  .firestore()
-                  .collection('likedTweedsOfFollowedUsers')
-                  .doc(uniqueUid)
-                  .set({
-                    dnd: 'dnd'
-                  })
-                  .then(
-                    firebase
-                      .firestore()
-                      .collection('likedTweedsOfFollowedUsers')
-                      .doc(uniqueUid)
-                      .collection('tweedPool')
-                      .doc(docLikedByFollowed.id)
-                      .set({
-                        usernameOfLiker: docLikedByFollowed.data().usernameOfLiker,
-                        tweed: docLikedByFollowed.data().tweed,
-                        username: docLikedByFollowed.data().username,
-                        id: docLikedByFollowed.id,
-                        uid: docLikedByFollowed.data().uid,
-                      })
-                  )
-              })
-            })
-        }})
-      })
-      //Module status:
-      //determine why tweedPool not properly updating on follow/unfollow action.
-
-      //Troubleshooting progress:
-      //On unfollow event, tweed correctly re-written into tweedpool, then incorrectly deleted by DLTOFU algo?
-  }
-
-  let deleteLikedTweedsOfFollowedUsers = () => {
-    firebase
-      .firestore()
       .collection("users")
       .doc(uniqueUid)
       .collection("followedUserUids")
       .onSnapshot((snapshot) => {
         snapshot.forEach((docFollowed) => {
-          if (docFollowed.data().followStatus === "followed") {
             firebase
               .firestore()
-              .collection("likedTweedsOfFollowedUsers")
-              .doc(uniqueUid)
-              .collection("tweedPool")
-              .get()
-              .then((docLikedByFollowed) => {
-                if (snapshot.size != 0) {
-                  if (
-                    docLikedByFollowed.data().uid === docFollowed.id ||
-                    docLikedByFollowed.data().username === usernameOfCurrentUser
-                  ) {
-                    firebase
-                      .firestore()
-                      .collection("likedTweedsOfFollowedUsers")
-                      .doc(uniqueUid)
-                      .collection("tweedPool")
-                      .doc(docLikedByFollowed.id)
-                      .delete();
-                  }
-                }
-              });
-          } else if (docFollowed.data().followStatus === "unfollowed") {
-            firebase
-              .firestore()
-              .collection("likedTweedsOfFollowedUsers")
-              .doc(uniqueUid)
-              .collection("tweedPool")
+              .collection("likedTweeds")
+              .doc(docFollowed.id)
+              .collection("tweedsLikedByUser")
               .get()
               .then((items) => {
-                if (items.size != 0) {
-                  items.forEach((docLikedByFollowed) => {
-                    if (
-                      docFollowed.data().username ===
-                      docLikedByFollowed.data().usernameOfLiker
-                    ) {
-                      firebase
-                        .firestore()
-                        .collection("likedTweedsOfFollowedUsers")
-                        .doc(uniqueUid)
-                        .collection("tweedPool")
-                        .doc(docLikedByFollowed.id)
-                        .delete();
-                    }
-                  });
-                }
+                items.forEach((docLikedByFollowed) => {
+                  firebase
+                    .firestore()
+                    .collection("users")
+                    .doc(uniqueUid)
+                    .collection("followedUserUids")
+                    .get()
+                    .then((itemsFollowed) => {
+                      itemsFollowed.forEach((docFollowedLayerTwo) => {
+                        if (
+                          docFollowedLayerTwo.id != docLikedByFollowed.data().uid
+                        ) {
+                          firebase
+                            .firestore()
+                            .collection("likedTweedsOfFollowedUsers")
+                            .doc(uniqueUid)
+                            .set({
+                              dnd: "dnd",
+                            })
+                            .then(
+                              firebase
+                                .firestore()
+                                .collection("likedTweedsOfFollowedUsers")
+                                .doc(uniqueUid)
+                                .collection("tweedPool")
+                                .doc(docLikedByFollowed.id)
+                                .set({
+                                  usernameOfLiker: docLikedByFollowed.data().usernameOfLiker,
+                                  tweed: docLikedByFollowed.data().tweed,
+                                  username: docLikedByFollowed.data().username,
+                                  id: docLikedByFollowed.id,
+                                  uid: docLikedByFollowed.data().uid,
+                                })
+                            );
+                        } else {
+                          console.log(`Id of followed: ${docFollowedLayerTwo.id} and uid of like: ${docLikedByFollowed.data().uid}`)
+                        }
+                      });
+                    });
+                });
               });
-          }
         });
       });
-    //Troubleshooting progress:
-    //double check all onSnapshot block scopes for unwanted deletion
+  };
+
+  let deleteLikedTweedsOfFollowedUsers = () => {
+    firebase
+      .firestore()
+      .collection('likedTweedsOfFollowedUsers')
+      .doc(uniqueUid)
+      .collection('tweedPool')
+      .onSnapshot((snapshot) => {
+        if (!snapshot.empty) {
+          snapshot.forEach((docLikedByFollowed) => {
+            firebase
+              .firestore()
+              .collection('users')
+              .doc(uniqueUid)
+              .collection('followedUserUids')
+              .get()
+              .then(
+                ((itemsFollowed) => {
+                  itemsFollowed.forEach((docFollowed) => {
+                    if (docFollowed.id === docLikedByFollowed.data().uid || usernameOfCurrentUser === docLikedByFollowed.data().username)
+                    firebase
+                    .firestore()
+                    .collection('likedTweedsOfFollowedUsers')
+                    .doc(uniqueUid)
+                    .collection('tweedPool')
+                    .doc(docLikedByFollowed.id)
+                    .delete()
+                  })
+                })
+              )
+          })
+        }
+      })
   };
   
   
   let tweedsLikedByFollowedToRedux = () => {
     firebase
       .firestore()
-      .collection('users')
+      .collection("likedTweedsOfFollowedUsers")
       .doc(uniqueUid)
-      .collection('followedUserUids')
+      .collection("tweedPool")
       .onSnapshot((snapshot) => {
-        snapshot.forEach((docFollowed) => {
-          firebase
-          .firestore()
-          .collection("likedTweedsOfFollowedUsers")
-          .doc(uniqueUid)
-          .collection("tweedPool")
-          .onSnapshot((snapshot) => {
-            dispatch(clearFollowedLikes());
-            if (snapshot.size != 0) {
-              snapshot.forEach((docLikedByFollowed) => {
-                dispatch(
-                  sendLikedTweedsFromFollowed({
-                    usernameOfLiker: docLikedByFollowed.data().usernameOfLiker,
-                    tweed: docLikedByFollowed.data().tweed,
-                    username: docLikedByFollowed.data().username,
-                    id: docLikedByFollowed.id,
-                    uid: docLikedByFollowed.data().uid,
-                  })
-                );
-              });
-            }
+        dispatch(clearFollowedLikes());
+        if (!snapshot.empty) {
+          snapshot.forEach((docLikedByFollowed) => {
+            dispatch(
+              sendLikedTweedsFromFollowed({
+                usernameOfLiker: docLikedByFollowed.data().usernameOfLiker,
+                tweed: docLikedByFollowed.data().tweed,
+                username: docLikedByFollowed.data().username,
+                id: docLikedByFollowed.id,
+                uid: docLikedByFollowed.data().uid,
+              })
+            );
           });
-        })
-      })
-      //Module status:
-      //in prog
+        }
+      });
   };
   
   

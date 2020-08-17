@@ -36,18 +36,13 @@ export class FOLLOW_BUTTON extends React.Component {
         .collection("followedUserUids")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
-            if (doc.id === this.props.uid) {
-              if (doc.data().followStatus === "followed") {
+              if (doc.id === this.props.uid) {
                 this.changeFollowedTrue();
-              } else {
-                this.changeFollowedFalse();
-              }
-            }
+              } 
           });
         });
     };
     isUserFollowed();
-    
   }
 
   followUser = () => {
@@ -79,17 +74,6 @@ export class FOLLOW_BUTTON extends React.Component {
         firebase
           .firestore()
           .collection("users")
-          .doc(this.props.uniqueUid)
-          .collection("followedUserUids")
-          .doc(this.props.uid)
-          .set({
-            followStatus: "followed",
-          })
-      )
-      .then(
-        firebase
-          .firestore()
-          .collection("users")
           .doc(this.props.uid)
           .get()
           .then((doc) => {
@@ -99,7 +83,7 @@ export class FOLLOW_BUTTON extends React.Component {
               .doc(this.props.uniqueUid)
               .collection("followedUserUids")
               .doc(this.props.uid)
-              .update({
+              .set({
                 username: doc.data().username,
               });
           })
@@ -146,9 +130,7 @@ export class FOLLOW_BUTTON extends React.Component {
                   .doc(this.props.uniqueUid)
                   .collection("followedUserUids")
                   .doc(this.props.uid)
-                  .update({
-                    followStatus: "unfollowed",
-                  })
+                  .delete()
               );
           }
         });
