@@ -1,8 +1,12 @@
 import firebase from "firebase";
 import { sendUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendUserFav";
 import { clearUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearUserFav";
+import {useSelector, useDispatch} from 'react-redux'
 
-export let userFavoriteTweedGetFromFb = (uniqueUid, dispatch) => {
+export let UserFavoriteTweedGetFromFb = () => {
+
+  const uniqueUid = useSelector((state) => state.uidInt);
+  const dispatch = useDispatch();
 
   firebase
     .firestore()
@@ -15,13 +19,16 @@ export let userFavoriteTweedGetFromFb = (uniqueUid, dispatch) => {
         snapshot.forEach((tweed) => {
           dispatch(
             sendUserFav({
-              tweed: tweed.tweed,
-              username: tweed.username,
+              tweed: tweed.data().tweed,
+              username: tweed.data().username,
               id: tweed.id,
-              uid: tweed.uid,
+              uid: tweed.data().uid,
             })
           );
         });
       }
     });
 };
+
+
+

@@ -4,7 +4,7 @@ import { MIDDLE_DIV_CONTENT } from "./middlediv";
 import { BUTTON_BAR } from "./buttonbar";
 import firebase from "firebase";
 import TWEED_PROFILE from "./usertweedlistprofilepage";
-import { FAVORITES_PROFILE } from "./userfavoritesforprofilepage";
+import FAVORITES_PROFILE from "./userfavoritesforprofilepage";
 
 export class PROFILE_PAGE extends React.Component {
   constructor(props) {

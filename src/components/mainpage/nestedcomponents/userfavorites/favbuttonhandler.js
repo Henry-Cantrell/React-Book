@@ -8,11 +8,11 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggleLikeFalse = this.toggleLikeFalse.bind(this);
-    this.toggleLikeTrue = this.toggleLikeTrue.bind(this);
+    this.toggleFavFalse = this.toggleFavFalse.bind(this);
+    this.toggleFavTrue = this.toggleFavTrue.bind(this);
 
     this.state = {
-      liked: false,
+      favorited: false,
     };
   }
 
@@ -27,15 +27,15 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
               firebase
                 .firestore()
                 .collection("favoritedTweeds")
-                .doc(doc.id)
+                .doc(this.props.uniqueUid)
                 .collection("tweedsFavoritedByUser")
                 .onSnapshot((snapshot) => {
                   snapshot.forEach((doc) => {
                     if (
-                      doc.data().usernameOfFavoriter === this.props.username
+                      doc.data().uid === this.props.uid
                     ) {
-                      this.toggleLikeTrue();
-                    }
+                      this.toggleFavTrue();
+                    } 
                   });
                 });
             }
@@ -45,27 +45,27 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
     checkForExistingFavorite();
   }
 
-  toggleLikeTrue() {
+  toggleFavTrue() {
     this.setState({
-      liked: true,
+      favorited: true,
     });
   }
 
-  toggleLikeFalse() {
+  toggleFavFalse() {
     this.setState({
-      liked: false,
+      favorited: false,
     });
   }
 
   render() {
-    return this.state.liked ? (
+    return this.state.favorited ? (
       <UNFAVORITE_BUTTON
         favoriteDisplay={
           <FAVORITE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />
         }
         id={this.props.id}
         uid={this.props.uid}
-        false={this.toggleLikeFalse}
+        false={this.toggleFavFalse}
       />
     ) : (
       <FAVORITE_BUTTON
@@ -79,7 +79,7 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
         username={this.props.username}
         usernameOfFavoriter={null}
         usernameTweed={this.props.usernameTweed}
-        true={this.toggleLikeTrue}
+        true={this.toggleFavTrue}
       />
     );
   }

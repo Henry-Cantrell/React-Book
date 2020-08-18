@@ -37,7 +37,7 @@ export class FAVORITE_BUTTON extends React.Component {
           .set({
             tweed: this.props.tweed,
             id: this.props.id,
-            username: this.props.username,
+            username: this.props.usernameTweed,
             uid: this.props.uid,
           })
       );

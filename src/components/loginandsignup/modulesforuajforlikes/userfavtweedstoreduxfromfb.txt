@@ -3,7 +3,6 @@ import { sendUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/websi
 import { clearUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearUserFav";
 
 export let userFavoriteTweedGetFromFb = (uniqueUid, dispatch) => {
-
   firebase
     .firestore()
     .collection("favoriteTweeds")
@@ -25,3 +24,6 @@ export let userFavoriteTweedGetFromFb = (uniqueUid, dispatch) => {
       }
     });
 };
+
+
+
