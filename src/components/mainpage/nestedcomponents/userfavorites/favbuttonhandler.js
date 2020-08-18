@@ -26,14 +26,12 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
             if (doc.id === this.props.uniqueUid) {
               firebase
                 .firestore()
-                .collection("favoritedTweeds")
+                .collection("favoriteTweeds")
                 .doc(this.props.uniqueUid)
                 .collection("tweedsFavoritedByUser")
                 .onSnapshot((snapshot) => {
                   snapshot.forEach((doc) => {
-                    if (
-                      doc.data().uid === this.props.uid
-                    ) {
+                    if (doc.data().uid === this.props.uid) {
                       this.toggleFavTrue();
                     } 
                   });
