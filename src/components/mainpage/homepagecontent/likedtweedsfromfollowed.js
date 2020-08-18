@@ -2,6 +2,7 @@ import React from "react";
 import {TWEED_DIV_ON_PAGE} from './tweedDivOnPage'
 import {connect} from 'react-redux'
 import {LIKE_BUTTON_HANDLER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/likebuttonhandler'
+import {FAVORITE_BUTTON_HANDLER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/userfavorites/favbuttonhandler'
 
 function LIKED_TWEEDS_FROM_FOLLOWED(props) {
 
@@ -29,7 +30,7 @@ function LIKED_TWEEDS_FROM_FOLLOWED(props) {
                         uniqueUid={props.uniqueUid}
                       />
                     }
-                    retweedButton={null}
+                    retweedButton={<FAVORITE_BUTTON_HANDLER/>}
                     tweedText={tweed.tweed}
                     username={tweed.username}
                     likedBy={`This tweed liked by: ${tweed.usernameOfLiker}`}

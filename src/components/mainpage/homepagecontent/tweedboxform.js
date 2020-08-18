@@ -71,6 +71,15 @@ export function TWEED_BOX_FORM(props) {
           .set({
             likeCount: 0
           })
+          .then(
+            firebase  
+            .firestore()
+            .collection("favoriteCountForUserTweeds")
+            .doc(`counter${counter}`)
+            .set({
+              favoriteCount: 0
+            })
+          )
       )
   };
   

@@ -46,5 +46,3 @@ export function UNLIKE_BUTTON(props) {
     </>
   );
 }
-
-//delete from global 'followed liked for feed' collection as well 

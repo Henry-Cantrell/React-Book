@@ -148,9 +148,29 @@ export class FOLLOW_BUTTON extends React.Component {
         firebase.firestore().collection("users").doc(this.props.uid).update({
           followerCount: decrement,
         })
+      )
+      .then(
+        firebase
+          .firestore()
+          .collection("likedTweedsOfFollowedUsers")
+          .doc(this.props.uniqueUid)
+          .collection("tweedPool")
+          .get()
+          .then((items) => {
+            items.forEach((docLiked) => {
+              if (docLiked.data().usernameOfLiker === this.props.username) {
+                firebase
+                  .firestore()
+                  .collection("likedTweedsOfFollowedUsers")
+                  .doc(this.props.uniqueUid)
+                  .collection("tweedPool")
+                  .doc(docLiked.id)
+                  .delete();
+              }
+            });
+          })
       );
   };
-  
   render() {
     return (
       <>
@@ -164,3 +184,4 @@ export class FOLLOW_BUTTON extends React.Component {
   }
 }
 
+//tod-do: add async that deletes retweeted tweeds on uf action
