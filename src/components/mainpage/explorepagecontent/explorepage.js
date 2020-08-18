@@ -1,6 +1,4 @@
 import React from 'react'
-import {TWEED_DIV_ON_PAGE} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/tweedDivOnPage'
-import {connect} from 'react-redux'
 import {FOLLOW_BUTTON} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/followbutton'
 
 class EXPLORE_PAGE extends React.Component {
@@ -13,26 +11,28 @@ class EXPLORE_PAGE extends React.Component {
       return item != undefined;
     };
 
-    const testVar = this.props.globalTweeds.tweedArray.filter(noUndefined);
+    const testVar = this.props.allUserInfo.infoArray.filter(noUndefined);
 
-    const tweedsDisplay = testVar.length ? (
-      testVar.map((tweed) => {
+    const allUserInfoDisplay = testVar.length ? (
+      testVar.map((userInfo) => {
         return (
-        <TWEED_DIV_ON_PAGE id={tweed.id} tweedText={tweed.tweed} likeButton={null} retweedButton={null} button={<FOLLOW_BUTTON username={tweed.username} uid={tweed.uid} uniqueUid={this.props.uniqueUid} id={tweed.id}/>} usernameOfCurrentUser={this.props.usernameOfCurrentUser} />
+        <ALL_USER_INFO_ON_PAGE />
         )
       })
     ) : (
       <p>empty!</p>
     );
 
-    return <div className="tweedDisplayList">{tweedsDisplay}</div>;
+    return <div className="tweedDisplayList">{allUserInfoDisplay}</div>;
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    globalTweeds: state.globalTweeds,
+    allUserInfo: state.allUserInfo,
   };
 };
 
 export default connect(mapStateToProps)(EXPLORE_PAGE);
+
+//pass 'all user info' from redux store to component in allUserInfoDisplay as props

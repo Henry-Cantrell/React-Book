@@ -184,4 +184,4 @@ export class FOLLOW_BUTTON extends React.Component {
   }
 }
 
-//tod-do: add async that deletes retweeted tweeds on uf action
+//rewrite this from profile placement perspective, over tweed context from original explore page
