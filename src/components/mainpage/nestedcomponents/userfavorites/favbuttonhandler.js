@@ -12,17 +12,15 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
     this.toggleLikeTrue = this.toggleLikeTrue.bind(this);
 
     this.state = {
-
       liked: false,
     };
   }
 
   componentDidMount() {
-    
     let checkForExistingFavorite = () => {
       firebase
         .firestore()
-        .collection("favoritedTweeds")
+        .collection("favoriteTweeds")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
             if (doc.id === this.props.uniqueUid) {
@@ -33,7 +31,9 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
                 .collection("tweedsFavoritedByUser")
                 .onSnapshot((snapshot) => {
                   snapshot.forEach((doc) => {
-                    if (doc.data().usernameOfFavoriter === this.props.username) {
+                    if (
+                      doc.data().usernameOfFavoriter === this.props.username
+                    ) {
                       this.toggleLikeTrue();
                     }
                   });
@@ -42,7 +42,7 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
           });
         });
     };
-    checkForExistingFavorite();    
+    checkForExistingFavorite();
   }
 
   toggleLikeTrue() {
@@ -77,8 +77,8 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
         id={this.props.id}
         tweed={this.props.tweed}
         username={this.props.username}
-        usernameOfFavoriter={this.props.usernameOfFavoriter}
-        usernameTweed= {this.props.usernameTweed}
+        usernameOfFavoriter={null}
+        usernameTweed={this.props.usernameTweed}
         true={this.toggleLikeTrue}
       />
     );

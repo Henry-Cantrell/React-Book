@@ -47,7 +47,7 @@ export class FAVORITE_BUTTON extends React.Component {
   render() {
     return (
       <>
-        <button onClick={this.favoriteCountToFirebase}>Like</button>
+        <button onClick={this.favoriteCountToFirebase}>Favorite</button>
         {this.props.favoriteDisplay}
       </>
     );

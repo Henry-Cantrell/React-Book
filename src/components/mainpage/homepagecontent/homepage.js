@@ -46,6 +46,7 @@ class HOME_PAGE extends React.Component {
           <FOLLOWER_TWEEDS_ON_HOMEPAGE
             dispatch={this.props.dispatch}
             uniqueUid={this.props.uniqueUid}
+            username={this.props.username}
           />
           <LIKED_TWEEDS_FROM_FOLLOWED username={this.props.username} uniqueUid={this.props.uniqueUid}/>
         </div>

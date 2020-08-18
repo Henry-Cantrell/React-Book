@@ -15,7 +15,7 @@ export function UNFAVORITE_BUTTON(props) {
         .collection("tweedsFavoritedByUser")
         .onSnapshot((snapshot) => {
             snapshot.forEach((doc) => {
-                if (doc.id === this.props.id) {
+                if (doc.id === props.id) {
                     firebase
                     .firestore()
                     .collection("favoriteTweeds")
@@ -28,7 +28,7 @@ export function UNFAVORITE_BUTTON(props) {
                firebase
                 .firestore()
                 .collection('favoriteCountForUserTweeds')
-                .doc(this.props.id)
+                .doc(props.id)
                 .update({
                     favoriteCount: firebase.firestore.FieldValue.increment(-1)
                 })
