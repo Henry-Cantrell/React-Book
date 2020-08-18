@@ -12,6 +12,7 @@ import {followedCountReducer} from './followedCountReducer'
 import {followerCountReducer} from './followerCountReducer'
 import {followedTweedsCapture} from './followedTweedsCapture'
 import {likedTweedsFromFollowedCapture} from './likedtweedsfromfollowedcapture'
+import {userFavCapture} from './userfavoritecapture'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -26,5 +27,6 @@ export const allReducers = combineReducers({
   followedTweeds: followedTweedsCapture,
   followerCount: followerCountReducer,
   followedCount: followedCountReducer,
-  likedTweedsFromFollowed: likedTweedsFromFollowedCapture
+  likedTweedsFromFollowed: likedTweedsFromFollowedCapture,
+  userFavList: userFavCapture
 })

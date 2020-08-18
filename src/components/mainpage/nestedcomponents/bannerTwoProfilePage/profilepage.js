@@ -2,7 +2,7 @@ import React from "react";
 import { TOP_DIV_CONTENT } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/bannerTwoProfilePage/topdivcontent";
 import { MIDDLE_DIV_CONTENT } from "./middlediv";
 import { BUTTON_BAR } from "./buttonbar";
-import { firebase } from "firebase";
+import firebase from "firebase";
 import TWEED_PROFILE from "./usertweedlistprofilepage";
 import { FAVORITES_PROFILE } from "./userfavoritesforprofilepage";
 
@@ -73,7 +73,7 @@ export class PROFILE_PAGE extends React.Component {
       <div class="parentDiv">
         <TOP_DIV_CONTENT />
         <MIDDLE_DIV_CONTENT
-          joinDate={this.state.userJ}
+          joinDate={this.state.userJoinDate}
           userBio={this.state.userBio}
           userName={this.props.usernameFromRedux}
         />
@@ -85,7 +85,7 @@ export class PROFILE_PAGE extends React.Component {
           <TWEED_PROFILE />
         ) : this.state.showUserFavorites ? (
           <FAVORITES_PROFILE />
-        ) : null}
+        ) : console.log('profilepage/88')}
       </div>
     );
   }
