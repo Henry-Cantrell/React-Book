@@ -45,4 +45,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(EXPLORE_PAGE);
 
-//pass 'all user info' from redux store to component in allUserInfoDisplay as props
+//to-do: convert to func component and fulfill todo in alluserinfoonpage.js/29

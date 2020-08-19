@@ -26,4 +26,4 @@ export function ALL_USER_INFO_ON_PAGE (props) {
   );
 }
 
-//to-do: customize this file for other user info display
+//to-do: implement dynamic onSnapshot-reliant updating of follower/d count

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {sendAllUserInfo} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendalluserinfotoredux'
 import EXPLORE_PAGE from './explorepage'
 import firebase from 'firebase'
-import {clearAllUserTweeds} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearallusertweeds'
+import {eraseAllUserInfo} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/erasealluserinfo'
 
 export let EXPLORE_PAGE_HANDLER = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export let EXPLORE_PAGE_HANDLER = () => {
       .get()
       .then(
         (users) => {
-          dispatch(clearAllUserTweeds());
+          dispatch(eraseAllUserInfo());
           users.forEach((user) => {
             dispatch(sendAllUserInfo({
               username: user.data().username,
