@@ -184,4 +184,6 @@ export class FOLLOW_BUTTON extends React.Component {
   }
 }
 
+//to-do:
 //rewrite this from profile placement perspective, over tweed context from original explore page
+//place follow/unfollow button into seperate modules and import then display by state toggle

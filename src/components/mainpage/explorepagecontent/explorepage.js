@@ -1,5 +1,6 @@
 import React from 'react'
-import {FOLLOW_BUTTON} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/followbutton'
+import {ALL_USER_INFO_ON_PAGE} from './alluserinfoonpage'
+import {connect} from 'react-redux'
 
 class EXPLORE_PAGE extends React.Component {
   constructor(props) {
@@ -15,12 +16,21 @@ class EXPLORE_PAGE extends React.Component {
 
     const allUserInfoDisplay = testVar.length ? (
       testVar.map((userInfo) => {
+        if (userInfo.username != null && 
+            this.props.uniqueUid != userInfo.uid) {
         return (
-        <ALL_USER_INFO_ON_PAGE />
+        <ALL_USER_INFO_ON_PAGE 
+        username={userInfo.username}
+        userBio={userInfo.bio}
+        joinDate={userInfo.joinDate}
+        followedCount={userInfo.followedCount}
+        followerCount={userInfo.followerCount}
+        uid={userInfo.uid}
+        />
         )
-      })
+      }})
     ) : (
-      <p>empty!</p>
+      null
     );
 
     return <div className="tweedDisplayList">{allUserInfoDisplay}</div>;

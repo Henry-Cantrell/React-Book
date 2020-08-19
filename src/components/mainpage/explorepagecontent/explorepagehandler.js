@@ -1,15 +1,43 @@
 import React from 'react'
-import firebase from 'firebase'
+import {useDispatch, useSelector} from 'react-redux'
+import {sendAllUserInfo} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendalluserinfotoredux'
 import EXPLORE_PAGE from './explorepage'
+import firebase from 'firebase'
+import {clearAllUserTweeds} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearallusertweeds'
 
 export let EXPLORE_PAGE_HANDLER = () => {
-    
-  
-    return (
-      <div className="explorePageDiv">
-        <EXPLORE_PAGE />
-      </div>
-    );
-  };
+  const dispatch = useDispatch();
+  const uniqueUid = useSelector((state) => state.uidInt)
 
-//run action func here that imports fb user data to redux and then pass to page component as props
+  let allUserInfoFromFbToRedux = () => {
+    firebase
+      .firestore()
+      .collection('users')
+      .get()
+      .then(
+        (users) => {
+          dispatch(clearAllUserTweeds());
+          users.forEach((user) => {
+            dispatch(sendAllUserInfo({
+              username: user.data().username,
+              uid: user.data().uid,
+              bio: user.data().userBio,
+              joinDate: user.data().joinDate,
+              followedCount: user.data().followedCount,
+              followerCount: user.data().followerCount
+            }))
+          })
+        }
+      )
+  }
+
+  allUserInfoFromFbToRedux()
+
+  return (
+    <div className="explorePageDiv">
+      <EXPLORE_PAGE uniqueUid={uniqueUid}/>
+    </div>
+  );
+};
+
+//add clear action for dispatch method to prevent duplicate renders
