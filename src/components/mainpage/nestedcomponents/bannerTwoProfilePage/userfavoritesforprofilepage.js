@@ -17,6 +17,7 @@ export function FAVORITES_PROFILE(props) {
     testVar.map((tweed) => {
       return (
         <TWEED_DIV_ON_PAGE
+          showOtherUserProfile={null}
           likedBy={null}
           retweetedBy={null}
           id={tweed.id}

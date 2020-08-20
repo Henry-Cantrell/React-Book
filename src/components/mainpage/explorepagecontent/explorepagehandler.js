@@ -39,5 +39,3 @@ export let EXPLORE_PAGE_HANDLER = () => {
     </div>
   );
 };
-
-//add clear action for dispatch method to prevent duplicate renders

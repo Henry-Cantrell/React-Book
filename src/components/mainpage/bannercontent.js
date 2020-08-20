@@ -2,6 +2,7 @@ import React from "react";
 import { PROFILE_PAGE } from "./nestedcomponents/bannerTwoProfilePage/profilepage";
 import HOME_PAGE from "./homepagecontent/homepage";
 import { EXPLORE_PAGE_HANDLER } from "./explorepagecontent/explorepagehandler";
+import  OTHER_USER_PROFILE_HANDLER  from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/otheruserprofileviewcomponents/otheruserprofilehandler";
 
 export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
   constructor(props) {
@@ -11,10 +12,12 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
       showHomePage: true,
       showProfilePage: false,
       showExplorePage: false,
+      showOtherUserProfile: false,
     };
     this.showProfilePage = this.showProfilePage.bind(this);
     this.showHomePage = this.showHomePage.bind(this);
     this.showExplorePage = this.showExplorePage.bind(this);
+    this.showOtherUserProfile = this.showOtherUserProfile.bind(this);
   }
 
   showProfilePage() {
@@ -22,6 +25,7 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
       showProfilePage: true,
       showHomePage: false,
       showExplorePage: false,
+      showOtherUserProfile: false,
     });
   }
 
@@ -30,12 +34,23 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
       showHomePage: true,
       showProfilePage: false,
       showExplorePage: false,
+      showOtherUserProfile: false,
     });
   }
 
   showExplorePage() {
     this.setState({
       showExplorePage: true,
+      showHomePage: false,
+      showProfilePage: false,
+      showOtherUserProfile: false,
+    });
+  }
+
+  showOtherUserProfile() {
+    this.setState({
+      showOtherUserProfile: true,
+      showExplorePage: false,
       showHomePage: false,
       showProfilePage: false,
     });
@@ -66,9 +81,17 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
               dispatch={this.props.dispatch}
               username={this.props.username}
               uniqueUid={this.props.uniqueUid}
+              showOtherUserProfile={this.showOtherUserProfile}
             />
           ) : null}
-          {this.state.showExplorePage ? <EXPLORE_PAGE_HANDLER /> : null}
+          {this.state.showExplorePage ? (
+            <EXPLORE_PAGE_HANDLER
+              showOtherUserProfile={this.showOtherUserProfile}
+            />
+          ) : null}
+          {this.state.showOtherUserProfile ? (
+            <OTHER_USER_PROFILE_HANDLER />
+          ) : null}
         </div>
         <div class="third"></div>
       </>

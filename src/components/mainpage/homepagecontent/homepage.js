@@ -23,6 +23,7 @@ class HOME_PAGE extends React.Component {
       ? testVar.map((tweed) => {
           return (
             <TWEED_DIV_ON_PAGE
+              showOtherUserProfile={null}
               likedBy={null}
               retweetedBy={null}
               id={tweed.id}
@@ -44,11 +45,12 @@ class HOME_PAGE extends React.Component {
         <div className="tweedDisplayList">
           {tweedsDisplay}
           <FOLLOWER_TWEEDS_ON_HOMEPAGE
+            showOtherUserProfile={this.props.showOtherUserProfile}
             dispatch={this.props.dispatch}
             uniqueUid={this.props.uniqueUid}
             username={this.props.username}
           />
-          <LIKED_TWEEDS_FROM_FOLLOWED username={this.props.username} uniqueUid={this.props.uniqueUid}/>
+          <LIKED_TWEEDS_FROM_FOLLOWED showOtherUserProfile={this.props.showOtherUserProfile} username={this.props.username} uniqueUid={this.props.uniqueUid}/>
         </div>
       </div>
     );

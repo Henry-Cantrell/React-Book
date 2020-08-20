@@ -1,28 +1,28 @@
 import React from "react";
 import { TWEED_DIV_ON_PAGE } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/tweedDivOnPage";
 import { connect } from "react-redux";
-import { DELETE_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/deletebuttonfortweeds";
+//import { DELETE_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/deletebuttonfortweeds";
 
-class TWEEDS_PROFILE extends React.Component {
+class OTHER_USER_TWEEDS_PROFILE extends React.Component {
   render() {
     let noUndefined = (item) => {
       return item != undefined;
     };
 
-    const testVar = this.props.userTweeds.tweedArray.filter(noUndefined);
+    const testVar = this.props.otherUserPersonalTweeds.tweedArray.filter(noUndefined);
 
     const tweedsDisplay = testVar.length ? (
       testVar.map((tweed) => {
         return (
           <TWEED_DIV_ON_PAGE
-            showOtherUserProfile={null}
+            showOtherUserProfile = {null}
             likedBy={null}
             retweetedBy={null}
             id={tweed.id}
             tweedText={tweed.tweed}
             likeButton={null}
             retweedButton={null}
-            button={<DELETE_BUTTON id={tweed.id} text="Delete this tweed" />}
+            button={null}
             username={tweed.username}
           />
         );
@@ -37,8 +37,10 @@ class TWEEDS_PROFILE extends React.Component {
 
 const mapStateToProps = (state) => { 
   return {
-    userTweeds: state.userTweeds,
+    otherUserPersonalTweeds: state.otherUserPersonalTweeds,
   };
 };
 
-export default connect(mapStateToProps)(TWEEDS_PROFILE);
+export default connect(mapStateToProps)(OTHER_USER_TWEEDS_PROFILE);
+
+//this needs to be connected to state store containing other user tweeds, dispatched on div click from HP

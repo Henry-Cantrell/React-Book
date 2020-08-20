@@ -26,6 +26,7 @@ class EXPLORE_PAGE extends React.Component {
         followedCount={userInfo.followedCount}
         followerCount={userInfo.followerCount}
         uid={userInfo.uid}
+        uniqueUid={this.props.uniqueUid}
         />
         )
       }})
@@ -44,5 +45,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(EXPLORE_PAGE);
-
-//to-do: convert to func component and fulfill todo in alluserinfoonpage.js/29

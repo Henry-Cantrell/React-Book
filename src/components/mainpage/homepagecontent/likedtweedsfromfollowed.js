@@ -15,6 +15,7 @@ function LIKED_TWEEDS_FROM_FOLLOWED(props) {
     ? testVar.map((tweed) => {
         return (
           <TWEED_DIV_ON_PAGE
+            showOtherUserProfile={null}
             id={tweed.id}
             button={null}
             likeButton={

@@ -175,7 +175,7 @@ export class FOLLOW_BUTTON extends React.Component {
     return (
       <>
         {this.state.followed ? (
-          <button onClick={this.unfollowUser}>Unfollow</button>
+          <button className onClick={this.unfollowUser}>Unfollow</button>
         ) : (
           <button onClick={this.followUser}>Follow</button>
         )}
