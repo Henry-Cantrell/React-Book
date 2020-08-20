@@ -16,9 +16,33 @@ export function DELETE_BUTTON(props) {
       .then(
         firebase
         .firestore()
-        .collection("globalTweeds")
-        .doc(props.id)
-        .delete()
+        .collection("favoriteTweeds")
+        .get()
+        .then(
+          (items) => {
+            items.forEach((doc) => {
+              firebase
+                .firestore()
+                .collection("favoriteTweeds")
+                .doc(doc.id)
+                .collection('tweedsFavoritedByUser')
+                .get()
+                .then(
+                  (items) => {
+                    items.forEach((doc) => {
+                      if () {
+                        firebase
+                          .firestore()
+                          .collection("favoriteTweeds")
+                          .doc(doc.id)
+                          .collection('tweedsFavoritedByUser')
+                      }
+                    })
+                  }
+                )
+            })
+          }
+        )
       );
   };
 
@@ -30,3 +54,5 @@ export function DELETE_BUTTON(props) {
     </>
   );
 }
+
+//also delete tweed out of favorites tweed pool for all users

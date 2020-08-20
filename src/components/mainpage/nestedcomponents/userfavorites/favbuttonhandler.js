@@ -37,7 +37,7 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
                   });
                 });
             }
-          });
+          })
         });
     };
    checkForExistingFavorite()
