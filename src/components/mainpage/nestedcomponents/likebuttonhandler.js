@@ -28,11 +28,11 @@ export class LIKE_BUTTON_HANDLER extends React.Component {
               firebase
                 .firestore()
                 .collection("likedTweeds")
-                .doc(doc.id)
+                .doc(this.props.uniqueUid)
                 .collection("tweedsLikedByUser")
                 .onSnapshot((snapshot) => {
                   snapshot.forEach((doc) => {
-                    if (doc.data().usernameOfLiker === this.props.username) {
+                    if (doc.id === this.props.id) {
                       this.toggleLikeTrue();
                     }
                   });

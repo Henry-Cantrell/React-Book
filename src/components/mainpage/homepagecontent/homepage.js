@@ -50,7 +50,9 @@ class HOME_PAGE extends React.Component {
             uniqueUid={this.props.uniqueUid}
             username={this.props.username}
           />
-          <LIKED_TWEEDS_FROM_FOLLOWED showOtherUserProfile={this.props.showOtherUserProfile} username={this.props.username} uniqueUid={this.props.uniqueUid}/>
+          <LIKED_TWEEDS_FROM_FOLLOWED 
+            showOtherUserProfile={this.props.showOtherUserProfile} 
+            username={this.props.username} uniqueUid={this.props.uniqueUid}/>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import { MODAL_USER_PROFILE } from "./modalBackgroundUserProfile";
 import { FOLLOWER_AND_FOLLOWED_CONTENT } from "./followerandtweedcontent";
+import { FOLLOW_BUTTON } from "../followbutton";
 
 export class MIDDLE_DIV_CONTENT extends React.Component {
   constructor(props) {
@@ -44,11 +45,14 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
             {this.props.forOtherUser === undefined ? (
               <FOLLOWER_AND_FOLLOWED_CONTENT />
             ) : (
+              <>
+              <FOLLOW_BUTTON uniqueUid={this.props.uniqueUid} uid={this.props.uid}/>
               <FOLLOWER_AND_FOLLOWED_CONTENT
                 forOtherUser={true}
                 followedCountOtherUser={this.props.followedCountOtherUser}
                 followerCountOtherUser={this.props.followerCountOtherUser}
               />
+              </>
             )}
           </div>
         </div>

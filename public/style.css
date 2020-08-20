@@ -365,6 +365,10 @@ body {
 
 /* Styling for tweed boxes holding tweeds */
 
+.likeAndFav {
+  pointer-events: none;
+}
+
 .tweedBoxHoldingTweeds {
   height: 125px;
   width: 100%;

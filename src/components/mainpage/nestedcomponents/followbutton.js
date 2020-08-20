@@ -36,9 +36,9 @@ export class FOLLOW_BUTTON extends React.Component {
         .collection("followedUserUids")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
-              if (doc.id === this.props.uid) {
-                this.changeFollowedTrue();
-              } 
+            if (doc.id === this.props.uid) {
+              this.changeFollowedTrue();
+            }
           });
         });
     };
@@ -103,7 +103,7 @@ export class FOLLOW_BUTTON extends React.Component {
         })
       );
   };
-  
+
   unfollowUser = () => {
     const decrement = firebase.firestore.FieldValue.increment(-1);
     this.changeFollowedFalse();
@@ -113,7 +113,8 @@ export class FOLLOW_BUTTON extends React.Component {
       .doc(this.props.uniqueUid)
       .collection("followedTweeds")
       .get()
-      .then((items) => {
+      .then(  
+        (items) => {
         items.forEach((doc) => {
           if (doc.data().uid === this.props.uid) {
             firebase
@@ -131,51 +132,59 @@ export class FOLLOW_BUTTON extends React.Component {
                   .collection("followedUserUids")
                   .doc(this.props.uid)
                   .delete()
-              );
-          }
-        });
-      })
-      .then(
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(this.props.uniqueUid)
-          .update({
-            followedCount: decrement,
-          })
-      )
-      .then(
-        firebase.firestore().collection("users").doc(this.props.uid).update({
-          followerCount: decrement,
-        })
-      )
-      .then(
-        firebase
-          .firestore()
-          .collection("likedTweedsOfFollowedUsers")
-          .doc(this.props.uniqueUid)
-          .collection("tweedPool")
-          .get()
-          .then((items) => {
-            items.forEach((docLiked) => {
-              if (docLiked.data().usernameOfLiker === this.props.username) {
+              )
+              .then(
+                firebase
+                  .firestore()
+                  .collection("users")
+                  .doc(this.props.uniqueUid)
+                  .update({
+                    followedCount: decrement,
+                  })
+              )
+              .then(
+                firebase
+                  .firestore()
+                  .collection("users")
+                  .doc(this.props.uid)
+                  .update({
+                    followerCount: decrement,
+                  })
+              )
+              .then(
                 firebase
                   .firestore()
                   .collection("likedTweedsOfFollowedUsers")
                   .doc(this.props.uniqueUid)
                   .collection("tweedPool")
-                  .doc(docLiked.id)
-                  .delete();
-              }
-            });
-          })
-      );
+                  .get()
+                  .then((items) => {
+                    items.forEach((docLiked) => {
+                      if (
+                        docLiked.data().usernameOfLiker === this.props.username
+                      ) {
+                        firebase
+                          .firestore()
+                          .collection("likedTweedsOfFollowedUsers")
+                          .doc(this.props.uniqueUid)
+                          .collection("tweedPool")
+                          .doc(docLiked.id)
+                          .delete();
+                      }
+                    });
+                  })
+              );
+          }
+        });
+      });
   };
   render() {
     return (
       <>
         {this.state.followed ? (
-          <button className onClick={this.unfollowUser}>Unfollow</button>
+          <button className onClick={this.unfollowUser}>
+            Unfollow
+          </button>
         ) : (
           <button onClick={this.followUser}>Follow</button>
         )}
@@ -183,6 +192,7 @@ export class FOLLOW_BUTTON extends React.Component {
     );
   }
 }
+
 
 //to-do:
 //rewrite this from profile placement perspective, over tweed context from original explore page

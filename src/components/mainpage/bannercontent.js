@@ -2,7 +2,7 @@ import React from "react";
 import { PROFILE_PAGE } from "./nestedcomponents/bannerTwoProfilePage/profilepage";
 import HOME_PAGE from "./homepagecontent/homepage";
 import { EXPLORE_PAGE_HANDLER } from "./explorepagecontent/explorepagehandler";
-import  OTHER_USER_PROFILE_HANDLER  from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/otheruserprofileviewcomponents/otheruserprofilehandler";
+import OTHER_USER_PROFILE_HANDLER from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/otheruserprofileviewcomponents/otheruserprofilehandler";
 
 export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
   constructor(props) {
@@ -90,7 +90,11 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
             />
           ) : null}
           {this.state.showOtherUserProfile ? (
-            <OTHER_USER_PROFILE_HANDLER />
+            <OTHER_USER_PROFILE_HANDLER
+              username={this.props.username}
+              uniqueUid={this.props.uniqueUid}
+              dispatch={this.props.dispatch}
+            />
           ) : null}
         </div>
         <div class="third"></div>

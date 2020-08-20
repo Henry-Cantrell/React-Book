@@ -9,6 +9,8 @@ export function reducerForOtherUserInfo(state = null, action) {
           followedCount: action.followedCount,
           followerCount: action.followerCount,
         }
+      case 'ERASE_ALL_USER_INFO':
+        return state=null
       default:
         return state=state
     }

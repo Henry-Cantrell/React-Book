@@ -31,7 +31,7 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
                 .collection("tweedsFavoritedByUser")
                 .onSnapshot((snapshot) => {
                   snapshot.forEach((doc) => {
-                    if (doc.data().uid === this.props.uid) {
+                    if (doc.data().id === this.props.id) {
                       this.toggleFavTrue();
                     } 
                   });
@@ -40,7 +40,7 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
           });
         });
     };
-    checkForExistingFavorite();
+   checkForExistingFavorite()
   }
 
   toggleFavTrue() {

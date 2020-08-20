@@ -2,7 +2,7 @@ import React from "react";
 import { captureForOtherUserInfo } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/captureForOtherUserInfo";
 import { useDispatch } from "react-redux";
 import firebase from "firebase";
-import {eraseAllUserInfo} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/erasealluserinfo'
+import { eraseAllUserInfo } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/erasealluserinfo";
 
 export function TWEED_DIV_ON_PAGE(props) {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export function TWEED_DIV_ON_PAGE(props) {
       .doc(props.uid)
       .get()
       .then((doc) => {
-        dispatch(eraseAllUserInfo())
+        dispatch(eraseAllUserInfo());
         dispatch(
           captureForOtherUserInfo({
             username: doc.data().username,
@@ -31,20 +31,26 @@ export function TWEED_DIV_ON_PAGE(props) {
   };
 
   return (
-    <div onClick={captureForOtherUserProfileShow}>
-      <div className="tweedBoxHoldingTweeds">
-        <div className="tweedInTweedBox">
-          <div>{props.likedBy}</div>
-          {props.retweetedBy}
-          {props.username}
+    <div className="tweedBoxHoldingTweeds">
+      <div>
+        <div onClick={captureForOtherUserProfileShow}>
+          <div className="tweedInTweedBox">
+            <div>{props.likedBy}</div>
+            {props.retweetedBy}
+            {props.username}
+          </div>
+          <div className="userNameInTweedBox">
+            {`Tweed content: ${props.tweedText}`}
+          </div>
+          {props.button}
         </div>
-        <div className="userNameInTweedBox">
-          {`Tweed content: ${props.tweedText}`}
+        <div className="elevateLikeAndFav">
+          {props.likeButton}
+          {props.retweedButton}
         </div>
-        {props.button}
-        {props.likeButton}
-        {props.retweedButton}
       </div>
     </div>
   );
+  
+  
 }

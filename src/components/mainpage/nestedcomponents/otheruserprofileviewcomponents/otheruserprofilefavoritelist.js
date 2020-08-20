@@ -1,7 +1,8 @@
 import React from "react";
 import { TWEED_DIV_ON_PAGE } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/tweedDivOnPage";
 import { connect } from "react-redux";
-//import { FAVORITE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/userfavorites/favbuttonhandler";
+import { LIKE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/likebuttonhandler";
+import { FAVORITE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/userfavorites/favbuttonhandler";
 
 export function OTHER_USER_FAVORITES_PROFILE(props) {
 
@@ -20,8 +21,26 @@ export function OTHER_USER_FAVORITES_PROFILE(props) {
           retweetedBy={null}
           id={tweed.id}
           tweedText={tweed.tweed}
-          likeButton={null}
-          retweedButton={null}
+          likeButton={
+            <LIKE_BUTTON_HANDLER
+              id={tweed.id}
+              tweed={tweed.tweed}
+              username={tweed.username}
+              uniqueUid={props.uniqueUid}
+              uid={tweed.uid}
+            />
+          }
+          retweedButton={
+            <FAVORITE_BUTTON_HANDLER
+              forOtherUser={true}
+              id={tweed.id}
+              uid={tweed.uid}
+              uniqueUid={props.uniqueUid}
+              tweed={tweed.tweed}
+              username={props.username}
+              usernameTweed={tweed.username}
+            />
+          }
           button={null}
           username={tweed.username}
         />

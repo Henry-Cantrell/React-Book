@@ -13,3 +13,5 @@ export let joinerForUaj = () => {
   TWEEDS_LIKED_BY_FOLLOWED_TO_REDUX();
   UserFavoriteTweedGetFromFb();
   }
+
+  //to avoid unconventional file naming, pass dispatch/useSelector as props from UAJ into joinerforuaj params

@@ -26,7 +26,7 @@ export let MAIN_USER_PAGE = (props) => {
 
     docRef
       .get()
-      .then(function (doc) {
+      .then( (doc) => {
         if (doc.exists) {
           dispatch(userNameNet(doc.data().username));
         } else {

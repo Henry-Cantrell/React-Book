@@ -11,18 +11,18 @@ export function UNLIKE_BUTTON(props) {
 
     firebase
       .firestore()
-      .collection("users")
-      .doc(uniqueUid)
       .collection("likedTweeds")
+      .doc(uniqueUid)
+      .collection('tweedsLikedByUser')
       .get()
       .then((items) => {
         items.forEach((doc) => {
-          if (doc.data().id === props.id) {
+          if (doc.id === props.id) {
             firebase
               .firestore()
-              .collection("users")
-              .doc(uniqueUid)
               .collection("likedTweeds")
+              .doc(uniqueUid)
+              .collection('tweedsLikedByUser')
               .doc(doc.id)
               .delete();
           }

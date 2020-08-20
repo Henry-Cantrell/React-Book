@@ -4,6 +4,7 @@ import firebase from "firebase";
 import {useDispatch} from 'react-redux'
 
 export function personalTweedsFetch(uid) {
+  console.log('ptf/7')
 
   firebase
     .firestore()
@@ -23,3 +24,5 @@ export function personalTweedsFetch(uid) {
       });
     });
 }
+
+//pull dispatch actions for other user tweed info from module files and incorporate into oupp handler 
