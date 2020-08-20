@@ -17,7 +17,9 @@ export class OTHER_USER_PROFILE extends React.Component {
       showUserFavorites: false,
       userBio: this.props.bio,
       userJoinDate: this.props.joinDate,
-      username: this.props.username
+      username: this.props.username,
+      followedCountOtherUser: this.props.followedCountOtherUser,
+      followerCountOtherUser: this.props.followerCountOtherUser
     };
   }
 
@@ -38,9 +40,11 @@ export class OTHER_USER_PROFILE extends React.Component {
   render() {
     return (
       <div class="parentDiv">
-        <TOP_DIV_CONTENT
-            userName={this.state.username} />
+        <TOP_DIV_CONTENT forOtherUser={true} userName={this.state.username} />
         <MIDDLE_DIV_CONTENT
+          forOtherUser={true}
+          followedCountOtherUser={this.state.followedCountOtherUser}
+          followerCountOtherUser={this.state.followerCountOtherUser}
           disableEdit={true}
           joinDate={this.state.userJoinDate}
           userBio={this.state.userBio}

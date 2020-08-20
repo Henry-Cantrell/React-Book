@@ -17,10 +17,6 @@ function FOLLOWER_TWEEDS_ON_HOMEPAGE(props) {
         return (
           <TWEED_DIV_ON_PAGE
             uid={tweed.uid}
-            bio={tweed.bio}
-            joinDate={tweed.joinDate}
-            followedCount={tweed.followedCount}
-            followerCount={tweed.followerCount}
             showOtherUserProfile={props.showOtherUserProfile}
             id={tweed.id}
             button={null}

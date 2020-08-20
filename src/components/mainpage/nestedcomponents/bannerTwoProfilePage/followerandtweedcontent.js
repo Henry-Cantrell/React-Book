@@ -5,9 +5,11 @@ import {sendFollowedCount} from '/home/suzuka/Coding/the_odin_project/Projects/w
 import {sendFollowerCount} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendFollowerCountToRedux'
 import {useDispatch} from 'react-redux'
 
-export function FOLLOWER_AND_FOLLOWED_CONTENT () {
+export function FOLLOWER_AND_FOLLOWED_CONTENT (props) {
   const uniqueUid = useSelector((state) => state.uidInt);
   const dispatch = useDispatch()
+  const followedCount = useSelector((state) => state.followedCount)
+  const followerCount = useSelector((state) => state.followerCount)
 
   let retrieveFollowedCountFromFirebaseToRedux = () => {
     firebase
@@ -40,8 +42,8 @@ export function FOLLOWER_AND_FOLLOWED_CONTENT () {
   
   return (
     <>
-      <div>{`Number of users followed: ${useSelector((state) => state.followedCount)}`}</div>
-      <div>{`Number of users following: ${useSelector((state) => state.followerCount)}`}</div>
+      {props.forOtherUser === undefined ? <div>{`Number of users followed: ${followedCount}`}</div> : <div>{`Number of users followed: ${props.followedCountOtherUser}`}</div>}
+      {props.forOtherUser === undefined ? <div>{`Number of users following: ${followerCount}`}</div> : <div>{`Number of users followed: ${props.followerCountOtherUser}`}</div>}
     </>
   );
 };

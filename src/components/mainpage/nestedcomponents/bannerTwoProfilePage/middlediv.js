@@ -41,7 +41,15 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
             </button>
           ) : null}
           <div className="showFollowAndTweedInts">
-            <FOLLOWER_AND_FOLLOWED_CONTENT />
+            {this.props.forOtherUser === undefined ? (
+              <FOLLOWER_AND_FOLLOWED_CONTENT />
+            ) : (
+              <FOLLOWER_AND_FOLLOWED_CONTENT
+                forOtherUser={true}
+                followedCountOtherUser={this.props.followedCountOtherUser}
+                followerCountOtherUser={this.props.followerCountOtherUser}
+              />
+            )}
           </div>
         </div>
         {this.state.show ? (

@@ -7,7 +7,7 @@ export function TOP_DIV_CONTENT(props) {
     <>
       <div class="topBanner">
         <p class="topBannerInteriorPTag">
-          {props.reduxHook === undefined ? username : props.userName}
+          {props.forOtherUser === undefined ? username : props.userName}
         </p>
         </div>
       <div class="userImage"></div>
