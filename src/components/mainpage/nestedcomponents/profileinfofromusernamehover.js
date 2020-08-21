@@ -9,11 +9,11 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
     this.state = {
       showProfileInfo: false,
       username: null,
-      usernameOfCurrentUser: null,
+      usernameOfCurrentUser: this.props.username,
       bio: null,
       folllowedCount: null,
       followerCount: null,
-      uid: null,
+      uid: this.props.uid,
     };
   }
 
@@ -25,16 +25,14 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
     firebase
       .firestore()
       .collection("users")
-      .doc(this.props.uid)
+      .doc(this.state.uid)
       .get()
       .then((doc) =>
         this.setState({
-          username: doc.data().username,
-          bio: doc.data().bio,
-          folllowedCount: doc.data().folllowedCount,
-          followerCount: doc.data().followerCount,
-          uid: doc.data().uid,
-          usernameOfCurrentUser: this.props.username,
+          username: `Username: ${doc.data().username}`,
+          bio: doc.data().userBio === 'Set up your bio' ? <></> : `User bio: ${doc.data().userBio}`,
+          folllowedCount: `Followed: ${doc.data().followedCount}`,
+          followerCount: `Following: ${doc.data().followerCount}`,
         })
       );
   };
@@ -50,7 +48,8 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
       <>
         <div
           onMouseEnter={
-            this.props.uniqueUid === this.props.uid
+            this.props.usernameOfCurrentUser === this.props.username ||
+            this.props.forOtherUserProfilePage != undefined
               ? null
               : this.mouseHoverOnDiv
           }
@@ -73,8 +72,8 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
               </div>
             </div>
           ) : null}
+          <div>{this.props.username}</div>
         </div>
-        <div>{this.props.username}</div>
       </>
     );
   }

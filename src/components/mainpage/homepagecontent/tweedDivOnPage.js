@@ -36,18 +36,17 @@ export function TWEED_DIV_ON_PAGE(props) {
   return (
     <div className="tweedBoxHoldingTweeds">
       <div>
+        {
+          <PROFILE_INFO_USERNAME_HOVER
+            username={props.username}
+            usernameOfCurrentUser={username}
+            uniqueUid={uniqueUid}
+            uid={props.uid}
+          />
+        }
         <div>{props.likedBy}</div>
         <div onClick={captureForOtherUserProfileShow}>
-          <div className="tweedInTweedBox">
-            {props.retweetedBy}
-            {
-              <PROFILE_INFO_USERNAME_HOVER
-                usernameOfCurrentUser={username}
-                uniqueUid={uniqueUid}
-                uid={tweed.uid}
-              />
-            }
-          </div>
+          <div className="tweedInTweedBox">{props.retweetedBy}</div>
           <div className="userNameInTweedBox">
             {`Tweed content: ${props.tweedText}`}
           </div>

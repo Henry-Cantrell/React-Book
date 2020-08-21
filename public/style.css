@@ -369,8 +369,11 @@ body {
   border-width: 1px;
   border-style: solid;
   border-color: black;
-  height:450px;
+  height:150px;
   width:250px;
+  background-color: white;
+  z-index: 1;
+  position: absolute;
 }
 
 .likeAndFav {
