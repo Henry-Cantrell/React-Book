@@ -46,7 +46,7 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
               <FOLLOWER_AND_FOLLOWED_CONTENT />
             ) : (
               <>
-              <FOLLOW_BUTTON uniqueUid={this.props.uniqueUid} uid={this.props.uid}/>
+              <FOLLOW_BUTTON uniqueUid={this.props.uniqueUid} username={this.props.userName}uid={this.props.uid}/>
               <FOLLOWER_AND_FOLLOWED_CONTENT
                 forOtherUser={true}
                 followedCountOtherUser={this.props.followedCountOtherUser}

@@ -54,18 +54,6 @@ export function TWEED_BOX_FORM(props) {
       .then(
         firebase
           .firestore()
-          .collection("globalTweeds")
-          .doc(`counter${counter}`)
-          .set({
-            tweed: tweedFetch,
-            created: firebase.firestore.FieldValue.serverTimestamp(),
-            username: username,
-            uid: uniqueUid,
-          })
-      )
-      .then(
-        firebase
-          .firestore()
           .collection('likeCountForUserTweeds')
           .doc(`counter${counter}`)
           .set({

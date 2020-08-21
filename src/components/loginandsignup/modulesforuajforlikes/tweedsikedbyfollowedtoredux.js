@@ -31,5 +31,3 @@ export let TWEEDS_LIKED_BY_FOLLOWED_TO_REDUX = () => {
       });
   };
 
-  //to-do: create clone dirs in FB for RT and spread into redux store via this func
-  //to-do: rename this component/file to tweeds TOUCHED by followed

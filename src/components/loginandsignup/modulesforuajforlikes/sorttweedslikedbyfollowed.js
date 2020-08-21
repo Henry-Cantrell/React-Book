@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux';
  
 export let SORT_LIKED_TWEEDS_BY_FOLLOWED = () => {
 
