@@ -14,4 +14,4 @@ export let joinerForUaj = () => {
   UserFavoriteTweedGetFromFb();
   }
 
-  //to avoid unconventional file naming, pass dispatch/useSelector as props from UAJ into joinerforuaj params
+//to avoid unconventional file naming, pass dispatch/useSelector as props from UAJ into joinerforuaj params

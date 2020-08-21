@@ -56,6 +56,7 @@ export class LIKE_BUTTON extends React.Component {
               .doc(this.props.id)
               .update({
                 usernameOfLiker: doc.data().username,
+                uidOfLiker: doc.data().uid
               });
           })
       );

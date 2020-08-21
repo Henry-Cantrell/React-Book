@@ -2,6 +2,7 @@ import React from "react";
 import { MODAL_USER_PROFILE } from "./modalBackgroundUserProfile";
 import { FOLLOWER_AND_FOLLOWED_CONTENT } from "./followerandtweedcontent";
 import { FOLLOW_BUTTON } from "../followbutton";
+import {TWEED_COUNT_FOR_USER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/tweedcountforuserprofiles'
 
 export class MIDDLE_DIV_CONTENT extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
             </button>
           ) : null}
           <div className="showFollowAndTweedInts">
+            <TWEED_COUNT_FOR_USER uid={this.props.uidForUser}/>
             {this.props.forOtherUser === undefined ? (
               <FOLLOWER_AND_FOLLOWED_CONTENT />
             ) : (

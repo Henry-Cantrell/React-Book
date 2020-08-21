@@ -24,6 +24,7 @@ export let TWEEDS_LIKED_BY_FOLLOWED_TO_REDUX = () => {
                 username: docLikedByFollowed.data().username,
                 id: docLikedByFollowed.id,
                 uid: docLikedByFollowed.data().uid,
+                uidOfLiker: docLikedByFollowed.data().uidOfLiker
               })
             );
           });

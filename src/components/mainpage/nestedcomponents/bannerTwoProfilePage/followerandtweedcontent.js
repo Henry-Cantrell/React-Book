@@ -43,7 +43,7 @@ export function FOLLOWER_AND_FOLLOWED_CONTENT (props) {
   return (
     <>
       {props.forOtherUser === undefined ? <div>{`Number of users followed: ${followedCount}`}</div> : <div>{`Number of users followed: ${props.followedCountOtherUser}`}</div>}
-      {props.forOtherUser === undefined ? <div>{`Number of users following: ${followerCount}`}</div> : <div>{`Number of users followed: ${props.followerCountOtherUser}`}</div>}
+      {props.forOtherUser === undefined ? <div>{`Number of users following: ${followerCount}`}</div> : <div>{`Number of users following: ${props.followerCountOtherUser}`}</div>}
     </>
   );
 };

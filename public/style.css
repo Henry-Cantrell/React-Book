@@ -365,6 +365,14 @@ body {
 
 /* Styling for tweed boxes holding tweeds */
 
+.viewUserProfileInfoFromHover {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  height:450px;
+  width:250px;
+}
+
 .likeAndFav {
   pointer-events: none;
 }

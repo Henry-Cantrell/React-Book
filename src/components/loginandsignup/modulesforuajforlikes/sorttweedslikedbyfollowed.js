@@ -51,6 +51,7 @@ export let SORT_LIKED_TWEEDS_BY_FOLLOWED = () => {
                                 username: docLikedByFollowed.data().username,
                                 id: docLikedByFollowed.id,
                                 uid: docLikedByFollowed.data().uid,
+                                uidOfLiker: docLikedByFollowed.data().uidOfLiker
                               })
                           );
                       }

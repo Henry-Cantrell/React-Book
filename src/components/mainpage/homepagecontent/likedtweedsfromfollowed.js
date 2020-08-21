@@ -3,6 +3,7 @@ import { TWEED_DIV_ON_PAGE } from "./tweedDivOnPage";
 import { connect } from "react-redux";
 import { LIKE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/likebuttonhandler";
 import { FAVORITE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/userfavorites/favbuttonhandler";
+import {PROFILE_FROM_LIKEDBY_MESSAGE} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/accessprofilefromlikedbymessage'
 
 function LIKED_TWEEDS_FROM_FOLLOWED(props) {
   let noUndefined = (item) => {
@@ -15,7 +16,8 @@ function LIKED_TWEEDS_FROM_FOLLOWED(props) {
     ? testVar.map((tweed) => {
         return (
           <TWEED_DIV_ON_PAGE
-            showOtherUserProfile={null}
+            showOtherUserProfile={props.showOtherUserProfile}
+            uid={tweed.uid}
             id={tweed.id}
             button={null}
             likeButton={
@@ -40,7 +42,7 @@ function LIKED_TWEEDS_FROM_FOLLOWED(props) {
             }
             tweedText={tweed.tweed}
             username={tweed.username}
-            likedBy={`This tweed liked by: ${tweed.usernameOfLiker}`}
+            likedBy={<PROFILE_FROM_LIKEDBY_MESSAGE showOtherUserProfile={props.showOtherUserProfile}usernameOfLiker={tweed.usernameOfLiker} uid={tweed.uidOfLiker}/>}
             retweetedBy={null}
           />
         );

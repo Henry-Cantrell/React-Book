@@ -73,6 +73,7 @@ export class PROFILE_PAGE extends React.Component {
       <div class="parentDiv">
         <TOP_DIV_CONTENT />
         <MIDDLE_DIV_CONTENT
+          uidForUser={this.props.uniqueUid}
           joinDate={this.state.userJoinDate}
           userBio={this.state.userBio}
           userName={this.props.usernameFromRedux}

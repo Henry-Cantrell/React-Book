@@ -113,8 +113,7 @@ export class FOLLOW_BUTTON extends React.Component {
       .doc(this.props.uniqueUid)
       .collection("followedTweeds")
       .get()
-      .then(  
-        (items) => {
+      .then((items) => {
         items.forEach((doc) => {
           if (doc.data().uid === this.props.uid) {
             firebase
@@ -192,8 +191,3 @@ export class FOLLOW_BUTTON extends React.Component {
     );
   }
 }
-
-
-//to-do:
-//rewrite this from profile placement perspective, over tweed context from original explore page
-//place follow/unfollow button into seperate modules and import then display by state toggle
