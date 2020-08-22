@@ -9,6 +9,7 @@ var firebaseConfig = {
   storageBucket: "website-clone-top-js-capstone.appspot.com",
   messagingSenderId: "256336655287",
   appId: "1:256336655287:web:e78e15dc235493cffb6e32",
+  storageBucket: 'gs://website-clone-top-js-capstone.appspot.com'
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

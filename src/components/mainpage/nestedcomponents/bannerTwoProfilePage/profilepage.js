@@ -20,6 +20,8 @@ export class PROFILE_PAGE extends React.Component {
       showUserFavorites: false,
       userBio: null,
       userJoinDate: null,
+      username: null,
+      uid: this.props.uniqueUid
     };
   }
 
@@ -32,6 +34,7 @@ export class PROFILE_PAGE extends React.Component {
       .then((doc) => {
         this.setState({
           userBio: doc.data().userBio,
+          username: doc.data().username,
         });
       });
   };
@@ -71,7 +74,7 @@ export class PROFILE_PAGE extends React.Component {
   render() {
     return (
       <div class="parentDiv">
-        <TOP_DIV_CONTENT />
+        <TOP_DIV_CONTENT uid={this.state.uid} username={this.state.username}/>
         <MIDDLE_DIV_CONTENT
           uidForUser={this.props.uniqueUid}
           joinDate={this.state.userJoinDate}

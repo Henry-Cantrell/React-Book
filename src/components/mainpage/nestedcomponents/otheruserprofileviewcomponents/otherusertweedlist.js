@@ -17,6 +17,7 @@ class OTHER_USER_TWEEDS_PROFILE extends React.Component {
         return (
           <TWEED_DIV_ON_PAGE
             showOtherUserProfile = {null}
+            uid={tweed.uid}
             likedBy={null}
             retweetedBy={null}
             id={tweed.id}

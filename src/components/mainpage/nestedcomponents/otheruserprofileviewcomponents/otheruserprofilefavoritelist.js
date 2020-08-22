@@ -18,6 +18,7 @@ export function OTHER_USER_FAVORITES_PROFILE(props) {
         <TWEED_DIV_ON_PAGE
           showOtherUserProfile={null}
           likedBy={null}
+          uid={tweed.uid}
           retweetedBy={null}
           id={tweed.id}
           tweedText={tweed.tweed}

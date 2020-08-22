@@ -1,53 +1,70 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
-import {fireBaseExternalObj} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/firebasedeps'
-import {useDispatch} from 'react-redux'
-import {userBioSend} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userBioSend'
+import React from "react";
+import { useSelector } from "react-redux";
+import firebase from "firebase";
+import { useDispatch } from "react-redux";
+import { userBioSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userBioSend";
 
-export function MODAL_USER_PROFILE_INPUTS() {
-    const uniqueUid = useSelector((state) => state.uidInt);
-    const dispatch = useDispatch();
-  
-    let clearForm = () => {
-        document.getElementById("userBioFormSubmit").value = ""
+export function MODAL_USER_PROFILE_INPUTS(props) {
+  const uniqueUid = useSelector((state) => state.uidInt);
+  const dispatch = useDispatch();
+
+  let giveBioToFirebase = (e) => {
+    e.preventDefault();
+
+    if (document.getElementById("userBioFormSubmit").value.length < 160) {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(uniqueUid)
+        .update({
+          userBio: document.getElementById("userBio").value,
+        })
+        .then(
+          dispatch(
+            userBioSend(document.getElementById("userBioFormSubmit").value)
+          )
+        )
+        .then((document.getElementById("userBioFormSubmit").value = ""));
+    } else {
+      window.alert("Your user bio must be uner 161 characters in length");
     }
+  };
 
-    let giveBioToFirebase = (e) => {
-      e.preventDefault();
+  let uploadBannerToFirebase = (e) => {
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref(`${props.uniqueUid}/userBanner`);
+
+    storageRef.put(file);
+  };
+
+  let uploadAvatarToFirebase = (e) => {
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref(`${props.uniqueUid}/userAvatar`);
+
+    storageRef.put(file);
+  };
   
-      if (document.getElementById("userBioFormSubmit").value.length < 160) {
-        fireBaseExternalObj.dataBase
-          .collection("users")
-          .doc(uniqueUid)
-          .update({
-            userBio: document.getElementById("userBio").value,
-          })
-          .then(
-            dispatch(
-              userBioSend(document.getElementById("userBioFormSubmit").value)
-            )
-          ).then(
-              clearForm()
-          );
-      } else {
-        window.alert("Your user bio must be uner 161 characters in length");
-      }
-    };
-  
-    return (
-      <>
+
+
+  return (
+    <>
+      <div>
         <form onSubmit={giveBioToFirebase}>
-          <input
-            placeholder="Update your bio here"
-            id="userBio"
-          ></input>
+          <input placeholder="Update your bio here" id="userBio"></input>
           <div>
             <button id="userBioFormSubmit">Submit your bio info</button>
           </div>
         </form>
-      </>
-    );
-  }
+      </div>
+      <div className="bannerUpload">
+        <p>Change banner picture</p>
+        <input onChange={uploadBannerToFirebase} type="file"></input>
+      </div>
+      <div>
+        <p>Change avatar</p>
+        <input onChange={uploadAvatarToFirebase} type="file"></input>
+      </div>
+    </>
+  );
   
-  
-
+}
