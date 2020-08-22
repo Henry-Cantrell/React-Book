@@ -437,6 +437,18 @@ body {
   margin-left: 5px;
   }
 
+
+.grid-container-avatar {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.username-inside-avatar {
+  margin-top: 23px;
+  margin-left: 10px;
+}
+
 /* Misc */
 
 .tweedsOnPage {

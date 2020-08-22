@@ -61,3 +61,6 @@ export class ALL_USER_INFO_ON_PAGE extends React.Component {
     );
   }
 }
+
+//consider crafting custom component for 
+//explore page user profile displays to accomodate avatars

@@ -41,7 +41,7 @@ export class OTHER_USER_PROFILE extends React.Component {
   render() {
     return (
       <div class="parentDiv">
-        <TOP_DIV_CONTENT forOtherUser={true} userName={this.state.username} />
+        <TOP_DIV_CONTENT uid={this.props.uid} forOtherUser={true} userName={this.state.username} />
         <MIDDLE_DIV_CONTENT
           uniqueUid={this.props.uniqueUid}
           uidForUser={this.props.uid}

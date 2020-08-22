@@ -7,7 +7,7 @@ export class USER_AVATAR extends React.Component {
 
     this.state = {
       urlAvatar: null,
-      uid: this.props.uid
+      uid: this.props.uid,
     };
   }
 
@@ -23,12 +23,16 @@ export class USER_AVATAR extends React.Component {
           });
         });
     };
+
     assignAvatarImageUrl();
   }
 
   render() {
     return (
-      <img className="userAvatarCircle" src={this.state.urlAvatar}/>
+      <div className="grid-container-avatar">
+        <img className="userAvatarCircle" src={this.state.urlAvatar}></img>
+        <div className="username-inside-avatar">{this.props.username}</div>
+      </div>
     );
   }
 }

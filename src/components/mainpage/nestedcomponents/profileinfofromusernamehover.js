@@ -78,8 +78,7 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
               </div>
             </div>
           ) : null}
-          <USER_AVATAR uid={this.props.uid} />
-          <div className='usernameTweedsOnPage'>{this.props.username}</div>
+          <USER_AVATAR uid={this.props.uid} username={this.state.username}/>
         </div>
       </>
     );
