@@ -15,6 +15,7 @@ class TWEEDS_PROFILE extends React.Component {
       testVar.map((tweed) => {
         return (
           <TWEED_DIV_ON_PAGE
+            uid={tweed.uid}
             showOtherUserProfile={null}
             likedBy={null}
             retweetedBy={null}

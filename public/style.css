@@ -414,6 +414,14 @@ body {
   width: 100%;
 }
 
+.holderForAvatarOnExplore {
+  float: left;
+}
+
+.userNameDisplayUidbProfilePageAuioop {
+  float: left;
+}
+
 /* User avatar styling */
 
 .userAvatarCircle {

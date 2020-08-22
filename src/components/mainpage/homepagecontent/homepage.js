@@ -32,6 +32,7 @@ class HOME_PAGE extends React.Component {
               retweedButton={null}
               tweedText={tweed.tweed}
               username={tweed.username}
+              uid={tweed.uid}
             />
           );
         })

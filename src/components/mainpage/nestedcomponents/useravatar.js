@@ -7,6 +7,7 @@ export class USER_AVATAR extends React.Component {
 
     this.state = {
       urlAvatar: null,
+      uid: this.props.uid
     };
   }
 
@@ -14,7 +15,7 @@ export class USER_AVATAR extends React.Component {
     let assignAvatarImageUrl = () => {
       firebase
         .storage()
-        .ref(`${this.props.uid}/userAvatar`)
+        .ref(`${this.state.uid}/userAvatar`)
         .getDownloadURL()
         .then((url) => {
           this.setState({
