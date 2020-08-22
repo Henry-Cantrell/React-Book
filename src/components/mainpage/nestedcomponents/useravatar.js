@@ -27,7 +27,7 @@ export class USER_AVATAR extends React.Component {
 
   render() {
     return (
-      <img className="userAvatarCircle" src={this.state.urlAvatar}></img>
+      <img className="userAvatarCircle" src={this.state.urlAvatar}/>
     );
   }
 }

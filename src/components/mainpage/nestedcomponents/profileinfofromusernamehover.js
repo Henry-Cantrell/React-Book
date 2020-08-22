@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase";
 import { FOLLOW_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/followbutton";
+import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/useravatar";
 
 export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
   constructor(props) {
@@ -30,7 +31,12 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
       .then((doc) =>
         this.setState({
           username: `Username: ${doc.data().username}`,
-          bio: doc.data().userBio === 'Set up your bio' ? <></> : `User bio: ${doc.data().userBio}`,
+          bio:
+            doc.data().userBio === "Set up your bio" ? (
+              <></>
+            ) : (
+              `User bio: ${doc.data().userBio}`
+            ),
           folllowedCount: `Followed: ${doc.data().followedCount}`,
           followerCount: `Following: ${doc.data().followerCount}`,
         })
@@ -72,7 +78,8 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
               </div>
             </div>
           ) : null}
-          <div>{this.props.username}</div>
+          <USER_AVATAR uid={this.props.uid} />
+          <div className='usernameTweedsOnPage'>{this.props.username}</div>
         </div>
       </>
     );

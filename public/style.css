@@ -322,7 +322,7 @@ body {
 .modal_box_userprofile {
   background-color: white;
   height:550px;
-  width: 650px;
+  width: 675px;
   border-style: solid;
   border-width: 3px;
   top:50%;
@@ -425,4 +425,17 @@ body {
   overflow: hidden;
   border-radius:50%;
   float: left;
+  margin-top: 5px;
+  margin-left: 5px;
   }
+
+/* Misc */
+
+.tweedsOnPage {
+  margin-left: 5px;
+  margin-top:10px;
+}
+
+.usernameTweedsOnPage {
+  margin-top:5px;
+}
