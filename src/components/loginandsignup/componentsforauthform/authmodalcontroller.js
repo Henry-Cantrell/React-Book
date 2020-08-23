@@ -1,22 +1,28 @@
 import React from "react";
 import firebase from "firebase";
 import { userUidSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/useruidsend";
+import { LOGIN_MODAL } from "./loginmodal";
+import { SIGNUP_MODAL } from "./signupmodal";
+import { useDispatch } from "react-redux";
 
 export let AUTH_MODAL_CONTROLLER = (props) => {
+  const dispatch = useDispatch();
+
+  //This func processes login/signup events. There is a form in the return method which conditionally sets -->
+  //--> its own onSubmit method from one of two of the handler funcs, dependent on the passed forLogin prop via -->
+  //--> a ternary operator. The login and signup modals are also imported and conditionally rendered -->
+  //--> via this component, once again dependent on the passed forLogin prop.
+
   let loginHandler = (e) => {
     e.preventDefault();
-    const loginEmail = document.querySelector("#authEmail").value;
-    const loginPassword = document.querySelector("#authPassword").value;
+    const loginEmail = document.querySelector("#auth-input-email").value;
+    const loginPassword = document.querySelector("#auth-input-password").value;
     firebase
       .auth()
       .signInWithEmailAndPassword(loginEmail, loginPassword)
       .then((cred) => {
-        this.props.dispatch(userUidSend(cred.user.uid, loginEmail));
+        dispatch(userUidSend(cred.user.uid, loginEmail));
       })
-      .then(
-        (document.getElementById("authEmail").value = ""),
-        (document.getElementById("authPassword").value = "")
-      )
       .catch((Error) => {
         window.alert("Error: incorrect username or password");
       });
@@ -24,15 +30,15 @@ export let AUTH_MODAL_CONTROLLER = (props) => {
 
   let signupHandler = (e) => {
     e.preventDefault();
-    const signupEmail = document.querySelector("#authEmail").value;
-    const signupPassword = document.querySelector("#authPassword").value;
-    const signupUsername = document.querySelector("#authUsername").value;
+    const signupEmail = document.querySelector("#auth-input-email").value;
+    const signupPassword = document.querySelector("#auth-input-password").value;
+    const signupUsername = document.querySelector("#auth-input-username").value;
     if (signupUsername.length <= 12) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(signupEmail, signupPassword)
         .then((cred) => {
-          this.props.dispatch(
+          dispatch(
             userUidSend(cred.user.uid, signupEmail, signupUsername),
             firebase
               .firestore()
@@ -52,10 +58,6 @@ export let AUTH_MODAL_CONTROLLER = (props) => {
               })
           );
         })
-        .then(
-          (document.getElementById("authEmail").value = ""),
-          (document.getElementById("authPassword").value = "")
-        )
         .catch((Error) => {
           window.alert("Error: user info previously created");
         });
@@ -64,8 +66,12 @@ export let AUTH_MODAL_CONTROLLER = (props) => {
     }
   };
   return (
-    <form
-      onSubmit={props.forLogin != undefined ? loginHandler : signupHandler}
-    ></form>
+    <form onSubmit={props.forLogin != undefined ? loginHandler : signupHandler}>
+      {props.forLogin != undefined ? (
+        <LOGIN_MODAL hideLogin={props.hideLogin} />
+      ) : (
+        <SIGNUP_MODAL hideSignup={props.hideSignup} />
+      )}
+    </form>
   );
 };

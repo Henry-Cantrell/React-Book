@@ -1,7 +1,6 @@
 import React from "react";
 import { AUTH_FIELDS_ACCESS_DIVS } from "./authfieldsaccessdivs";
-import { LOGIN_MODAL } from "./loginmodal";
-import { SIGNUP_MODAL } from "./signupmodal";
+import {AUTH_MODAL_CONTROLLER} from './authmodalcontroller'
 
 export class USER_AUTH_DISPLAY_CONTROLLER extends React.Component {
   constructor(props) {
@@ -53,10 +52,10 @@ export class USER_AUTH_DISPLAY_CONTROLLER extends React.Component {
           showSignup={this.signupModalShow}
         />
         {this.state.showLoginModal ? (
-          <LOGIN_MODAL hideLogin={this.loginModalHide} />
+          <AUTH_MODAL_CONTROLLER hideLogin={this.loginModalHide} forLogin={'valid'}/>
         ) : null}
         {this.state.showSignupModal ? (
-          <SIGNUP_MODAL hideSignup={this.signupModalHide} />
+          <AUTH_MODAL_CONTROLLER hideSignup={this.signupModalHide} />
         ) : null}
       </>
     );

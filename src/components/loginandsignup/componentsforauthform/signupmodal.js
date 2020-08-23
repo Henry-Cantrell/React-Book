@@ -1,5 +1,4 @@
 import React from 'react'
-import { AUTH_MODAL_CONTROLLER } from "./authmodalcontroller";
 
 export let SIGNUP_MODAL = () => {
     return (
