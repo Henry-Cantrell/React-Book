@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
 import { AUTH_MODAL_CONTROLLER } from "./authmodalcontroller";
 
 export let LOGIN_MODAL = () => {
-    return (
-      <div className="show_modal">
+  return (
+    <div className="show-modal">
+      <AUTH_MODAL_CONTROLLER forLogin={'valid'}>
         <div className="modal-box">
           <div className="modal-box-auth-interior">
             <input
@@ -21,7 +22,7 @@ export let LOGIN_MODAL = () => {
             <button className="modal-box-auth-interior-child">Log in</button>
           </div>
         </div>
-      </div>
-    );
-  };
-  
+      </AUTH_MODAL_CONTROLLER>
+    </div>
+  );
+};
