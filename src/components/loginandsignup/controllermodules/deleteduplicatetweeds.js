@@ -1,9 +1,6 @@
 import firebase from "firebase";
-import { useSelector } from "react-redux";
 
-export let DELETE_LIKED_TWEEDS_OF_FOLLOWED_USERS = () => {
-  const uniqueUid = useSelector((state) => state.uidInt);
-  const usernameOfCurrentUser = useSelector((state) => state.userName);
+export let deleteDuplicateTweeds = (uniqueUid, usernameOfCurrentUser) => {
 
   firebase
     .firestore()

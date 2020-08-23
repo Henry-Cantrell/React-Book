@@ -9,7 +9,7 @@ body {
     height:100%;
   }
 
-/* Modal page interior styling */
+/* Modal page auth interior styling */
 
 .show_modal {
     top:0px;
@@ -20,10 +20,6 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .hide_modal {
-    display:none;
   }
   
   .modal_box {
@@ -38,63 +34,46 @@ body {
     position: relative;
   }
   
-  .modal_interior_header {
-    margin-top: 50px;
+  .modal-box {
+    background-color: white;
+    height:550px;
+    width: 650px;
+    border-style: solid;
+    border-width: 3px;
+    text-align: center;
   }
+ 
+ .modal-box-auth-interior {
+   margin-top: 225px;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+ }
+ 
+ .modal-box-auth-interior .modal-box-auth-interior-child {
+   align-self: center;
+   margin-bottom: 25px;
+ }
 
-  .login_one {
-    margin-left: 10px;
-    width: 300px;
-    margin-top: 15px;
-  }
-  
-  .login_two {
-    margin-left: 10px;
-    margin-top: 10px;
-    width: 300px;
-  }
+  /* Auth field styling */
 
-  .login_three_style {
-    margin-top: 15px;
-  }
+  .auth-fields-container {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+}
 
-  .login_three {
-    margin-left: 10px;
-    margin-top: 10px;
-    width: 300px;
-  }
-  
-  .login_button {
-    margin-top: 30px;
-    width: 150px;
-  }
-  .modal_box_content {
-    display: table;
-    margin: 0 auto;
-    margin-top: 50px;
-  }
-
-  .button_center {
-    display: table;
-    margin: 0 auto;
-  }
-
-  .login_one_style {
-    margin-bottom: 15px;
-  }
-
-  .header_style {
-    display: table;
-    margin: 0 auto;
-  }
-
-  .toggleButton {
-      height: 20px;
-      width: 50px;
-      border-style: solid;
-      border-width: 2px;
-      border-color: black;
-      background-color: white;
+  .auth-fields-access-div {
+    position: relative;
+    z-index: 1;
+    border-style: solid;
+    border-width: 1px;
+    height:30px;
+    width:250px;
+    text-align: center;
+    margin-bottom: 10px;
   }
 
 /* Modal page exterior styling */

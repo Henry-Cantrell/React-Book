@@ -1,12 +1,8 @@
 import firebase from "firebase";
 import { tweedSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendTweeds";
 import { clearTweedStore } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearTweeds";
-import {useSelector, useDispatch} from 'react-redux'
 
-export let TRANSFER_USER_TWEEDS_TO_REDUX = () => {
-
-    const dispatch = useDispatch();
-    const uniqueUid = useSelector((state) => state.uidInt);
+export let userTweedsFbToRedux = (uniqueUid, dispatch) => {
 
     firebase
       .firestore()

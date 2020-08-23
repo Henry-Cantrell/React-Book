@@ -1,4 +1,4 @@
-export function uidNet (uid, emailAddress, username) {
+export function userUidSend (uid, emailAddress, username) {
     return {
         type: 'LOGGED_IN',
         uid,

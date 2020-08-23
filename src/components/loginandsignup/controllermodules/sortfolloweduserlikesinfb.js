@@ -1,9 +1,6 @@
 import firebase from "firebase";
-import {useSelector} from 'react-redux';
- 
-export let SORT_LIKED_TWEEDS_BY_FOLLOWED = () => {
 
-    const uniqueUid = useSelector((state) => state.uidInt);
+export let sortFollowedUserLikesInFb = (uniqueUid) => {
 
     firebase
       .firestore()

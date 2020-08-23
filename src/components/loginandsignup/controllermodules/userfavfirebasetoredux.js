@@ -1,12 +1,8 @@
 import firebase from "firebase";
 import { sendUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendUserFav";
 import { clearUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearUserFav";
-import {useSelector, useDispatch} from 'react-redux'
 
-export let UserFavoriteTweedGetFromFb = () => {
-
-  const uniqueUid = useSelector((state) => state.uidInt);
-  const dispatch = useDispatch();
+export let userFavsFbToRedux = (uniqueUid, dispatch) => {
 
   firebase
     .firestore()
