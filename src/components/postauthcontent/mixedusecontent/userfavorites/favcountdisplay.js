@@ -33,4 +33,3 @@ export class FAVORITE_COUNT_DISPLAY extends React.Component {
   }
 }
 
-//to-do: integrate fav display into tweed divs

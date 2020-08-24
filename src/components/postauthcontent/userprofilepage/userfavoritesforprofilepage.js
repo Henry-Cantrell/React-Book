@@ -4,8 +4,8 @@ import { connect, useSelector } from "react-redux";
 import { FAVORITE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/userfavorites/favbuttonhandler";
 
 export function FAVORITES_PROFILE(props) {
-  const uniqueUid = useSelector((state) => state.uidInt)
-  const username = useSelector((state) => state.userName)
+  const userrUid = useSelector((state) => state.userUid)
+  const username = useSelector((state) => state.username)
 
   let noUndefined = (item) => {
     return item != undefined;
@@ -18,12 +18,8 @@ export function FAVORITES_PROFILE(props) {
       return (
         <TWEED_DIV_ON_PAGE
           uid={tweed.uid}
-          showOtherUserProfile={null}
-          likedBy={null}
-          retweetedBy={null}
           id={tweed.id}
           tweedText={tweed.tweed}
-          likeButton={null}
           retweedButton={
             <FAVORITE_BUTTON_HANDLER
               id={tweed.id}
@@ -34,7 +30,6 @@ export function FAVORITES_PROFILE(props) {
               usernameTweed={tweed.username}
             />
           }
-          button={null}
           username={tweed.username}
         />
       );

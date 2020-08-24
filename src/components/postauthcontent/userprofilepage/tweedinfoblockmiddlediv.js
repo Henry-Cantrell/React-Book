@@ -1,21 +1,24 @@
 import React from "react";
+import { FOLLOWER_AND_FOLLOWED_CONTENT } from "./followerandtweedcontent";
+import { FOLLOW_BUTTON } from "./followbutton";
+import {TWEED_COUNT_FOR_USER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/tweedcountforuserprofiles'
 
 export let TWEED_INFO_BLOCK_MIDDLE_DIV = (props) => {
   <div className="showFollowAndTweedInts">
-    <TWEED_COUNT_FOR_USER uid={this.props.uidForUser} />
-    {this.props.forOtherUser === undefined ? (
+    <TWEED_COUNT_FOR_USER uid={props.userUid} />
+    {props.forOtherUser === undefined ? (
       <FOLLOWER_AND_FOLLOWED_CONTENT />
     ) : (
       <>
         <FOLLOW_BUTTON
-          uniqueUid={this.props.uniqueUid}
-          username={this.props.userName}
-          uid={this.props.uid}
+          userUid={props.userUid}
+          username={props.username}
+          uid={props.uid}
         />
         <FOLLOWER_AND_FOLLOWED_CONTENT
           forOtherUser={true}
-          followedCountOtherUser={this.props.followedCountOtherUser}
-          followerCountOtherUser={this.props.followerCountOtherUser}
+          followedCountOtherUser={props.followedCountOtherUser}
+          followerCountOtherUser={props.followerCountOtherUser}
         />
       </>
     )}

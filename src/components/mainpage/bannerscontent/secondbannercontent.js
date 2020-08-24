@@ -19,10 +19,6 @@ export let SECOND_BANNER_CONTENT = (props) => {
     <div class="second">
       {props.showProfilePage ? (
         <PROFILE_PAGE
-          userBio={userDataObject.userBio}
-          userUid={userDataObject.userUid}
-          username={userDataObject.username}
-          joinDate={userDataObject.joinDate}
           dispatch={dispatch}
         />
       ) : null}

@@ -8,9 +8,6 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggleFavFalse = this.toggleFavFalse.bind(this);
-    this.toggleFavTrue = this.toggleFavTrue.bind(this);
-
     this.state = {
       favorited: false,
     };
@@ -23,43 +20,43 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
         .collection("favoriteTweeds")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
-            if (doc.id === this.props.uniqueUid) {
+            if (doc.id === this.props.userUid) {
               firebase
                 .firestore()
                 .collection("favoriteTweeds")
-                .doc(this.props.uniqueUid)
+                .doc(this.props.userUid)
                 .collection("tweedsFavoritedByUser")
                 .onSnapshot((snapshot) => {
                   snapshot.forEach((doc) => {
                     if (doc.data().id === this.props.id) {
                       this.toggleFavTrue();
-                    } 
+                    }
                   });
                 });
             }
-          })
+          });
         });
     };
-   checkForExistingFavorite()
+    checkForExistingFavorite();
   }
 
-  toggleFavTrue() {
+  toggleFavTrue = () => {
     this.setState({
       favorited: true,
     });
-  }
+  };
 
-  toggleFavFalse() {
+  toggleFavFalse = () => {
     this.setState({
       favorited: false,
     });
-  }
+  };
 
   render() {
     return this.state.favorited ? (
       <UNFAVORITE_BUTTON
         favoriteDisplay={
-          <FAVORITE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />
+          <FAVORITE_COUNT_DISPLAY id={this.props.id} />
         }
         id={this.props.id}
         uid={this.props.uid}
@@ -68,14 +65,13 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
     ) : (
       <FAVORITE_BUTTON
         favoriteDisplay={
-          <FAVORITE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />
+          <FAVORITE_COUNT_DISPLAY id={this.props.id} />
         }
         uid={this.props.uid}
-        uniqueUid={this.props.uniqueUid}
+        userUid={this.props.userUid}
         id={this.props.id}
         tweed={this.props.tweed}
         username={this.props.username}
-        usernameOfFavoriter={null}
         usernameTweed={this.props.usernameTweed}
         true={this.toggleFavTrue}
       />

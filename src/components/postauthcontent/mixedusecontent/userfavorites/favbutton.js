@@ -1,55 +1,52 @@
 import React from "react";
 import firebase from "firebase";
 
-export class FAVORITE_BUTTON extends React.Component {
-  constructor(props) {
-    super(props);
+export let FAVORITE_BUTTON = (props) => {
+  let handleFavoriteAction = () => {
+    let favoriteCountUpdate = () => {
+      props.true();
 
-    this.favoriteCountToFirebase = this.favoriteCountToFirebase.bind(this);
-  }
+      firebase
+        .firestore()
+        .collection("favoriteCountForUserTweeds")
+        .doc(props.id)
+        .update({
+          favoriteCount: firebase.firestore.FieldValue.increment(1),
+        });
+    };
 
-  favoriteCountToFirebase = () => {
-    this.props.true();
-  
-    firebase
-      .firestore()
-      .collection("favoriteCountForUserTweeds")
-      .doc(this.props.id)
-      .update({
-        favoriteCount: firebase.firestore.FieldValue.increment(1),
-      })
-      .then(
-        firebase
-          .firestore()
-          .collection("favoriteTweeds")
-          .doc(this.props.uniqueUid)
-          .set({
-            dnd: "dnd",
-          })
-      )
-      .then(
-        firebase
-          .firestore()
-          .collection("favoriteTweeds")
-          .doc(this.props.uniqueUid)
-          .collection("tweedsFavoritedByUser")
-          .doc(this.props.id)
-          .set({
-            tweed: this.props.tweed,
-            id: this.props.id,
-            username: this.props.usernameTweed,
-            uid: this.props.uid,
-          })
-      );
+    let placeFavoriteTweedInFb = () => {
+      firebase
+        .firestore()
+        .collection("favoriteTweeds")
+        .doc(props.userUid)
+        .set({
+          dnd: "dnd",
+        })
+        .then(
+          firebase
+            .firestore()
+            .collection("favoriteTweeds")
+            .doc(props.userUid)
+            .collection("tweedsFavoritedByUser")
+            .doc(props.id)
+            .set({
+              tweed: props.tweed,
+              id: props.id,
+              username: props.usernameTweed,
+              uid: props.uid,
+            })
+        );
+    };
+    
+    favoriteCountUpdate();
+    placeFavoriteTweedInFb();
   };
-  
 
-  render() {
-    return (
-      <>
-        <button onClick={this.favoriteCountToFirebase}>Favorite</button>
-        {this.props.favoriteDisplay}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <button onClick={handleFavoriteAction}>Favorite</button>
+      {props.favoriteDisplay}
+    </>
+  );
+};

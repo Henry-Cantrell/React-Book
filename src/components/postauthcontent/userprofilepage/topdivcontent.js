@@ -4,7 +4,7 @@ import { TOP_BANNER_CONTENT } from "./topbannercontent";
 import { BANNER_IMAGE } from "./bannerimage";
 
 //Note: cannot refactor to use current user uniqueUid/username because
-//uid/username props are passed differently in different use contexts
+//uid and username props are passed differently in different use contexts
 
 export class TOP_DIV_CONTENT extends React.Component {
   constructor(props) {

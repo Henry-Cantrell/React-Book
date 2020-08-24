@@ -16,7 +16,7 @@ export class PROFILE_PAGE extends React.Component {
       userBio: null,
       joinDate: null,
       username: null,
-      userUid: this.props.userUid,
+      userUid: null,
     };
   }
 
@@ -62,10 +62,10 @@ export class PROFILE_PAGE extends React.Component {
           username={this.state.username}
         />
         <MIDDLE_DIV_CONTENT
-          uidForUser={this.props.userUid}
+          userUid={this.state.userUid}
           joinDate={this.state.userJoinDate}
           userBio={this.state.userBio}
-          userName={this.state.username}
+          username={this.state.username}
         />
         <BUTTON_BAR
           showUserProfileToggle={this.showUserProfileToggle}
