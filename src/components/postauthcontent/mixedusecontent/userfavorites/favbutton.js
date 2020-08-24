@@ -38,7 +38,6 @@ export let FAVORITE_BUTTON = (props) => {
             })
         );
     };
-    
     favoriteCountUpdate();
     placeFavoriteTweedInFb();
   };

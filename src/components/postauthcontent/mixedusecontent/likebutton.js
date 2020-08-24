@@ -1,73 +1,71 @@
 import React from "react";
 import firebase from "firebase";
 
-export class LIKE_BUTTON extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.likeCountToFirebase = this.likeCountToFirebase.bind(this);
-  }
-
-  likeCountToFirebase = () => {
-    this.props.true();
+export let LIKE_BUTTON = (props) => {
+  let likeCountToFirebase = () => {
+    props.true();
 
     firebase
       .firestore()
       .collection("likeCountForUserTweeds")
-      .doc(this.props.id)
+      .doc(props.id)
       .update({
         likeCount: firebase.firestore.FieldValue.increment(1),
+      });
+  };
+
+  let sendLikedTweedToFirebase = () => {
+    firebase
+      .firestore()
+      .collection("likedTweeds")
+      .doc(props.userUid)
+      .set({
+        dnd: "dnd",
       })
       .then(
         firebase
           .firestore()
           .collection("likedTweeds")
-          .doc(this.props.uniqueUid)
-          .set({
-            dnd: "dnd",
-          })
-      )
-      .then(
-        firebase
-          .firestore()
-          .collection("likedTweeds")
-          .doc(this.props.uniqueUid)
+          .doc(props.userUid)
           .collection("tweedsLikedByUser")
-          .doc(this.props.id)
+          .doc(props.id)
           .set({
-            tweed: this.props.tweed,
-            id: this.props.id,
-            username: this.props.username,
-            uid: this.props.uid,
+            tweed: props.tweed,
+            id: props.id,
+            username: props.username,
+            uid: props.uid,
           })
       )
       .then(
         firebase
           .firestore()
           .collection("users")
-          .doc(this.props.uniqueUid)
+          .doc(props.userUid)
           .get()
           .then((doc) => {
             firebase
               .firestore()
               .collection("likedTweeds")
-              .doc(this.props.uniqueUid)
+              .doc(props.userUid)
               .collection("tweedsLikedByUser")
-              .doc(this.props.id)
+              .doc(props.id)
               .update({
                 usernameOfLiker: doc.data().username,
-                uidOfLiker: doc.data().uid
+                uidOfLiker: doc.data().uid,
               });
           })
       );
   };
 
-  render() {
-    return (
-      <>
-        <button onClick={this.likeCountToFirebase}>Like</button>
-        {this.props.likeDisplay}
-      </>
-    );
-  }
-}
+  let handleTweedLike = () => {
+    likeCountToFirebase();
+    sendLikedTweedToFirebase();
+  };
+
+  return (
+    <>
+      <button onClick={handleTweedLike}>Like</button>
+      {props.likeDisplay}
+    </>
+  );
+};

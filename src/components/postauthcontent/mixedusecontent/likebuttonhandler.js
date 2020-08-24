@@ -24,11 +24,11 @@ export class LIKE_BUTTON_HANDLER extends React.Component {
         .collection("likedTweeds")
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
-            if (doc.id === this.props.uniqueUid) {
+            if (doc.id === this.props.userUid) {
               firebase
                 .firestore()
                 .collection("likedTweeds")
-                .doc(this.props.uniqueUid)
+                .doc(this.props.userUid)
                 .collection("tweedsLikedByUser")
                 .onSnapshot((snapshot) => {
                   snapshot.forEach((doc) => {
@@ -72,7 +72,7 @@ export class LIKE_BUTTON_HANDLER extends React.Component {
           <LIKE_COUNT_DISPLAY id={this.props.id} uid={this.props.uid} />
         }
         uid={this.props.uid}
-        uniqueUid={this.props.uniqueUid}
+        userUid={this.props.userUid}
         id={this.props.id}
         tweed={this.props.tweed}
         username={this.props.username}

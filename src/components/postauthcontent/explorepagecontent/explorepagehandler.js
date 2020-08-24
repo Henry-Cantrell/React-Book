@@ -7,7 +7,7 @@ import {eraseAllUserInfo} from '/home/suzuka/Coding/the_odin_project/Projects/we
 
 export let EXPLORE_PAGE_HANDLER = () => {
   const dispatch = useDispatch();
-  const uniqueUid = useSelector((state) => state.uidInt)
+  const userUid = useSelector((state) => state.userUid)
 
   let allUserInfoFromFbToRedux = () => {
     firebase
@@ -35,7 +35,7 @@ export let EXPLORE_PAGE_HANDLER = () => {
 
   return (
     <div className="explorePageDiv">
-      <EXPLORE_PAGE uniqueUid={uniqueUid}/>
+      <EXPLORE_PAGE userUid={userUid}/>
     </div>
   );
 };

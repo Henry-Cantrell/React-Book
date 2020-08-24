@@ -1,7 +1,7 @@
 import React from "react";
-import { TWEED_DIV_ON_PAGE } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/tweedDivOnPage";
+import { TWEED_DIV_ON_PAGE } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/tweedonpage";
 import { connect } from "react-redux";
-import { DELETE_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/deletebuttonfortweeds";
+import { DELETE_BUTTON } from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/homepagecontent/deletebuttonfortweeds'
 
 let TWEEDS_PROFILE = () => {
   let noUndefined = (item) => {

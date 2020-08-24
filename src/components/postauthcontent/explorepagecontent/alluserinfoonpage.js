@@ -2,7 +2,7 @@ import React from "react";
 import { FOLLOWER_AND_FOLLOWED_CONTENT_FOR_ALL_USER_INFO } from "./followedandfollowerinfoallusers";
 import { FOLLOW_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/followbutton";
 import firebase from "firebase";
-import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/useravatar";
+import { OTHER_USER_INFO_DISPLAY } from "./otheruserinfodisplay";
 
 export class ALL_USER_INFO_ON_PAGE extends React.Component {
   constructor(props) {
@@ -34,20 +34,16 @@ export class ALL_USER_INFO_ON_PAGE extends React.Component {
   render() {
     return (
       <div class="middleDiv">
-        <div className='holderForAvatarOnExplore'>
-        <USER_AVATAR uid={this.props.uid}/>
-        </div>
-        <div class="userNameDisplayUidbProfilePageAuioop">
-          Username: {this.props.username}
-        </div>
-        {this.props.userBio === "Set up your bio" ? null : (
-          <div class="userBioDisplay">{this.props.userBio}</div>
-        )}
-        <div class="userJoinDateDisplay">Joined: {this.props.joinDate}</div>
+        <OTHER_USER_INFO_DISPLAY
+          uid={this.props.uid}
+          username={this.props.username}
+          userBio={this.props.userBio}
+          joinDate={this.props.joinDate}
+        />
         <div class="uidbModalDiv">
           <FOLLOW_BUTTON
             uid={this.props.uid}
-            uniqueUid={this.props.uniqueUid}
+            userUid={this.props.userUid}
             username={this.props.username}
           />
           <div className="showFollowAndTweedInts">
@@ -62,5 +58,3 @@ export class ALL_USER_INFO_ON_PAGE extends React.Component {
   }
 }
 
-//consider crafting custom component for 
-//explore page user profile displays to accomodate avatars

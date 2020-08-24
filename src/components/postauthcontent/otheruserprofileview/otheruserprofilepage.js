@@ -1,17 +1,13 @@
 import React from "react";
-import { TOP_DIV_CONTENT } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/bannerTwoProfilePage/topdivcontent";
-import { MIDDLE_DIV_CONTENT } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/bannerTwoProfilePage/middlediv";
-import { BUTTON_BAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/bannerTwoProfilePage/buttonbar";
+import { TOP_DIV_CONTENT } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/userprofilepage/topdivcontent";
+import { MIDDLE_DIV_CONTENT } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/userprofilepage/middlediv";
+import { BUTTON_BAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/userprofilepage/buttonbar";
 import OTHER_USER_TWEEDS_PROFILE from "./otherusertweedlist";
 import OTHER_USER_FAVORITES_PROFILE from "./otheruserprofilefavoritelist";
-import {FOLLOW_BUTTON} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/followbutton'
 
 export class OTHER_USER_PROFILE extends React.Component {
   constructor(props) {
     super(props);
-
-    this.showUserProfileToggle = this.showUserProfileToggle.bind(this);
-    this.showUserFavoritesToggle = this.showUserFavoritesToggle.bind(this);
 
     this.state = {
       showUserProfile: true,
@@ -20,28 +16,32 @@ export class OTHER_USER_PROFILE extends React.Component {
       userJoinDate: this.props.joinDate,
       username: this.props.username,
       followedCountOtherUser: this.props.followedCountOtherUser,
-      followerCountOtherUser: this.props.followerCountOtherUser
+      followerCountOtherUser: this.props.followerCountOtherUser,
     };
   }
 
-  showUserProfileToggle() {
+  showUserProfileToggle = () => {
     this.setState({
       showUserProfile: true,
       showUserFavorites: false,
     });
-  }
+  };
 
-  showUserFavoritesToggle() {
+  showUserFavoritesToggle = () => {
     this.setState({
       showUserProfile: false,
       showUserFavorites: true,
     });
-  }
+  };
 
   render() {
     return (
       <div class="parentDiv">
-        <TOP_DIV_CONTENT uid={this.props.uid} forOtherUser={true} userName={this.state.username} />
+        <TOP_DIV_CONTENT
+          uid={this.props.uid}
+          forOtherUser={true}
+          userName={this.state.username}
+        />
         <MIDDLE_DIV_CONTENT
           uniqueUid={this.props.uniqueUid}
           uidForUser={this.props.uid}
@@ -59,9 +59,17 @@ export class OTHER_USER_PROFILE extends React.Component {
           showUserFavoritesToggle={this.showUserFavoritesToggle}
         />
         {this.state.showUserProfile ? (
-          <OTHER_USER_TWEEDS_PROFILE uniqueUid={this.props.uniqueUid} username={this.state.username} uid={this.props.uid} />
+          <OTHER_USER_TWEEDS_PROFILE
+            uniqueUid={this.props.uniqueUid}
+            username={this.state.username}
+            uid={this.props.uid}
+          />
         ) : this.state.showUserFavorites ? (
-          <OTHER_USER_FAVORITES_PROFILE uniqueUid={this.props.uniqueUid} username={this.state.username} uid={this.props.uid} />
+          <OTHER_USER_FAVORITES_PROFILE
+            uniqueUid={this.props.uniqueUid}
+            username={this.state.username}
+            uid={this.props.uid}
+          />
         ) : null}
       </div>
     );

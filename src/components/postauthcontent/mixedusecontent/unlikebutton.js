@@ -3,7 +3,7 @@ import firebase from "firebase";
 import { useSelector } from "react-redux";
 
 export function UNLIKE_BUTTON(props) {
-  const uniqueUid = useSelector((state) => state.uidInt);
+  const userUid = useSelector((state) => state.userUid);
   const decrement = firebase.firestore.FieldValue.increment(-1);
 
   let unlikeTweedInFirebase = () => {
@@ -12,7 +12,7 @@ export function UNLIKE_BUTTON(props) {
     firebase
       .firestore()
       .collection("likedTweeds")
-      .doc(uniqueUid)
+      .doc(userUid)
       .collection('tweedsLikedByUser')
       .get()
       .then((items) => {
@@ -21,7 +21,7 @@ export function UNLIKE_BUTTON(props) {
             firebase
               .firestore()
               .collection("likedTweeds")
-              .doc(uniqueUid)
+              .doc(userUid)
               .collection('tweedsLikedByUser')
               .doc(doc.id)
               .delete();

@@ -7,6 +7,8 @@ import { otherUserPersonalTweeds } from "/home/suzuka/Coding/the_odin_project/Pr
 import { clearTweedOtherUserPersonal } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearOtherUserPersonal";
 import firebase from "firebase";
 
+//this component depends on lifecycle hooks and should not be converted to a func component
+
 class OTHER_USER_PROFILE_HANDLER extends React.Component {
   constructor(props) {
     super(props);
@@ -18,17 +20,39 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.otherUserInfo !== null) {
+    let dispatchOtherUserPersonalTweeds = () => {
+      if (this.props.otherUserInfo !== null) {
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(this.props.otherUserInfo.username.uid)
+          .collection("userTweeds")
+          .get()
+          .then((items) => {
+            items.forEach((tweed) => {
+              this.props.dispatch(
+                otherUserPersonalTweeds({
+                  uid: tweed.data().uid,
+                  id: tweed.id,
+                  username: tweed.data().username,
+                  tweed: tweed.data().tweed,
+                })
+              );
+            });
+          });
+      }
+    };
+    let setUserFavoriteTweeds = () => {
       firebase
         .firestore()
-        .collection("users")
+        .collection("favoriteTweeds")
         .doc(this.props.otherUserInfo.username.uid)
-        .collection("userTweeds")
+        .collection("tweedsFavoritedByUser")
         .get()
         .then((items) => {
           items.forEach((tweed) => {
             this.props.dispatch(
-              otherUserPersonalTweeds({
+              otherUserFavTweeds({
                 uid: tweed.data().uid,
                 id: tweed.id,
                 username: tweed.data().username,
@@ -36,34 +60,16 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
               })
             );
           });
-        })
-        .then(
-          firebase
-            .firestore()
-            .collection("favoriteTweeds")
-            .doc(this.props.otherUserInfo.username.uid)
-            .collection("tweedsFavoritedByUser")
-            .get()
-            .then((items) => {
-              items.forEach((tweed) => {
-                this.props.dispatch(
-                  otherUserFavTweeds({
-                    uid: tweed.data().uid,
-                    id: tweed.id,
-                    username: tweed.data().username,
-                    tweed: tweed.data().tweed,
-                  })
-                );
-              });
-            })
-        );
-    }
+        });
+    };
+    dispatchOtherUserPersonalTweeds();
+    setUserFavoriteTweeds();
   }
 
   render() {
     return this.props.otherUserInfo === null ? null : (
       <OTHER_USER_PROFILE
-        uniqueUid={this.props.uniqueUid}
+        userUid={this.props.userUid}
         username={this.props.username}
         uid={this.props.otherUserInfo.username.uid}
         bio={this.props.otherUserInfo.username.bio}

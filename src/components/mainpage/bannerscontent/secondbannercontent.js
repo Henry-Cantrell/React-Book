@@ -1,6 +1,6 @@
 import React from "react";
 import { PROFILE_PAGE } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/userprofilepage/profilepage";
-import HOME_PAGE from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/homepagecontent/homepage";
+import {HOME_PAGE} from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/homepagecontent/homepage";
 import { EXPLORE_PAGE_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/explorepagecontent/explorepagehandler";
 import OTHER_USER_PROFILE_HANDLER from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/otheruserprofileview/otheruserprofilehandler";
 import { useDispatch } from "react-redux";

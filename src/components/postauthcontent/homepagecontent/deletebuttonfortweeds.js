@@ -3,13 +3,13 @@ import firebase from "firebase";
 import { useSelector } from "react-redux";
 
 export function DELETE_BUTTON(props) {
-  const uniqueUid = useSelector((state) => state.uidInt);
+  const userUid = useSelector((state) => state.userUid);
 
   let deleteFromUser = () => {
     firebase
       .firestore()
       .collection("users")
-      .doc(uniqueUid)
+      .doc(userUid)
       .collection("userTweeds")
       .doc(props.id)
       .delete()
@@ -121,4 +121,3 @@ export function DELETE_BUTTON(props) {
   );
 }
 
-//also delete tweed out of favorites tweed pool for all users

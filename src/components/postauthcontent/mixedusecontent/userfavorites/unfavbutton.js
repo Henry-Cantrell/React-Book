@@ -3,43 +3,48 @@ import firebase from "firebase";
 import { useSelector } from "react-redux";
 
 export function UNFAVORITE_BUTTON(props) {
-  const uniqueUid = useSelector((state) => state.uidInt);
+  const userUid = useSelector((state) => state.userUid);
 
-  let unfavoriteTweedInFirebase = () => {
-    props.false();
+  let handleUnfavoriteAction = () => {
+    let decrementFavCount = () => {
+      props.false();
 
-    firebase
-      .firestore()
-      .collection("favoriteCountForUserTweeds")
-      .doc(props.id)
-      .update({
-        favoriteCount: firebase.firestore.FieldValue.increment(-1),
-      })
-      .then(
-        firebase
-          .firestore()
-          .collection("favoriteTweeds")
-          .doc(uniqueUid)
-          .collection("tweedsFavoritedByUser")
-          .onSnapshot((snapshot) => {
-            snapshot.forEach((doc) => {
-              if (doc.id === props.id) {
-                firebase
-                  .firestore()
-                  .collection("favoriteTweeds")
-                  .doc(uniqueUid)
-                  .collection("tweedsFavoritedByUser")
-                  .doc(doc.id)
-                  .delete();
-              }
-            });
-          })
-      );
+      firebase
+        .firestore()
+        .collection("favoriteCountForUserTweeds")
+        .doc(props.id)
+        .update({
+          favoriteCount: firebase.firestore.FieldValue.increment(-1),
+        });
+    };
+
+    let deleteUnfavoritedTweed = () => {
+      firebase
+        .firestore()
+        .collection("favoriteTweeds")
+        .doc(userUid)
+        .collection("tweedsFavoritedByUser")
+        .onSnapshot((snapshot) => {
+          snapshot.forEach((doc) => {
+            if (doc.id === props.id) {
+              firebase
+                .firestore()
+                .collection("favoriteTweeds")
+                .doc(userUid)
+                .collection("tweedsFavoritedByUser")
+                .doc(doc.id)
+                .delete();
+            }
+          });
+        });
+    };
+    decrementFavCount();
+    deleteUnfavoritedTweed();
   };
 
   return (
     <>
-      <button onClick={unfavoriteTweedInFirebase}>Unfavorite</button>
+      <button onClick={handleUnfavoriteAction}>Unfavorite</button>
       {props.favoriteDisplay}
     </>
   );

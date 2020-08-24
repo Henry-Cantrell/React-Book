@@ -1,10 +1,10 @@
 import React from "react";
-import { TWEED_DIV_ON_PAGE } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/homepagecontent/tweedDivOnPage";
+import {TWEED_DIV_ON_PAGE} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/tweedonpage'
 import { connect, useSelector } from "react-redux";
-import { FAVORITE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/userfavorites/favbuttonhandler";
+import { FAVORITE_BUTTON_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/userfavorites/favbuttonhandler";
 
 export function FAVORITES_PROFILE(props) {
-  const userrUid = useSelector((state) => state.userUid)
+  const userUid = useSelector((state) => state.userUid)
   const username = useSelector((state) => state.username)
 
   let noUndefined = (item) => {
@@ -24,7 +24,7 @@ export function FAVORITES_PROFILE(props) {
             <FAVORITE_BUTTON_HANDLER
               id={tweed.id}
               uid={tweed.uid}
-              uniqueUid={uniqueUid}
+              userUid={userUid}
               tweed={tweed.tweed}
               username={username}
               usernameTweed={tweed.username}

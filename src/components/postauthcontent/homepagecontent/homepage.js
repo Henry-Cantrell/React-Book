@@ -1,69 +1,30 @@
 import React from "react";
 import { HEADER_BAR_HOME_PAGE } from "./headerbarhomepage";
 import { TWEED_BOX_FORM } from "./tweedboxform";
-import { TWEED_DIV_ON_PAGE } from "./tweedDivOnPage";
-import { connect } from "react-redux";
-import { DELETE_BUTTON } from "./deletebuttonfortweeds";
-import FOLLOWER_TWEEDS_ON_HOMEPAGE from "./followertweedsonhomepage";
+import FOLLOWED_TWEEDS_ON_HOMEPAGE from "./followedtweedshomepage";
 import LIKED_TWEEDS_FROM_FOLLOWED from "./likedtweedsfromfollowed";
+import USER_TWEEDS_ON_PAGE from "./usertweedsonpage";
 
-class HOME_PAGE extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let noUndefined = (item) => {
-      return item != undefined;
-    };
-
-    const testVar = this.props.userTweeds.tweedArray.filter(noUndefined);
-
-    const tweedsDisplay = testVar.length
-      ? testVar.map((tweed) => {
-          return (
-            <TWEED_DIV_ON_PAGE
-              showOtherUserProfile={null}
-              likedBy={null}
-              retweetedBy={null}
-              id={tweed.id}
-              button={<DELETE_BUTTON id={tweed.id} text="Delete this tweed" />}
-              likeButton={null}
-              retweedButton={null}
-              tweedText={tweed.tweed}
-              username={tweed.username}
-              uid={tweed.uid}
-            />
-          );
-        })
-      : null;
-
-    return (
-      <div class="homePageContainer">
-        <HEADER_BAR_HOME_PAGE />
-        <TWEED_BOX_FORM />
-        <div className="borderBlock"></div>
-        <div className="tweedDisplayList">
-          {tweedsDisplay}
-          <FOLLOWER_TWEEDS_ON_HOMEPAGE
-            showOtherUserProfile={this.props.showOtherUserProfile}
-            dispatch={this.props.dispatch}
-            uniqueUid={this.props.uniqueUid}
-            username={this.props.username}
-          />
-          <LIKED_TWEEDS_FROM_FOLLOWED 
-            showOtherUserProfile={this.props.showOtherUserProfile} 
-            username={this.props.username} uniqueUid={this.props.uniqueUid}/>
-        </div>
+export let HOME_PAGE = (props) => {
+  return (
+    <div class="homePageContainer">
+      <HEADER_BAR_HOME_PAGE />
+      <TWEED_BOX_FORM />
+      <div className="borderBlock"></div>
+      <div className="tweedDisplayList">
+        <USER_TWEEDS_ON_PAGE />
+        <FOLLOWED_TWEEDS_ON_HOMEPAGE
+          showOtherUserProfile={props.showOtherUserProfile}
+          dispatch={props.dispatch}
+          userUid={props.userUid}
+          username={props.username}
+        />
+        <LIKED_TWEEDS_FROM_FOLLOWED
+          showOtherUserProfile={props.showOtherUserProfile}
+          username={props.username}
+          userUid={props.userUid}
+        />
       </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    userTweeds: state.userTweeds,
-  };
+    </div>
+  );
 };
-
-export default connect(mapStateToProps)(HOME_PAGE);
