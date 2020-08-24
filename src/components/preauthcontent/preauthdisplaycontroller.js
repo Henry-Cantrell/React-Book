@@ -1,8 +1,8 @@
 import React from "react";
-import { AUTH_FIELDS_ACCESS_DIVS } from "./authfieldsaccessdivs";
-import {AUTH_MODAL_CONTROLLER} from './authmodalcontroller'
+import { AUTH_FIELDS_ACCESS_DIVS } from "./componentsforauthform/authfieldsaccessdivs";
+import {AUTH_MODAL_CONTROLLER} from './componentsforauthform/authmodalcontroller'
 
-export class USER_AUTH_DISPLAY_CONTROLLER extends React.Component {
+export class PRE_AUTH_DISPLAY_CONTROLLER extends React.Component {
   constructor(props) {
     super(props);
 
@@ -43,6 +43,9 @@ export class USER_AUTH_DISPLAY_CONTROLLER extends React.Component {
       showSignupModal: false,
     });
   };
+
+  //Places login/signup fields and places two auth_modal_controller instances to generate a login/signup modal -->
+  //--> dependent on forLogin prop
 
   render() {
     return (

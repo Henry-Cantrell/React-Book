@@ -1,4 +1,4 @@
-export const userUidReceiver = (state = 'empty', action) => {
+export const uidCaptureReducer = (state = 'empty', action) => {
     switch(action.type) {
         case 'LOGGED_IN':
             return state = action.uid;

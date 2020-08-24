@@ -3,17 +3,17 @@ import firebase from "firebase";
 import { userUidSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/useruidsend";
 import { LOGIN_MODAL } from "./loginmodal";
 import { SIGNUP_MODAL } from "./signupmodal";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"; 
 
 export let AUTH_MODAL_CONTROLLER = (props) => {
   const dispatch = useDispatch();
 
-  //This func processes login/signup events. There is a form in the return method which conditionally sets -->
+  //This component processes login/signup events. There is a form in the return method which conditionally sets -->
   //--> its own onSubmit method from one of two of the handler funcs, dependent on the passed forLogin prop via -->
   //--> a ternary operator. The login and signup modals are also imported and conditionally rendered -->
-  //--> via this component, once again dependent on the passed forLogin prop.
+  //--> via this component, once again dependent on the passed forLogin prop in the return method.
 
-  let loginHandler = (e) => {
+  let loginHandler = (e) => {+
     e.preventDefault();
     const loginEmail = document.querySelector("#auth-input-email").value;
     const loginPassword = document.querySelector("#auth-input-password").value;
@@ -66,8 +66,8 @@ export let AUTH_MODAL_CONTROLLER = (props) => {
     }
   };
   return (
-    <form onSubmit={props.forLogin != undefined ? loginHandler : signupHandler}>
-      {props.forLogin != undefined ? (
+    <form onSubmit={props.forLogin !== undefined ? loginHandler : signupHandler}>
+      {props.forLogin !== undefined ? (
         <LOGIN_MODAL hideLogin={props.hideLogin} />
       ) : (
         <SIGNUP_MODAL hideSignup={props.hideSignup} />

@@ -1,5 +1,5 @@
 import React from "react";
-import { TOP_DIV_CONTENT } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/bannerTwoProfilePage/topdivcontent";
+import { TOP_DIV_CONTENT } from "./topdivcontent";
 import { MIDDLE_DIV_CONTENT } from "./middlediv";
 import { BUTTON_BAR } from "./buttonbar";
 import firebase from "firebase";
@@ -10,76 +10,62 @@ export class PROFILE_PAGE extends React.Component {
   constructor(props) {
     super(props);
 
-    this.showUserProfileToggle = this.showUserProfileToggle.bind(this);
-    this.showUserFavoritesToggle = this.showUserFavoritesToggle.bind(this);
-    this.getJoinDateFromFirestore = this.getJoinDateFromFirestore.bind(this);
-    this.getUserBioFromFirestore = this.getUserBioFromFirestore.bind(this);
-
     this.state = {
       showUserProfile: true,
       showUserFavorites: false,
       userBio: null,
-      userJoinDate: null,
+      joinDate: null,
       username: null,
-      uid: this.props.uniqueUid
+      userUid: this.props.userUid,
     };
   }
 
-  getUserBioFromFirestore = () => {
+  getUserInfoFromFirestore = () => {
     firebase
       .firestore()
       .collection("users")
-      .doc(this.props.uniqueUid)
+      .doc(this.props.userUid)
       .get()
       .then((doc) => {
         this.setState({
           userBio: doc.data().userBio,
           username: doc.data().username,
+          joinDate: doc.data().joinDate,
+          userUid: doc.data().uniqueUid
         });
       });
   };
 
-  getJoinDateFromFirestore = () => {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(this.props.uniqueUid)
-      .get()
-      .then((doc) => {
-        this.setState({
-          userJoinDate: doc.data().joinDate,
-        });
-      });
-  };
-
-  showUserProfileToggle() {
+  showUserProfileToggle = () => {
     this.setState({
       showUserProfile: true,
       showUserFavorites: false,
     });
-  }
+  };
 
-  showUserFavoritesToggle() {
+  showUserFavoritesToggle = () => {
     this.setState({
       showUserProfile: false,
       showUserFavorites: true,
     });
-  }
+  };
 
   componentDidMount() {
-    this.getJoinDateFromFirestore();
-    this.getUserBioFromFirestore();
+    this.getUserInfoFromFirestore();
   }
 
   render() {
     return (
       <div class="parentDiv">
-        <TOP_DIV_CONTENT uid={this.state.uid} username={this.state.username}/>
+        <TOP_DIV_CONTENT
+          uid={this.state.userUid}
+          username={this.state.username}
+        />
         <MIDDLE_DIV_CONTENT
-          uidForUser={this.props.uniqueUid}
+          uidForUser={this.props.userUid}
           joinDate={this.state.userJoinDate}
           userBio={this.state.userBio}
-          userName={this.props.usernameFromRedux}
+          userName={this.state.username}
         />
         <BUTTON_BAR
           showUserProfileToggle={this.showUserProfileToggle}
@@ -89,7 +75,7 @@ export class PROFILE_PAGE extends React.Component {
           <TWEED_PROFILE />
         ) : this.state.showUserFavorites ? (
           <FAVORITES_PROFILE />
-        ) : console.log('profilepage/88')}
+        ) : null}
       </div>
     );
   }

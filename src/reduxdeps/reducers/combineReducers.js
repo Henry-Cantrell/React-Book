@@ -1,12 +1,11 @@
 import {combineReducers} from 'redux'
 import {loggedReducer} from './loggedReducer'
-import {uidCaptureReducer} from './uidCaptureReducer'
+import {userUidReceiver} from './uidCaptureReducer'
 import {emailCaptureReducer} from './emailCaptureReducer'
 import {usernameCaptureReducer} from './usernameCaptureReducer'
 import {userBioCapture} from './userBioCapture'
 import {userJoinDate} from './joinDateReducer'
 import {tweedCatch} from './tweedCaptureReducer'
-import {tweedCatchGlobal} from './tweedCaptureReducerGlobal'
 import {counterReducer} from './counterReducer'
 import {followedCountReducer} from './followedCountReducer'
 import {followerCountReducer} from './followerCountReducer'
@@ -21,13 +20,12 @@ import {otherUserFavoriteCapture} from './otheruserfavoritecapture'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
-  uidInt: uidCaptureReducer,
+  userUid: userUidReceiver,
   userEmail: emailCaptureReducer,
-  userName : usernameCaptureReducer,
+  username : usernameCaptureReducer,
   userBio : userBioCapture,
   joinDate : userJoinDate,
   userTweeds : tweedCatch,
-  globalTweeds : tweedCatchGlobal,
   counter : counterReducer,
   followedTweeds: followedTweedsCapture,
   followerCount: followerCountReducer,

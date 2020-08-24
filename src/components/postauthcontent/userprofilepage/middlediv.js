@@ -1,8 +1,9 @@
 import React from "react";
 import { MODAL_USER_PROFILE } from "./modalBackgroundUserProfile";
 import { FOLLOWER_AND_FOLLOWED_CONTENT } from "./followerandtweedcontent";
-import { FOLLOW_BUTTON } from "../followbutton";
+import { FOLLOW_BUTTON } from "./followbutton";
 import {TWEED_COUNT_FOR_USER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/tweedcountforuserprofiles'
+import {INFO_BLOCK_MIDDLE_DIV} from './infoblockmiddlediv'
 
 export class MIDDLE_DIV_CONTENT extends React.Component {
   constructor(props) {
@@ -31,11 +32,11 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
   render() {
     return (
       <div class="middleDiv">
-        <div class="userNameDisplayUidbProfilePage">
-          Username: {this.props.userName}
-        </div>
-        <div class="userBioDisplay">Bio: {this.props.userBio}</div>
-        <div class="userJoinDateDisplay">Joined: {this.props.joinDate}</div>
+        <USER_INFO_BLOCK_MIDDLE_DIV
+        username={this.props.username}
+        userBio={this.props.userBio}
+        joinDate={this.props.joinDate}
+        />
         <div class="uidbModalDiv">
           {this.props.disableEdit === undefined ? (
             <button class="uidModalButton" onClick={this.toggleShowTrue}>

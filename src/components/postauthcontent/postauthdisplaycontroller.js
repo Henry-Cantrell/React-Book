@@ -1,32 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { fireBaseExternalObj } from "../../firebasedeps";
 import { useDispatch } from "react-redux";
 import { userNameNet } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet";
 import { USER_PROFILE_BOTTOM_LEFT_BOX } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox";
 import { signOutAction } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/signOutAction";
 import { BANNER_CONTENT_FLOW_CONTROLLER } from "./bannercontent";
 
-export let MAIN_USER_PAGE = (props) => {
-  const dispatch = useDispatch();
-  const username = useSelector((state) => state.userName);
-  const userBioFromRedux = useSelector((state) => state.userBio);
-  const uniqueUid = useSelector((state) => state.uidInt);
-  const usernameFromRedux = useSelector((state) => state.userName);
-  const joinDateFromRedux = useSelector((state) => state.joinDate);
+export let POST_AUTH_DISPLAY_CONTROLLER = () => {
+  const dispatch = useDispatch()
 
   let signOutUser = () => {
-    fireBaseExternalObj.auth.signOut().then(dispatch(signOutAction()));
+    firebase.auth.signOut().then(dispatch(signOutAction()));
   };
 
   let getUsernameFromFirestore = () => {
-    const docRef = fireBaseExternalObj.dataBase
+    firebase
+      .firestore()
       .collection("users")
-      .doc(uniqueUid);
-
-    docRef
+      .doc(useSelector((state) => state.userUid))
       .get()
-      .then( (doc) => {
+      .then((doc) => {
         if (doc.exists) {
           dispatch(userNameNet(doc.data().username));
         } else {
@@ -43,17 +36,10 @@ export let MAIN_USER_PAGE = (props) => {
   return (
     <>
       <BANNER_CONTENT_FLOW_CONTROLLER
-        userBioFromRedux={userBioFromRedux}
-        uniqueUid={uniqueUid}
-        usernameFromRedux={usernameFromRedux}
-        joinDateFromRedux={joinDateFromRedux}
-        dispatch={dispatch}
-        username={username}
-        uniqueUid={uniqueUid}
       />
       <USER_PROFILE_BOTTOM_LEFT_BOX
         signOut={signOutUser}
-        userName={`@${useSelector((state) => state.userName)}`}
+        username={useSelector((state) => state.username)}
       />
     </>
   );
