@@ -1,7 +1,7 @@
 import React from "react";
 import { FOLLOWER_AND_FOLLOWED_CONTENT } from "./followerandtweedcontent";
-import { FOLLOW_BUTTON } from "./followbutton";
-import {TWEED_COUNT_FOR_USER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/tweedcountforuserprofiles'
+import { FOLLOW_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/followbutton";
+import {TWEED_COUNT_FOR_USER} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/tweedcountforuserprofiles'
 
 export let TWEED_INFO_BLOCK_MIDDLE_DIV = (props) => {
   <div className="showFollowAndTweedInts">

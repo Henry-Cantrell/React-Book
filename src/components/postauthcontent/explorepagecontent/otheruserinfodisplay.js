@@ -1,7 +1,8 @@
 import React from "react";
-import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/useravatar";
+import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/useravatar";
 
-export let OTHER_USER_INFO_DISPLAY = () => {
+export let OTHER_USER_INFO_DISPLAY = (props) => {
+  return (
   <>
     <div className="holderForAvatarOnExplore">
       <USER_AVATAR uid={props.uid} />
@@ -13,5 +14,6 @@ export let OTHER_USER_INFO_DISPLAY = () => {
       <div class="userBioDisplay">{props.userBio}</div>
     )}
     <div class="userJoinDateDisplay">Joined: {props.joinDate}</div>
-  </>;
+  </>
+  )
 };

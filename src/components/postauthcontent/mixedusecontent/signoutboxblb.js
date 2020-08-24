@@ -12,6 +12,3 @@ export let SIGN_OUT_BOX = (props) => {
     );
   };
 
-  //to-do:
-  //add username to display
-  

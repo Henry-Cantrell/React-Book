@@ -1,6 +1,6 @@
 import React from "react";
-import { PRE_AUTH_DISPLAY_CONTROLLER } from "./componentsforauthform/preauthdisplaycontroller";
-import { POST_AUTH_DISPLAY_CONTROLLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/postauthdisplaycontroller";
+import { PRE_AUTH_DISPLAY_CONTROLLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/preauthcontent/preauthdisplaycontroller";
+import { POST_AUTH_DISPLAY_CONTROLLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/postauthdisplaycontroller";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteDuplicateTweeds } from "./controllermodules/deleteduplicatetweeds"; 
 import { sortFollowedUserLikesInFb } from "./controllermodules/sortfolloweduserlikesinfb"; 

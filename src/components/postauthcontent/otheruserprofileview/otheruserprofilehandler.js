@@ -71,12 +71,12 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
       <OTHER_USER_PROFILE
         userUid={this.props.userUid}
         username={this.props.username}
-        uid={this.props.otherUserInfo.username.uid}
-        bio={this.props.otherUserInfo.username.bio}
-        joinDate={this.props.otherUserInfo.username.joinDate}
-        username={this.props.otherUserInfo.username.username}
-        followedCountOtherUser={this.props.otherUserInfo.username.followedCount}
-        followerCountOtherUser={this.props.otherUserInfo.username.followerCount}
+        uid={this.props.otherUserInfo.otherUserDataObject.uid}
+        bio={this.props.otherUserInfo.otherUserDataObject.bio}
+        joinDate={this.props.otherUserInfo.otherUserDataObject.joinDate}
+        username={this.props.otherUserInfo.otherUserDataObject.username}
+        followedCountOtherUser={this.props.otherUserInfo.otherUserDataObject.followedCount}
+        followerCountOtherUser={this.props.otherUserInfo.otherUserDataObject.followerCount}
       />
     );
   }

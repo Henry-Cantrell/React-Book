@@ -40,19 +40,18 @@ export class OTHER_USER_PROFILE extends React.Component {
         <TOP_DIV_CONTENT
           uid={this.props.uid}
           forOtherUser={true}
-          userName={this.state.username}
+          otherUserUsername={this.state.username}
         />
         <MIDDLE_DIV_CONTENT
-          uniqueUid={this.props.uniqueUid}
-          uidForUser={this.props.uid}
-          uid={this.props.uid}
+          userUid={this.props.userUid}
+          userUid={this.props.uid}
           forOtherUser={true}
           followedCountOtherUser={this.state.followedCountOtherUser}
           followerCountOtherUser={this.state.followerCountOtherUser}
           disableEdit={true}
-          joinDate={this.state.userJoinDate}
+          joinDate={this.state.joinDate}
           userBio={this.state.userBio}
-          userName={this.state.username}
+          username={this.state.username}
         />
         <BUTTON_BAR
           showUserProfileToggle={this.showUserProfileToggle}
@@ -60,13 +59,13 @@ export class OTHER_USER_PROFILE extends React.Component {
         />
         {this.state.showUserProfile ? (
           <OTHER_USER_TWEEDS_PROFILE
-            uniqueUid={this.props.uniqueUid}
+            userUid={this.props.userUid}
             username={this.state.username}
             uid={this.props.uid}
           />
         ) : this.state.showUserFavorites ? (
           <OTHER_USER_FAVORITES_PROFILE
-            uniqueUid={this.props.uniqueUid}
+            userUid={this.props.userUid}
             username={this.state.username}
             uid={this.props.uid}
           />
@@ -75,3 +74,4 @@ export class OTHER_USER_PROFILE extends React.Component {
     );
   }
 }
+

@@ -8,18 +8,11 @@ import { useDispatch } from "react-redux";
 export let AUTH_MODAL_CONTROLLER = (props) => {
   const dispatch = useDispatch();
 
-  //This component processes login/signup events. There is a form in the return method which conditionally sets -->
-  //--> its own onSubmit method from one of two of the handler funcs, dependent on the passed forLogin prop via -->
-  //--> a ternary operator. The login and signup modals are also imported and conditionally rendered -->
-  //--> via this component, once again dependent on the passed forLogin prop in the return method.
-
-  let loginHandler = (e) => {+
+  let loginHandler = (e) => {
     e.preventDefault();
     const loginEmail = document.querySelector("#auth-input-email").value;
     const loginPassword = document.querySelector("#auth-input-password").value;
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(loginEmail, loginPassword)
+    firebase.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
       .then((cred) => {
         dispatch(userUidSend(cred.user.uid, loginEmail));
       })

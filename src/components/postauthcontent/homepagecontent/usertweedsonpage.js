@@ -34,4 +34,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(HOME_PAGE);
+export default connect(mapStateToProps)(USER_TWEEDS_ON_PAGE);

@@ -32,10 +32,12 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
           username={this.props.username}
           userBio={this.props.userBio}
           joinDate={this.props.joinDate}
+          disableEdit={this.props.disableEdit}
         />
         <div class="uidbModalDiv">
           <TOGGLE_EDIT_PROFILE_MENU toggleShowTrue={this.toggleShowTrue} />
           <TWEED_INFO_BLOCK_MIDDLE_DIV
+            forOtherUser={this.props.forOtherUser}
             userUid={this.props.userUid}
             username={this.props.username}
           />

@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { PROFILE_INFO_USERNAME_HOVER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/nestedcomponents/profileinfofromusernamehover";
-import { TWEED_INFO_AND_USERNAME_CLICK_HANDLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/tweedinfoandusernameclickhandler";
-import { LIKE_AND_FAV_BUTTONS } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/likeandfavbuttons";
+import { PROFILE_INFO_USERNAME_HOVER } from "./profileinfofromusernamehover";
+import { TWEED_INFO_AND_USERNAME_CLICK_HANDLER } from "./tweedinfoandusernameclickhandler";
+import { LIKE_AND_FAV_BUTTONS } from "./likeandfavbuttons";
 
 export function TWEED_DIV_ON_PAGE(props) {
   const userUid = useSelector((state) => state.userUid);

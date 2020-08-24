@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 import {loggedReducer} from './loggedReducer'
-import {userUidReceiver} from './uidCaptureReducer'
+import {uidCaptureReducer} from './uidCaptureReducer'
 import {emailCaptureReducer} from './emailCaptureReducer'
 import {usernameCaptureReducer} from './usernameCaptureReducer'
 import {userBioCapture} from './userBioCapture'
@@ -20,7 +20,7 @@ import {otherUserFavoriteCapture} from './otheruserfavoritecapture'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
-  userUid: userUidReceiver,
+  userUid: uidCaptureReducer,
   userEmail: emailCaptureReducer,
   username : usernameCaptureReducer,
   userBio : userBioCapture,
@@ -36,5 +36,5 @@ export const allReducers = combineReducers({
   allUserTweeds: captureAllUserTweeds,
   otherUserInfo: reducerForOtherUserInfo,
   otherUserPersonalTweeds: otherUserPersonalTweedsCapture,
-  otherUserFavoriteTweeds: otherUserFavoriteCapture
+  otherUserFavoriteTweeds: otherUserFavoriteCapture,
 })

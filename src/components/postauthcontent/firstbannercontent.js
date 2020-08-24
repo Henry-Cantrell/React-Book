@@ -1,6 +1,7 @@
 import React from "react";
 
 export let FIRST_BANNER_CONTENT = (props) => {
+  return(
   <div class="first">
     <div class="bannerFlowControlButtons">
       <button onClick={props.showHomePage}>Home page</button>
@@ -8,4 +9,5 @@ export let FIRST_BANNER_CONTENT = (props) => {
       <button onClick={props.showExplorePage}>Explore page</button>
     </div>
   </div>
+  )
 };

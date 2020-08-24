@@ -1,13 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import firebase from 'firebase'
 import { userNameNet } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet";
-import { USER_PROFILE_BOTTOM_LEFT_BOX } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/mainpage/profilebox";
+import { SIGN_OUT_BOX} from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/signoutboxblb";
 import { signOutAction } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/signOutAction";
-import { BANNER_CONTENT_FLOW_CONTROLLER } from "./bannercontent";
+import { BANNER_CONTENT_FLOW_CONTROLLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/bannercontentflowcontroller";
 
 export let POST_AUTH_DISPLAY_CONTROLLER = () => {
   const dispatch = useDispatch()
+  const userUid = useSelector((state) => state.userUid)
 
   let signOutUser = () => {
     firebase.auth.signOut().then(dispatch(signOutAction()));
@@ -17,7 +18,7 @@ export let POST_AUTH_DISPLAY_CONTROLLER = () => {
     firebase
       .firestore()
       .collection("users")
-      .doc(useSelector((state) => state.userUid))
+      .doc(userUid)
       .get()
       .then((doc) => {
         if (doc.exists) {
@@ -27,7 +28,7 @@ export let POST_AUTH_DISPLAY_CONTROLLER = () => {
         }
       })
       .catch(function (error) {
-        window.alert("Error with document retrieval method in mainuserpage.js");
+        window.alert("Error with document retrieval method");
       });
   };
 
@@ -37,9 +38,8 @@ export let POST_AUTH_DISPLAY_CONTROLLER = () => {
     <>
       <BANNER_CONTENT_FLOW_CONTROLLER
       />
-      <USER_PROFILE_BOTTOM_LEFT_BOX
+      <SIGN_OUT_BOX
         signOut={signOutUser}
-        username={useSelector((state) => state.username)}
       />
     </>
   );

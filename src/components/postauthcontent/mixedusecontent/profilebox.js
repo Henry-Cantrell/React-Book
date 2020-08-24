@@ -1,5 +1,5 @@
 import React from 'react'
-import {SIGN_OUT_BOX} from './nestedcomponents/signoutboxblb'
+import {SIGN_OUT_BOX} from './signoutboxblb'
 
 export class USER_PROFILE_BOTTOM_LEFT_BOX extends React.Component {
     constructor(props) {

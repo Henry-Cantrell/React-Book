@@ -41,7 +41,7 @@ export let TWEED_BOX_FORM = () => {
     firebase
       .firestore()
       .collection("users")
-      .doc(uniqueUid)
+      .doc(userUid)
       .collection("userTweeds")
       .doc(`counter${counter}`)
       .set({
