@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { PROFILE_INFO_USERNAME_HOVER } from "./profileinfofromusernamehover";
+import { PROFILE_INFO_USERNAME_HOVER } from "./ProfileInfoFromUsernameHover";
 import { TWEED_INFO_AND_USERNAME_CLICK_HANDLER } from "./tweedinfoandusernameclickhandler";
 import { LIKE_AND_FAV_BUTTONS } from "./likeandfavbuttons";
 

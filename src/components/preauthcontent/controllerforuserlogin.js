@@ -11,17 +11,17 @@ import { userFavsFbToRedux } from "./controllermodules/userfavfirebasetoredux";
 
 export let LOGIN_STATUS_CONTROLLER = () => {
   const isLogged = useSelector((state) => state.isLogged);
-  const uniqueUid = useSelector((state) => state.uidInt);
+  const userUid = useSelector((state) => state.userUid);
   const usernameOfCurrentUser = useSelector((state) => state.username);
   const dispatch = useDispatch();
 
   //these funcs place onSnapshot listeners to firebase data items
-  deleteDuplicateTweeds(uniqueUid, usernameOfCurrentUser);
-  sortFollowedUserLikesInFb(uniqueUid);
-  followedUserTweedsFbToRedux(uniqueUid, dispatch);
-  userTweedsFbToRedux(uniqueUid, dispatch);
-  likedByFollowedFbToRedux(uniqueUid, dispatch);
-  userFavsFbToRedux(uniqueUid, dispatch);
+  deleteDuplicateTweeds(userUid, usernameOfCurrentUser);
+  sortFollowedUserLikesInFb(userUid);
+  followedUserTweedsFbToRedux(userUid, dispatch);
+  userTweedsFbToRedux(userUid, dispatch);
+  likedByFollowedFbToRedux(userUid, dispatch);
+  userFavsFbToRedux(userUid, dispatch);
 
   return <>{isLogged ? <POST_AUTH_DISPLAY_CONTROLLER /> : <PRE_AUTH_DISPLAY_CONTROLLER />}</>;
 };

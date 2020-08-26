@@ -1,11 +1,11 @@
 import firebase from "firebase";
 
-export let sortFollowedUserLikesInFb = (uniqueUid) => {
+export let sortFollowedUserLikesInFb = (userUid) => {
 
     firebase
       .firestore()
       .collection("users")
-      .doc(uniqueUid)
+      .doc(userUid)
       .collection("followedUserUids")
       .onSnapshot((snapshot) => {
         snapshot.forEach((docFollowed) => {
@@ -20,7 +20,7 @@ export let sortFollowedUserLikesInFb = (uniqueUid) => {
                 firebase
                   .firestore()
                   .collection("users")
-                  .doc(uniqueUid)
+                  .doc(userUid)
                   .collection("followedUserUids")
                   .get()
                   .then((itemsFollowed) => {
@@ -31,7 +31,7 @@ export let sortFollowedUserLikesInFb = (uniqueUid) => {
                         firebase
                           .firestore()
                           .collection("likedTweedsOfFollowedUsers")
-                          .doc(uniqueUid)
+                          .doc(userUid)
                           .set({
                             dnd: "dnd",
                           })
@@ -39,7 +39,7 @@ export let sortFollowedUserLikesInFb = (uniqueUid) => {
                             firebase
                               .firestore()
                               .collection("likedTweedsOfFollowedUsers")
-                              .doc(uniqueUid)
+                              .doc(userUid)
                               .collection("tweedPool")
                               .doc(docLikedByFollowed.id)
                               .set({

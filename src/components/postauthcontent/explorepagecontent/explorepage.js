@@ -13,7 +13,7 @@ class EXPLORE_PAGE extends React.Component {
     };
 
     const testVar = this.props.allUserInfo.infoArray.filter(noUndefined);
-    //checks username null status to determine if a valueless object is received or not
+
     const allUserInfoDisplay = testVar.length
       ? testVar.map((userInfo) => {
           if (userInfo.username != null && this.props.userUid != userInfo.uid) {

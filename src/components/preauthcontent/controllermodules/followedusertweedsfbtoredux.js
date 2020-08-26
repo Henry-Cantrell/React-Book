@@ -2,12 +2,12 @@ import firebase from "firebase";
 import { followedTweedSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/followedTweedSend";
 import { clearTweedFollow } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearTweedFollow";
 
-export let followedUserTweedsFbToRedux = (uniqueUid, dispatch) => {
+export let followedUserTweedsFbToRedux = (userUid, dispatch) => {
 
     firebase
       .firestore()
       .collection("users")
-      .doc(uniqueUid)
+      .doc(userUid)
       .collection("followedTweeds")
       .onSnapshot((snapshot) => {
         dispatch(clearTweedFollow());

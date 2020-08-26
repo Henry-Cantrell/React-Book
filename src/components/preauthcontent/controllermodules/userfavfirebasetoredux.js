@@ -2,12 +2,12 @@ import firebase from "firebase";
 import { sendUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/sendUserFav";
 import { clearUserFav } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearUserFav";
 
-export let userFavsFbToRedux = (uniqueUid, dispatch) => {
+export let userFavsFbToRedux = (userUid, dispatch) => {
 
   firebase
     .firestore()
     .collection("favoriteTweeds")
-    .doc(uniqueUid)
+    .doc(userUid)
     .collection("tweedsFavoritedByUser")
     .onSnapshot((snapshot) => {
       dispatch(clearUserFav());

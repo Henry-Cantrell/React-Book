@@ -1,7 +1,7 @@
 import React from "react";
 import firebase from "firebase";
-import { FOLLOW_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/followbutton";
 import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/useravatar";
+import { INFO_BLOCK_FROM_HOVER } from "./InfoBlockFromHover";
 
 export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
   constructor(props) {
@@ -10,11 +10,10 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
     this.state = {
       showProfileInfo: false,
       username: null,
-      usernameOfCurrentUser: this.props.username,
+      usernameOfCurrentUser: this.props.usernameOfCurrentUser,
       bio: null,
       folllowedCount: null,
       followerCount: null,
-      uid: this.props.uid,
     };
   }
 
@@ -26,11 +25,10 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
     firebase
       .firestore()
       .collection("users")
-      .doc(this.state.uid)
+      .doc(this.props.uid)
       .get()
       .then((doc) =>
         this.setState({
-          username: `Username: ${doc.data().username}`,
           bio:
             doc.data().userBio === "Set up your bio" ? (
               <></>
@@ -49,6 +47,9 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
     });
   };
 
+  //wrapper div determines if passed username is equal to current username or if component is for other user page
+  //with a ternary operator and does not respond to onMouseEnter event if so
+
   render() {
     return (
       <>
@@ -62,23 +63,15 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
           onMouseLeave={this.mouseMoveOffDiv}
         >
           {this.state.showProfileInfo ? (
-            <div className="viewUserProfileInfoFromHover">
-              <div>{this.state.username}</div>
-              <div>{this.state.bio}</div>
-              <div>{this.state.folllowedCount}</div>
-              <div>{this.state.followerCount}</div>
-              <div>
-                {
-                  <FOLLOW_BUTTON
-                    uniqueUid={this.props.uniqueUid}
-                    usernameOfCurrentUser={this.state.username}
-                    uid={this.state.uid}
-                  />
-                }
-              </div>
-            </div>
+            <INFO_BLOCK_FROM_HOVER
+              username={this.state.username}
+              bio={this.state.bio}
+              followedCount={this.state.folllowedCount}
+              followerCount={this.state.followerCount}
+              uid={this.props.uid}
+            />
           ) : null}
-          <USER_AVATAR uid={this.props.uid} username={this.state.username}/>
+          <USER_AVATAR uid={this.state.uid} username={this.state.username} />
         </div>
       </>
     );

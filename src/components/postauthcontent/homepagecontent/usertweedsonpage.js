@@ -8,7 +8,7 @@ export let USER_TWEEDS_ON_PAGE = (props) => {
     return item != undefined;
   };
 
-  const testVar = this.props.userTweeds.tweedArray.filter(noUndefined);
+  const testVar = props.userTweeds.tweedArray.filter(noUndefined);
 
   const tweedsDisplay =
     testVar.length > 0

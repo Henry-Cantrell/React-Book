@@ -44,9 +44,6 @@ export class PRE_AUTH_DISPLAY_CONTROLLER extends React.Component {
     });
   };
 
-  //Places login/signup fields and places two auth_modal_controller instances to generate a login/signup modal -->
-  //--> dependent on forLogin prop
-
   render() {
     return (
       <>

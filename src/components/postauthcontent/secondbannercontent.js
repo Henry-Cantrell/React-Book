@@ -1,7 +1,7 @@
 import React from "react";
 import { PROFILE_PAGE } from "./userprofilepage/profilepage";
 import { HOME_PAGE } from "./homepagecontent/homepage";
-import EXPLORE_PAGE_HANDLER from "./explorepagecontent/explorepage";
+import {EXPLORE_PAGE_HANDLER} from "./explorepagecontent/explorepagehandler";
 import OTHER_USER_PROFILE_HANDLER from "./otheruserprofileview/otheruserprofilehandler";
 import { useDispatch,useSelector } from "react-redux";
 

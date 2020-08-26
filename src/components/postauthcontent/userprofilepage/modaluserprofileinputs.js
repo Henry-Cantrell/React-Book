@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { userBioSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userBioSend";
 
 export function MODAL_USER_PROFILE_INPUTS(props) {
-  const uniqueUid = useSelector((state) => state.uidInt);
+  const userUid = useSelector((state) => state.userUid);
   const dispatch = useDispatch();
 
   let giveBioToFirebase = (e) => {
@@ -15,7 +15,7 @@ export function MODAL_USER_PROFILE_INPUTS(props) {
       firebase
         .firestore()
         .collection("users")
-        .doc(uniqueUid)
+        .doc(userUid)
         .update({
           userBio: document.getElementById("userBio").value,
         })
@@ -32,14 +32,14 @@ export function MODAL_USER_PROFILE_INPUTS(props) {
 
   let uploadBannerToFirebase = (e) => {
     const file = e.target.files[0];
-    const storageRef = firebase.storage().ref(`${props.uniqueUid}/userBanner`);
+    const storageRef = firebase.storage().ref(`${userUid}/userBanner`);
 
     storageRef.put(file);
   };
 
   let uploadAvatarToFirebase = (e) => {
     const file = e.target.files[0];
-    const storageRef = firebase.storage().ref(`${props.uniqueUid}/userAvatar`);
+    const storageRef = firebase.storage().ref(`${userUid}/userAvatar`);
 
     storageRef.put(file);
   };

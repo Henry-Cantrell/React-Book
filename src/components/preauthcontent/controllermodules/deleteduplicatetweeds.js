@@ -1,11 +1,11 @@
 import firebase from "firebase";
 
-export let deleteDuplicateTweeds = (uniqueUid, usernameOfCurrentUser) => {
+export let deleteDuplicateTweeds = (userUid, usernameOfCurrentUser) => {
 
   firebase
     .firestore()
     .collection("likedTweedsOfFollowedUsers")
-    .doc(uniqueUid)
+    .doc(userUid)
     .collection("tweedPool")
     .onSnapshot((snapshot) => {
       if (!snapshot.empty) {
@@ -13,7 +13,7 @@ export let deleteDuplicateTweeds = (uniqueUid, usernameOfCurrentUser) => {
           firebase
             .firestore()
             .collection("users")
-            .doc(uniqueUid)
+            .doc(userUid)
             .collection("followedUserUids")
             .onSnapshot((snapshot) => {
               snapshot.forEach((docFollowed) => {
@@ -25,7 +25,7 @@ export let deleteDuplicateTweeds = (uniqueUid, usernameOfCurrentUser) => {
                   firebase
                     .firestore()
                     .collection("likedTweedsOfFollowedUsers")
-                    .doc(uniqueUid)
+                    .doc(userUid)
                     .collection("tweedPool")
                     .doc(docLikedByFollowed.id)
                     .delete();
