@@ -5,8 +5,8 @@ import { TWEED_COUNT_FOR_USER } from "/home/suzuka/Coding/the_odin_project/Proje
 
 export let TWEED_INFO_BLOCK_MIDDLE_DIV = (props) => {
   return (
-    <div className="showFollowAndTweedInts">
-      <TWEED_COUNT_FOR_USER uid={props.userUid} />
+    <div className="showFollowAndTweedInts">    
+      <TWEED_COUNT_FOR_USER userUid={props.userUid} />
       {props.forOtherUser === undefined ? (
         <FOLLOWER_AND_FOLLOWED_CONTENT />
       ) : (

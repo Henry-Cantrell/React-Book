@@ -43,6 +43,7 @@ export class ALL_USER_INFO_ON_PAGE extends React.Component {
         <div class="uidbModalDiv">
           <FOLLOW_BUTTON
             uid={this.props.uid}
+            username={this.props.username}
             userUid={this.props.userUid}
           />
           <div className="showFollowAndTweedInts">

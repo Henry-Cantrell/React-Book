@@ -1,14 +1,14 @@
 import React from "react";
 import { TWEED_DIV_ON_PAGE } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/tweedonpage";
 import { connect } from "react-redux";
-import { DELETE_BUTTON } from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/homepagecontent/deletebuttonfortweeds'
+import { DELETE_BUTTON } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/homepagecontent/deletebuttonfortweeds";
 
-let TWEEDS_PROFILE = () => {
+let TWEEDS_PROFILE = (props) => {
   let noUndefined = (item) => {
     return item != undefined;
   };
 
-  const testVar = this.props.userTweeds.tweedArray.filter(noUndefined);
+  const testVar = props.userTweeds.tweedArray.filter(noUndefined);
 
   const tweedsDisplay = testVar.length ? (
     testVar.map((tweed) => {

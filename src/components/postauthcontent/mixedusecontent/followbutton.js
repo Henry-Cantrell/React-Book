@@ -51,6 +51,7 @@ export class FOLLOW_BUTTON extends React.Component {
             uid={this.props.uid}
             userUid={this.props.userUid}
             changeFollowedFalse={this.changeFollowedFalse}
+            username={this.props.username}
           />
         ) : (
           <PLACE_FOLLOW_BUTTON

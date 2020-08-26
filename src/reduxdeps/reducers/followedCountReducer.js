@@ -5,6 +5,6 @@ export function followedCountReducer (state = 0, action) {
         case 'FOLLOWER_AND_FOLLOWED_CLEAR':
             return state = 0
         default:
-            return state=state
+            return state
     }
 }

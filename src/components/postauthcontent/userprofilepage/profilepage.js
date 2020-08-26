@@ -16,7 +16,7 @@ export class PROFILE_PAGE extends React.Component {
       userBio: null,
       joinDate: null,
       username: null,
-      userUid: null,
+      userUid: this.props.userUid
     };
   }
 
@@ -24,14 +24,14 @@ export class PROFILE_PAGE extends React.Component {
     firebase
       .firestore()
       .collection("users")
-      .doc(this.props.userUid)
+      .doc(this.state.userUid)
       .get()
       .then((doc) => {
         this.setState({
           userBio: doc.data().userBio,
           username: doc.data().username,
           joinDate: doc.data().joinDate,
-          userUid: doc.data().uniqueUid
+          userUid: doc.data().uid
         });
       });
   };

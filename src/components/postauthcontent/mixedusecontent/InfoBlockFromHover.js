@@ -14,8 +14,9 @@ export function INFO_BLOCK_FROM_HOVER(props) {
       <div>
         {
           <FOLLOW_BUTTON
+            username={props.username}
             userUid={userUid}
-            usernameOfCurrentUser={props.username}
+            usernameOfCurrentUser={props.usernameOfCurrentUser}
             uid={props.uid}
           />
         }

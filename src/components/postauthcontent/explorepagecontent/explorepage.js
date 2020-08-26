@@ -22,8 +22,6 @@ class EXPLORE_PAGE extends React.Component {
                 username={userInfo.username}
                 userBio={userInfo.bio}
                 joinDate={userInfo.joinDate}
-                followedCount={userInfo.followedCount}
-                followerCount={userInfo.followerCount}
                 uid={userInfo.uid}
                 userUid={this.props.userUid}
               />

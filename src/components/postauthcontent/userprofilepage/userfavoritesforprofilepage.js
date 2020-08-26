@@ -20,6 +20,7 @@ export function FAVORITES_PROFILE(props) {
           uid={tweed.uid}
           id={tweed.id}
           tweedText={tweed.tweed}
+          username={tweed.username}
           retweedButton={
             <FAVORITE_BUTTON_HANDLER
               id={tweed.id}
@@ -30,7 +31,6 @@ export function FAVORITES_PROFILE(props) {
               usernameTweed={tweed.username}
             />
           }
-          username={tweed.username}
         />
       );
     })

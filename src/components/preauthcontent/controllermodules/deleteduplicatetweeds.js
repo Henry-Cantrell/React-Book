@@ -21,7 +21,6 @@ export let deleteDuplicateTweeds = (userUid, usernameOfCurrentUser) => {
                   docFollowed.data().username === docLikedByFollowed.data().username ||
                   usernameOfCurrentUser === docLikedByFollowed.data().username
                 ) {
-                  console.log("dltofu/30");
                   firebase
                     .firestore()
                     .collection("likedTweedsOfFollowedUsers")

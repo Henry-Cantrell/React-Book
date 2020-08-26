@@ -15,11 +15,12 @@ function LIKED_TWEEDS_FROM_FOLLOWED(props) {
   const tweedsDisplayFollowedLiked = testVar.length
     ? testVar.map((tweed) => {
         return (
-
           <TWEED_DIV_ON_PAGE
             showOtherUserProfile={props.showOtherUserProfile}
             uid={tweed.uid}
             id={tweed.id}
+            tweedText={tweed.tweed}
+            username={tweed.username}
             likeButton={
               <LIKE_BUTTON_HANDLER
                 username={props.username}
@@ -40,8 +41,6 @@ function LIKED_TWEEDS_FROM_FOLLOWED(props) {
                 usernameTweed={tweed.username}
               />
             }
-            tweedText={tweed.tweed}
-            username={tweed.username}
             likedBy={
               <PROFILE_FROM_LIKEDBY_MESSAGE
                 showOtherUserProfile={props.showOtherUserProfile}

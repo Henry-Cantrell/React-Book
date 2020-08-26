@@ -16,13 +16,13 @@ export let HOME_PAGE = (props) => {
         <FOLLOWED_TWEEDS_ON_HOMEPAGE
           showOtherUserProfile={props.showOtherUserProfile}
           dispatch={props.dispatch}
-          userUid={props.userUid}
-          username={props.username}
+          userUid={props.userDataObject.userUid}
+          username={props.userDataObject.username}
         />
         <LIKED_TWEEDS_FROM_FOLLOWED
           showOtherUserProfile={props.showOtherUserProfile}
-          username={props.username}
-          userUid={props.userUid}
+          username={props.userDataObject.username}
+          userUid={props.userDataObject.userUid}
         />
       </div>
     </div>

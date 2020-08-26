@@ -9,7 +9,7 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
 
     this.state = {
       showProfileInfo: false,
-      username: null,
+      username: this.props.username,
       usernameOfCurrentUser: this.props.usernameOfCurrentUser,
       bio: null,
       folllowedCount: null,
@@ -64,7 +64,8 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
         >
           {this.state.showProfileInfo ? (
             <INFO_BLOCK_FROM_HOVER
-              username={this.state.username}
+              username={this.props.username}
+              usernameOfCurrentUser={this.state.username}
               bio={this.state.bio}
               followedCount={this.state.folllowedCount}
               followerCount={this.state.followerCount}
