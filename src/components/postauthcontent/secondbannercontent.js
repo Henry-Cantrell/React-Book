@@ -8,10 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 export let SECOND_BANNER_CONTENT = (props) => {
   const dispatch = useDispatch();
 
-  const otherUserUid = useSelector((state) => state.otherUserUid)
+  const otherUserUid = useSelector((state) => state.otherUserUid);
 
   const userDataObject = {
-    username: useSelector((state) => state.userName),
+    username: useSelector((state) => state.username),
     userBio: useSelector((state) => state.userBio),
     userUid: useSelector((state) => state.userUid),
     joinDate: useSelector((state) => state.joinDate),
@@ -34,7 +34,7 @@ export let SECOND_BANNER_CONTENT = (props) => {
           showOtherUserProfile={props.showOtherUserProfileFunc}
         />
       ) : null}
-      {props.showOtherUserProfileState && otherUserUid != null ? (
+      {props.showOtherUserProfileState ? (
         <OTHER_USER_PROFILE_HANDLER
           otherUserUid={otherUserUid}
           username={userDataObject.username}

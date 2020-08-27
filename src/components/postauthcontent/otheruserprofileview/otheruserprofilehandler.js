@@ -29,6 +29,7 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
       .collection("userTweeds")
       .get()
       .then((items) => {
+        this.props.dispatch(clearTweedOtherUserPersonal());
         items.forEach((tweed) => {
           this.props.dispatch(
             otherUserPersonalTweeds({
@@ -50,6 +51,7 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
       .collection("tweedsFavoritedByUser")
       .get()
       .then((items) => {
+        this.props.dispatch(clearTweedOtherUserFav());
         items.forEach((tweed) => {
           this.props.dispatch(
             otherUserFavTweeds({
@@ -65,8 +67,6 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
 
   componentDidMount() {
     let retrieveOtherUserTweeds = () => {
-      this.props.dispatch(clearTweedOtherUserFav());
-      this.props.dispatch(clearTweedOtherUserPersonal());
       this.setUserFavoriteTweeds();
       this.dispatchOtherUserPersonalTweeds();
     };
@@ -93,19 +93,19 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
   }
 
   render() {
-    return this.state.username === null ? null : (
+    return (
       <OTHER_USER_PROFILE
-        forOtherUser={true}
         userUid={this.props.userUid}
         username={this.props.username}
-        uid={this.state.uid}
+        forOtherUser={true}
+        uid={this.props.otherUserUid}
         bio={this.state.bio}
         joinDate={this.state.joinDate}
         username={this.state.username}
         followedCountOtherUser={this.state.followedCount}
         followerCountOtherUser={this.state.followerCount}
       />
-    );
+    )
   }
 }
 
