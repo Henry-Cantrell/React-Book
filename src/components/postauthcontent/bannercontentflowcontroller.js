@@ -62,7 +62,8 @@ export class BANNER_CONTENT_FLOW_CONTROLLER extends React.Component {
           showProfilePage={this.state.showProfilePage}
           showHomePage={this.state.showHomePage}
           showExplorePage={this.state.showExplorePage}
-          showOtherUserProfile={this.state.showOtherUserProfile}
+          showOtherUserProfileState={this.state.showOtherUserProfile}
+          showOtherUserProfileFunc={this.showOtherUserProfile}
         />
         <div class="third"></div>
       </>

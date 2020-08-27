@@ -2,7 +2,7 @@ export function reducerForOtherUserInfo(state = null, action) {
     switch (action.type) {
       case "OTHER_USER_INFO_SEND":
         return {
-          otherUserDataObject: 'placeholder',
+          otherUserDataObject: action.otherUserDataObject,
           username: action.username,
           uid: action.uid,
           bio: action.bio,

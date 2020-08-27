@@ -17,6 +17,7 @@ import {captureAllUserTweeds} from './allusertweedscapture'
 import {reducerForOtherUserInfo} from './reducerforotheruserinfo'
 import {otherUserPersonalTweedsCapture} from './otheruserpersonaltweedscapture'
 import {otherUserFavoriteCapture} from './otheruserfavoritecapture'
+import {otherUserUidReducer} from './otherUserUidReducer'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -37,4 +38,5 @@ export const allReducers = combineReducers({
   otherUserInfo: reducerForOtherUserInfo,
   otherUserPersonalTweeds: otherUserPersonalTweedsCapture,
   otherUserFavoriteTweeds: otherUserFavoriteCapture,
+  otherUserUid: otherUserUidReducer
 })

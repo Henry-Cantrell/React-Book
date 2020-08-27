@@ -16,6 +16,8 @@ function FOLLOWER_TWEEDS_ON_HOMEPAGE(props) {
     ? testVar.map((tweed) => {
         return (
           <TWEED_DIV_ON_PAGE
+            tweedText={tweed.tweed}
+            username={tweed.username}
             uid={tweed.uid}
             showOtherUserProfile={props.showOtherUserProfile}
             id={tweed.id}
@@ -39,8 +41,6 @@ function FOLLOWER_TWEEDS_ON_HOMEPAGE(props) {
                 usernameTweed={tweed.username}
               />
             }
-            tweedText={tweed.tweed}
-            username={tweed.username}
           />
         );
       })

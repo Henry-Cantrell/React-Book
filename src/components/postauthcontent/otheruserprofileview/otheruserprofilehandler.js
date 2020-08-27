@@ -7,76 +7,103 @@ import { otherUserPersonalTweeds } from "/home/suzuka/Coding/the_odin_project/Pr
 import { clearTweedOtherUserPersonal } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/clearOtherUserPersonal";
 import firebase from "firebase";
 
-//this component depends on lifecycle hooks and should not be converted to a func component
-
 class OTHER_USER_PROFILE_HANDLER extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      username: null,
+      uid: null,
+      bio: null,
+      joinDate: null,
+      followedCount: null,
+      followerCount: null,
+    };
   }
+
+  dispatchOtherUserPersonalTweeds = () => {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.props.otherUserUid)
+      .collection("userTweeds")
+      .get()
+      .then((items) => {
+        items.forEach((tweed) => {
+          this.props.dispatch(
+            otherUserPersonalTweeds({
+              uid: tweed.data().uid,
+              id: tweed.id,
+              username: tweed.data().username,
+              tweed: tweed.data().tweed,
+            })
+          );
+        });
+      });
+  };
+
+  setUserFavoriteTweeds = () => {
+    firebase
+      .firestore()
+      .collection("favoriteTweeds")
+      .doc(this.props.otherUserUid)
+      .collection("tweedsFavoritedByUser")
+      .get()
+      .then((items) => {
+        items.forEach((tweed) => {
+          this.props.dispatch(
+            otherUserFavTweeds({
+              uid: tweed.data().uid,
+              id: tweed.id,
+              username: tweed.data().username,
+              tweed: tweed.data().tweed,
+            })
+          );
+        });
+      });
+  };
 
   componentDidMount() {
-    this.props.dispatch(clearTweedOtherUserFav());
-    this.props.dispatch(clearTweedOtherUserPersonal());
-  }
-
-  componentDidUpdate() {
-    let dispatchOtherUserPersonalTweeds = () => {
-      if (this.props.otherUserInfo !== null) {
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(this.props.otherUserInfo.username.uid)
-          .collection("userTweeds")
-          .get()
-          .then((items) => {
-            items.forEach((tweed) => {
-              this.props.dispatch(
-                otherUserPersonalTweeds({
-                  uid: tweed.data().uid,
-                  id: tweed.id,
-                  username: tweed.data().username,
-                  tweed: tweed.data().tweed,
-                })
-              );
-            });
-          });
-      }
+    let retrieveOtherUserTweeds = () => {
+      this.props.dispatch(clearTweedOtherUserFav());
+      this.props.dispatch(clearTweedOtherUserPersonal());
+      this.setUserFavoriteTweeds();
+      this.dispatchOtherUserPersonalTweeds();
     };
-    let setUserFavoriteTweeds = () => {
+    let setOtherUserDataInState = () => {
       firebase
         .firestore()
-        .collection("favoriteTweeds")
-        .doc(this.props.otherUserInfo.username.uid)
-        .collection("tweedsFavoritedByUser")
+        .collection("users")
+        .doc(this.props.otherUserUid)
         .get()
-        .then((items) => {
-          items.forEach((tweed) => {
-            this.props.dispatch(
-              otherUserFavTweeds({
-                uid: tweed.data().uid,
-                id: tweed.id,
-                username: tweed.data().username,
-                tweed: tweed.data().tweed,
-              })
-            );
+        .then((doc) => {
+          this.setState({
+            otherUserDataObject: 0,
+            username: doc.data().username,
+            uid: doc.data().uid,
+            bio: doc.data().userBio,
+            joinDate: doc.data().joinDate,
+            followedCount: doc.data().followedCount,
+            followerCount: doc.data().followerCount,
           });
         });
     };
-    dispatchOtherUserPersonalTweeds();
-    setUserFavoriteTweeds();
+    retrieveOtherUserTweeds();
+    setOtherUserDataInState();
   }
 
   render() {
-    return this.props.otherUserInfo === null ? null : (
+    return this.state.username === null ? null : (
       <OTHER_USER_PROFILE
+        forOtherUser={true}
         userUid={this.props.userUid}
         username={this.props.username}
-        uid={this.props.otherUserInfo.otherUserDataObject.uid}
-        bio={this.props.otherUserInfo.otherUserDataObject.bio}
-        joinDate={this.props.otherUserInfo.otherUserDataObject.joinDate}
-        username={this.props.otherUserInfo.otherUserDataObject.username}
-        followedCountOtherUser={this.props.otherUserInfo.otherUserDataObject.followedCount}
-        followerCountOtherUser={this.props.otherUserInfo.otherUserDataObject.followerCount}
+        uid={this.state.uid}
+        bio={this.state.bio}
+        joinDate={this.state.joinDate}
+        username={this.state.username}
+        followedCountOtherUser={this.state.followedCount}
+        followerCountOtherUser={this.state.followerCount}
       />
     );
   }
