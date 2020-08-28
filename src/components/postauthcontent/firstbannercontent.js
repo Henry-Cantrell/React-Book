@@ -1,4 +1,5 @@
 import React from "react";
+import {toggleOtherUserProfileOff} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/otherUserProfileOff'
 import { allOffExceptExplore } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/allOffExceptExplore";
 import { allOffExceptHome } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/allOffExceptHome";
 import { allOffExceptProfile } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/allOffExceptProfile";
@@ -13,16 +14,19 @@ export let FIRST_BANNER_CONTENT = (props) => {
   let showHomePage = () => {
     dispatch(allOffExceptHome());
     dispatch(homepageToggleOn());
+    dispatch(toggleOtherUserProfileOff());
   };
 
   let showProfilePage = () => {
     dispatch(allOffExceptProfile());
     dispatch(profileToggleOn());
+    dispatch(toggleOtherUserProfileOff());
   };
 
   let showExplorePage = () => {
     dispatch(allOffExceptExplore());
     dispatch(exploreToggleOn());
+    dispatch(toggleOtherUserProfileOff());
   };
 
   return (

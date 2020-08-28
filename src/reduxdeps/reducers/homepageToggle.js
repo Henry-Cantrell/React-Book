@@ -1,6 +1,6 @@
 export let homePageToggle = (state=true, action) => {
     switch (action.type) {
-        case 'TOGGLE_HOMEPAGE':
+        case 'TOGGLE_ON_HOMEPAGE':
             return state=true;
         case 'TOGGLE_OFF_ALL':
             return state=false;

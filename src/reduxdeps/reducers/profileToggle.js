@@ -1,6 +1,6 @@
 export let profilePageToggle = (state=false, action) => {
     switch (action.type) {
-        case 'TOGGLE_PROFILE':
+        case 'TOGGLE_ON_PROFILE':
             return state=true;
         case 'TOGGLE_OFF_ALL':
             return state=false;

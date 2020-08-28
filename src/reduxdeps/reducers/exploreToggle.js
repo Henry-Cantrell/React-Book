@@ -1,6 +1,6 @@
 export let exploreToggle = (state=false, action) => {
     switch (action.type) {
-        case 'TOGGLE_EXPLORE':
+        case 'TOGGLE_ON_EXPLORE':
             return state=true;
         case 'TOGGLE_OFF_ALL':
             return state=false;

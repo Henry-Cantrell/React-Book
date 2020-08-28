@@ -4,30 +4,30 @@ import { eraseAllUserInfo } from "/home/suzuka/Coding/the_odin_project/Projects/
 import { captureForOtherUserInfo } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/captureForOtherUserInfo";
 import { otherUserUidClear } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserUidClear";
 import { otherUserUidSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserUidSend";
-import {toggleOtherUserProfilePage} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfilePageToggle'
+import { toggleOtherUserProfilePage } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfilePageToggle";
+import { toggleOffAll } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/toggleAllOff";
+import { useDispatch } from "react-redux";
 
-export class TWEED_INFO_AND_USERNAME_CLICK_HANDLER extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export let TWEED_INFO_AND_USERNAME_CLICK_HANDLER = (props) => {
+  const dispatch=useDispatch();
+  let handleProfileClick = () => {
+    props.dispatch(toggleOffAll());
+    props.dispatch(toggleOtherUserProfilePage("ON"));
 
-  handleProfileClick = () => {
-    this.props.dispatch(toggleOtherUserProfilePage('ON'))
-    
     let dispatchReduxActions = () => {
-      this.props.dispatch(otherUserUidClear());
-      this.props.dispatch(otherUserUidSend(this.props.uid));
+      dispatch(otherUserUidClear());
+      dispatch(otherUserUidSend(props.uid));
     };
 
     let firebaseCaptureUserInfo = () => {
       firebase
         .firestore()
         .collection("users")
-        .doc(this.props.uid)
+        .doc(props.uid)
         .get()
         .then((doc) => {
-          this.props.dispatch(eraseAllUserInfo());
-          this.props.dispatch(
+          dispatch(eraseAllUserInfo());
+          dispatch(
             captureForOtherUserInfo({
               otherUserDataObject: 0,
               username: doc.data().username,
@@ -45,16 +45,13 @@ export class TWEED_INFO_AND_USERNAME_CLICK_HANDLER extends React.Component {
     firebaseCaptureUserInfo();
   };
 
-  render() {
-    return (
-      <div onClick={this.handleProfileClick}>
-        <div className="tweedInTweedBox">{this.props.retweetedBy}</div>
-        <div className="userNameInTweedBox">
-          {`Tweed content: ${this.props.tweedText}`}
-        </div>
-        {this.props.button}
+  return (
+    <div onClick={handleProfileClick}>
+      <div className="tweedInTweedBox">{props.retweetedBy}</div>
+      <div className="userNameInTweedBox">
+        {`Tweed content: ${props.tweedText}`}
       </div>
-    );
-  }
-}
-
+      {props.button}
+    </div>
+  );
+};

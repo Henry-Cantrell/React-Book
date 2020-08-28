@@ -12,7 +12,7 @@ export let SECOND_BANNER_CONTENT = (props) => {
 
   const objectForPageStates = {
     otherUserProfileToggle: useSelector((state) => state.otherUserProfileToggle),
-    homePageToggle: useSelector((state) => state.homePageToggle),
+    homepageToggle: useSelector((state) => state.homepageToggle),
     profilePageToggle: useSelector((state) => state.profilePageToggle),
     explorePageToggle: useSelector((state) => state.explorePageToggle),
   };
@@ -29,7 +29,7 @@ export let SECOND_BANNER_CONTENT = (props) => {
       {objectForPageStates.profilePageToggle ? (
         <PROFILE_PAGE userUid={userDataObject.userUid} dispatch={dispatch} />
       ) : null}
-      {objectForPageStates.homePageToggle ? (
+      {objectForPageStates.homepageToggle ? (
         <HOME_PAGE
           dispatch={dispatch}
           userDataObject={userDataObject}
