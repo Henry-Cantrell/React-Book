@@ -18,6 +18,10 @@ import {reducerForOtherUserInfo} from './reducerforotheruserinfo'
 import {otherUserPersonalTweedsCapture} from './otheruserpersonaltweedscapture'
 import {otherUserFavoriteCapture} from './otheruserfavoritecapture'
 import {otherUserUidReducer} from './otherUserUidReducer'
+import {toggleOtherUserProfilePageReducer} from './otherUserProfileToggleReducer'
+import {profilePageToggle} from './profileToggle'
+import {exploreToggle} from './exploreToggle'
+import {homePageToggle} from './homepageToggle'
 
 export const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -38,5 +42,9 @@ export const allReducers = combineReducers({
   otherUserInfo: reducerForOtherUserInfo,
   otherUserPersonalTweeds: otherUserPersonalTweedsCapture,
   otherUserFavoriteTweeds: otherUserFavoriteCapture,
-  otherUserUid: otherUserUidReducer
+  otherUserUid: otherUserUidReducer,
+  otherUserProfileToggle: toggleOtherUserProfilePageReducer,
+  explorePageToggle: exploreToggle,
+  profilePageToggle: profilePageToggle,
+  homepageToggle: homePageToggle
 })

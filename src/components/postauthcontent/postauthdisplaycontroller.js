@@ -11,7 +11,7 @@ export let POST_AUTH_DISPLAY_CONTROLLER = () => {
   const userUid = useSelector((state) => state.userUid)
 
   let signOutUser = () => {
-    firebase.auth.signOut().then(dispatch(signOutAction()));
+    firebase.auth().signOut().then(dispatch(signOutAction()));
   };
 
   let getUsernameFromFirestore = () => {
@@ -36,8 +36,7 @@ export let POST_AUTH_DISPLAY_CONTROLLER = () => {
 
   return (
     <>
-      <BANNER_CONTENT_FLOW_CONTROLLER
-      />
+      <BANNER_CONTENT_FLOW_CONTROLLER/>
       <SIGN_OUT_BOX
         signOut={signOutUser}
       />

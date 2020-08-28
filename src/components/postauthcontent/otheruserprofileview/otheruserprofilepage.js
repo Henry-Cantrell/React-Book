@@ -36,7 +36,6 @@ export class OTHER_USER_PROFILE extends React.Component {
   };
 
   render() {
-    console.log(this.props.showOtherUserProfileFunc + `oupp`)
     return (
       <div class="parentDiv">
         <TOP_DIV_CONTENT

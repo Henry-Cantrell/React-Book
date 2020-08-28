@@ -19,7 +19,6 @@ function FOLLOWER_TWEEDS_ON_HOMEPAGE(props) {
             tweedText={tweed.tweed}
             username={tweed.username}
             uid={tweed.uid}
-            showOtherUserProfile={props.showOtherUserProfile}
             id={tweed.id}
             button={null}
             likeButton={

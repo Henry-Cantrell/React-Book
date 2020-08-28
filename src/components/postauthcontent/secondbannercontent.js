@@ -6,10 +6,16 @@ import OTHER_USER_PROFILE_HANDLER from "./otheruserprofileview/otheruserprofileh
 import { useDispatch, useSelector } from "react-redux";
 
 export let SECOND_BANNER_CONTENT = (props) => {
-  console.log(props.showOtherUserProfileFunc + `sbc/9`)
   const dispatch = useDispatch();
 
   const otherUserUid = useSelector((state) => state.otherUserUid);
+
+  const objectForPageStates = {
+    otherUserProfileToggle: useSelector((state) => state.otherUserProfileToggle),
+    homePageToggle: useSelector((state) => state.homePageToggle),
+    profilePageToggle: useSelector((state) => state.profilePageToggle),
+    explorePageToggle: useSelector((state) => state.explorePageToggle),
+  };
 
   const userDataObject = {
     username: useSelector((state) => state.username),
@@ -20,28 +26,27 @@ export let SECOND_BANNER_CONTENT = (props) => {
 
   return (
     <div class="second">
-      {props.showProfilePage ? (
+      {objectForPageStates.profilePageToggle ? (
         <PROFILE_PAGE userUid={userDataObject.userUid} dispatch={dispatch} />
       ) : null}
-      {props.showHomePage ? (
+      {objectForPageStates.homePageToggle ? (
         <HOME_PAGE
           dispatch={dispatch}
           userDataObject={userDataObject}
           showOtherUserProfile={props.showOtherUserProfileFunc}
         />
       ) : null}
-      {props.showExplorePage ? (
+      {objectForPageStates.explorePageToggle ? (
         <EXPLORE_PAGE_HANDLER
           showOtherUserProfile={props.showOtherUserProfileFunc}
         />
       ) : null}
-      {props.showOtherUserProfileState && otherUserUid ? (
+      {objectForPageStates.otherUserProfileToggle && otherUserUid ? (
         <OTHER_USER_PROFILE_HANDLER
           otherUserUid={otherUserUid}
           username={userDataObject.username}
           userUid={userDataObject.userUid}
           dispatch={dispatch}
-          showOtherUserProfileFunc={props.showOtherUserProfileFunc}
         />
       ) : null}
     </div>

@@ -92,7 +92,6 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
   }
 
   render() {
-    console.log(this.props.showOtherUserProfileFunc + `ouph/9`)
     return this.state.username === null ? null : (
       <OTHER_USER_PROFILE
         userUid={this.props.userUid}

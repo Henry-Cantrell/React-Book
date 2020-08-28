@@ -4,6 +4,7 @@ import { eraseAllUserInfo } from "/home/suzuka/Coding/the_odin_project/Projects/
 import { captureForOtherUserInfo } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/captureForOtherUserInfo";
 import { otherUserUidClear } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserUidClear";
 import { otherUserUidSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserUidSend";
+import {toggleOtherUserProfilePage} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfilePageToggle'
 
 export class TWEED_INFO_AND_USERNAME_CLICK_HANDLER extends React.Component {
   constructor(props) {
@@ -11,8 +12,8 @@ export class TWEED_INFO_AND_USERNAME_CLICK_HANDLER extends React.Component {
   }
 
   handleProfileClick = () => {
-    console.log(this.props.uid)
-    //this.props.showOtherUserProfileFunc();
+    this.props.dispatch(toggleOtherUserProfilePage('ON'))
+    
     let dispatchReduxActions = () => {
       this.props.dispatch(otherUserUidClear());
       this.props.dispatch(otherUserUidSend(this.props.uid));
@@ -45,7 +46,6 @@ export class TWEED_INFO_AND_USERNAME_CLICK_HANDLER extends React.Component {
   };
 
   render() {
-    console.log(this.props.showOtherUserProfileFunc + `sbc/9`)
     return (
       <div onClick={this.handleProfileClick}>
         <div className="tweedInTweedBox">{this.props.retweetedBy}</div>
