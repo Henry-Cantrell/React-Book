@@ -34,12 +34,18 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
           joinDate={this.props.joinDate}
         />
         <div class="uidbModalDiv">
-          {this.props.disableEdit ? null : <TOGGLE_EDIT_PROFILE_MENU toggleShowTrue={this.toggleShowTrue} />}
+          {this.props.disableEdit ? null : (
+            <TOGGLE_EDIT_PROFILE_MENU
+              toggleShowTrue={this.toggleShowTrue}
+              hide={this.toggleShowFalse}
+            />
+          )}
           <TWEED_INFO_BLOCK_MIDDLE_DIV
             followedCountOtherUser={this.props.followedCountOtherUser}
             followerCountOtherUser={this.props.followerCountOtherUser}
             forOtherUser={this.props.forOtherUser}
             userUid={this.props.userUid}
+            uid={this.props.uid}
             username={this.props.username}
           />
         </div>

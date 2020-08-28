@@ -12,6 +12,7 @@ export let SECOND_BANNER_CONTENT = (props) => {
 
   const objectForPageStates = {
     otherUserProfileToggle: useSelector((state) => state.otherUserProfileToggle),
+    otherUserProfileToggleFavorite: useSelector((state) => state.otherUserProfileToggleFavorite),
     homepageToggle: useSelector((state) => state.homepageToggle),
     profilePageToggle: useSelector((state) => state.profilePageToggle),
     explorePageToggle: useSelector((state) => state.explorePageToggle),
@@ -42,6 +43,14 @@ export let SECOND_BANNER_CONTENT = (props) => {
         />
       ) : null}
       {objectForPageStates.otherUserProfileToggle && otherUserUid ? (
+        <OTHER_USER_PROFILE_HANDLER
+          otherUserUid={otherUserUid}
+          username={userDataObject.username}
+          userUid={userDataObject.userUid}
+          dispatch={dispatch}
+        />
+      ) : null}
+      {objectForPageStates.otherUserProfileToggleFavorite && otherUserUid ? (
         <OTHER_USER_PROFILE_HANDLER
           otherUserUid={otherUserUid}
           username={userDataObject.username}

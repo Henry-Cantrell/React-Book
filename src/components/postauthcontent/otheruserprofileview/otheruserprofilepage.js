@@ -44,7 +44,8 @@ export class OTHER_USER_PROFILE extends React.Component {
           otherUserUsername={this.state.otherUserUsername}
         />
         <MIDDLE_DIV_CONTENT
-          userUid={this.props.forOtherUser === undefined ? this.props.userUid : this.props.uid}
+          userUid={this.props.userUid}
+          uid={this.props.uid}
           forOtherUser={true}
           followedCountOtherUser={this.state.followedCountOtherUser}
           followerCountOtherUser={this.state.followerCountOtherUser}
@@ -75,4 +76,6 @@ export class OTHER_USER_PROFILE extends React.Component {
     );
   }
 }
+
+//this.props.forOtherUser === undefined ? this.props.userUid : this.props.uid}
 

@@ -6,13 +6,33 @@ import { otherUserUidClear } from "/home/suzuka/Coding/the_odin_project/Projects
 import { otherUserUidSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserUidSend";
 import { toggleOtherUserProfilePage } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfilePageToggle";
 import { toggleOffAll } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/toggleAllOff";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { otherUserProfileFavToggle } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfileFavToggle";
 
 export let TWEED_INFO_AND_USERNAME_CLICK_HANDLER = (props) => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
+  const otherUserProfileToggle = useSelector(
+    (state) => state.otherUserProfileToggle
+  );
+  const otherUserProfileToggleFavorite = useSelector(
+    (state) => state.otherUserProfileToggleFavorite
+  )
+
   let handleProfileClick = () => {
-    props.dispatch(toggleOffAll());
-    props.dispatch(toggleOtherUserProfilePage("ON"));
+    let checkForFavPageToggle = () => {
+      if (otherUserProfileToggle && !otherUserProfileToggleFavorite) {
+        dispatch(toggleOtherUserProfilePage('OFF'));
+        dispatch(otherUserProfileFavToggle("ON"));
+      } else if (!otherUserProfileToggle && !otherUserProfileToggleFavorite) {
+        dispatch(toggleOffAll());
+        dispatch(toggleOtherUserProfilePage("ON"));
+      } else if (otherUserProfileToggle && otherUserProfileToggleFavorite) {
+        dispatch(otherUserProfileFavToggle("OFF"));
+      } else if (!otherUserProfileToggle && otherUserProfileToggleFavorite) {
+        dispatch(otherUserProfileFavToggle("OFF"));
+        dispatch(toggleOtherUserProfilePage("ON"));
+      }
+    };
 
     let dispatchReduxActions = () => {
       dispatch(otherUserUidClear());
@@ -40,7 +60,7 @@ export let TWEED_INFO_AND_USERNAME_CLICK_HANDLER = (props) => {
           );
         });
     };
-
+    checkForFavPageToggle();
     dispatchReduxActions();
     firebaseCaptureUserInfo();
   };

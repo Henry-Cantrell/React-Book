@@ -31,7 +31,7 @@ class OTHER_USER_TWEEDS_PROFILE extends React.Component {
                 uid={tweed.uid}
               />
             }
-            retweedButton={
+            favoriteButton={
               <FAVORITE_BUTTON_HANDLER
                 forOtherUser={true}
                 id={tweed.id}

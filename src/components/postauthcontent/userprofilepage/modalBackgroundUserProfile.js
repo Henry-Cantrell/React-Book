@@ -6,7 +6,7 @@ export function MODAL_USER_PROFILE(props) {
     const uniqueUid = useSelector((state) => state.uidInt)
 
     return (
-      <div class="show_modal">
+      <div class="show-modal">
         <div class="modal_box_userprofile">
           <div class="toggleButton" onClick={props.hide}>
             Hide
