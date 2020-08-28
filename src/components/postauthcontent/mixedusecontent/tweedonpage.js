@@ -5,6 +5,7 @@ import { TWEED_INFO_AND_USERNAME_CLICK_HANDLER } from "./tweedinfoandusernamecli
 import { LIKE_AND_FAV_BUTTONS } from "./likeandfavbuttons";
 
 export function TWEED_DIV_ON_PAGE(props) {
+  console.log(props.showOtherUserProfileFunc + `tdop`)
   const userUid = useSelector((state) => state.userUid);
   const username = useSelector((state) => state.username);
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export function TWEED_DIV_ON_PAGE(props) {
           retweededBy={props.retweededBy}
           tweedText={props.tweedText}
           button={props.button}
-          showOtherUserProfile={props.showOtherUserProfile}
+          showOtherUserProfileFunc={props.showOtherUserProfileFunc}
         />
         <LIKE_AND_FAV_BUTTONS
           likeButton={props.likeButton}

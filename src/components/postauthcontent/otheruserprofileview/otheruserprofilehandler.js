@@ -78,7 +78,6 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
         .get()
         .then((doc) => {
           this.setState({
-            otherUserDataObject: 0,
             username: doc.data().username,
             uid: doc.data().uid,
             bio: doc.data().userBio,
@@ -93,7 +92,8 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
   }
 
   render() {
-    return (
+    console.log(this.props.showOtherUserProfileFunc + `ouph/9`)
+    return this.state.username === null ? null : (
       <OTHER_USER_PROFILE
         userUid={this.props.userUid}
         username={this.props.username}
@@ -101,11 +101,12 @@ class OTHER_USER_PROFILE_HANDLER extends React.Component {
         uid={this.props.otherUserUid}
         bio={this.state.bio}
         joinDate={this.state.joinDate}
-        username={this.state.username}
+        otherUserUsername={this.state.username}
         followedCountOtherUser={this.state.followedCount}
         followerCountOtherUser={this.state.followerCount}
+        showOtherUserProfileFunc={this.props.showOtherUserProfileFunc}
       />
-    )
+    );
   }
 }
 

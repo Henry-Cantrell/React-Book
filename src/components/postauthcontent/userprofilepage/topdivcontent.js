@@ -35,9 +35,8 @@ export class TOP_DIV_CONTENT extends React.Component {
       <>
         <TOP_BANNER_CONTENT
           otherUserUsername={this.props.otherUserUsername}
-          currentUserUsername={this.props.username}
           uid={this.props.uid}
-          forOtherUser={this.props.otherUserUsername}
+          forOtherUser={true}
         />
         <BANNER_IMAGE urlBanner={this.state.urlBanner} />
       </>

@@ -12,11 +12,6 @@ export let TOP_BANNER_CONTENT = (props) => {
             : props.otherUserUsername
         }
       />
-      <div class="topBannerUsernameTag">
-        {props.forOtherUser === undefined
-          ? props.currentUserUsername
-          : props.otherUserUsername}
-      </div>
     </div>
   );
 };

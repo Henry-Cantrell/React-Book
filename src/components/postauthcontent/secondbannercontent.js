@@ -6,6 +6,7 @@ import OTHER_USER_PROFILE_HANDLER from "./otheruserprofileview/otheruserprofileh
 import { useDispatch, useSelector } from "react-redux";
 
 export let SECOND_BANNER_CONTENT = (props) => {
+  console.log(props.showOtherUserProfileFunc + `sbc/9`)
   const dispatch = useDispatch();
 
   const otherUserUid = useSelector((state) => state.otherUserUid);
@@ -34,13 +35,13 @@ export let SECOND_BANNER_CONTENT = (props) => {
           showOtherUserProfile={props.showOtherUserProfileFunc}
         />
       ) : null}
-      {props.showOtherUserProfileState ? (
+      {props.showOtherUserProfileState && otherUserUid ? (
         <OTHER_USER_PROFILE_HANDLER
           otherUserUid={otherUserUid}
           username={userDataObject.username}
           userUid={userDataObject.userUid}
           dispatch={dispatch}
-          showOtherUserProfile={props.showOtherUserProfileFunc}
+          showOtherUserProfileFunc={props.showOtherUserProfileFunc}
         />
       ) : null}
     </div>

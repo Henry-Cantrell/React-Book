@@ -13,8 +13,9 @@ export class OTHER_USER_PROFILE extends React.Component {
       showUserProfile: true,
       showUserFavorites: false,
       userBio: this.props.bio,
-      userJoinDate: this.props.joinDate,
+      joinDate: this.props.joinDate,
       username: this.props.username,
+      otherUserUsername: this.props.otherUserUsername,
       followedCountOtherUser: this.props.followedCountOtherUser,
       followerCountOtherUser: this.props.followerCountOtherUser,
     };
@@ -35,12 +36,13 @@ export class OTHER_USER_PROFILE extends React.Component {
   };
 
   render() {
+    console.log(this.props.showOtherUserProfileFunc + `oupp`)
     return (
       <div class="parentDiv">
         <TOP_DIV_CONTENT
           uid={this.props.uid}
           forOtherUser={true}
-          otherUserUsername={this.state.username}
+          otherUserUsername={this.state.otherUserUsername}
         />
         <MIDDLE_DIV_CONTENT
           userUid={this.props.forOtherUser === undefined ? this.props.userUid : this.props.uid}
@@ -50,7 +52,7 @@ export class OTHER_USER_PROFILE extends React.Component {
           disableEdit={true}
           joinDate={this.state.joinDate}
           userBio={this.state.userBio}
-          username={this.state.username}
+          username={this.state.otherUserUsername}
         />
         <BUTTON_BAR
           showUserProfileToggle={this.showUserProfileToggle}
@@ -64,6 +66,7 @@ export class OTHER_USER_PROFILE extends React.Component {
           />
         ) : this.state.showUserFavorites ? (
           <OTHER_USER_FAVORITES_PROFILE
+            showOtherUserProfileFunc={this.props.showOtherUserProfileFunc}
             userUid={this.props.userUid}
             username={this.state.username}
             uid={this.props.uid}

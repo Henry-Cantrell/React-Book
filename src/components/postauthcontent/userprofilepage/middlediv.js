@@ -36,6 +36,8 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
         <div class="uidbModalDiv">
           {this.props.disableEdit ? null : <TOGGLE_EDIT_PROFILE_MENU toggleShowTrue={this.toggleShowTrue} />}
           <TWEED_INFO_BLOCK_MIDDLE_DIV
+            followedCountOtherUser={this.props.followedCountOtherUser}
+            followerCountOtherUser={this.props.followerCountOtherUser}
             forOtherUser={this.props.forOtherUser}
             userUid={this.props.userUid}
             username={this.props.username}
