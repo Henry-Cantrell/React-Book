@@ -29,7 +29,7 @@ export class FAVORITE_COUNT_DISPLAY extends React.Component {
   }
 
   render() {
-    return <div>Favorite count: {this.state.favoriteCount}</div>;
+    return <div>{this.state.favoriteCount}</div>;
   }
 }
 

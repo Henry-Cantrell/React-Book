@@ -1,6 +1,6 @@
 import React from "react";
 import firebase from "firebase";
-import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/useravatar";
+import { UserAvatarClickHandler } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/userAvatarClickHandler";
 import { INFO_BLOCK_FROM_HOVER } from "./InfoBlockFromHover";
 
 export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
@@ -72,7 +72,12 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
               uid={this.props.uid}
             />
           ) : null}
-          <USER_AVATAR uid={this.props.uid} username={this.state.username} />
+          <UserAvatarClickHandler
+            forOtherUser={this.props.forOtherUser}
+            uid={this.props.uid} 
+            username={this.state.username} 
+            tweedText={this.props.tweedText}
+            />
         </div>
       </>
     );

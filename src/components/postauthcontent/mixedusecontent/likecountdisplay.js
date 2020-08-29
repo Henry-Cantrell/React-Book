@@ -29,6 +29,6 @@ export class LIKE_COUNT_DISPLAY extends React.Component {
   }
 
   render() {
-    return <div>Like count: {this.state.likedCount}</div>;
+    return <div>{this.state.likedCount}</div>;
   }
 }

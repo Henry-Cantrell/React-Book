@@ -3,7 +3,7 @@ import firebase from "firebase";
 import { userUidSend } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/useruidsend";
 import { LOGIN_MODAL } from "./loginmodal";
 import { SIGNUP_MODAL } from "./signupmodal";
-import { useDispatch } from "react-redux"; 
+import { useDispatch } from "react-redux";
 
 export let AUTH_MODAL_CONTROLLER = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +12,9 @@ export let AUTH_MODAL_CONTROLLER = (props) => {
     e.preventDefault();
     const loginEmail = document.querySelector("#auth-input-email").value;
     const loginPassword = document.querySelector("#auth-input-password").value;
-    firebase.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(loginEmail, loginPassword)
       .then((cred) => {
         dispatch(userUidSend(cred.user.uid, loginEmail));
       })
@@ -59,7 +61,9 @@ export let AUTH_MODAL_CONTROLLER = (props) => {
     }
   };
   return (
-    <form onSubmit={props.forLogin !== undefined ? loginHandler : signupHandler}>
+    <form
+      onSubmit={props.forLogin !== undefined ? loginHandler : signupHandler}
+    >
       {props.forLogin !== undefined ? (
         <LOGIN_MODAL hideLogin={props.hideLogin} />
       ) : (

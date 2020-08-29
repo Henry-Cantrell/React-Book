@@ -29,10 +29,13 @@ export class USER_AVATAR extends React.Component {
 
   render() {
     return (
-      <div className="grid-container-avatar">
-        <img className="userAvatarCircle" src={this.state.urlAvatar}></img>
-        <div className="username-inside-avatar">{this.props.username}</div>
+      <>
+      <div className='div-for-user-avatar-tweed'>
+          <img class="img-for-user-avatar-tweed" src={this.state.urlAvatar} />
+          <div class="div-for-username">{this.props.username}</div>
+          <div class="tweed-text">{this.props.tweedText}</div>
       </div>
+      </>
     );
   }
 }

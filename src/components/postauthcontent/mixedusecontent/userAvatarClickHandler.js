@@ -1,3 +1,4 @@
+import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/useravatar";
 import React from "react";
 import firebase from "firebase";
 import { eraseAllUserInfo } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/erasealluserinfo";
@@ -9,7 +10,7 @@ import { toggleOffAll } from "/home/suzuka/Coding/the_odin_project/Projects/webs
 import { useDispatch, useSelector } from "react-redux";
 import { otherUserProfileFavToggle } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfileFavToggle";
 
-export let TWEED_INFO_AND_USERNAME_CLICK_HANDLER = (props) => {
+export let UserAvatarClickHandler = (props) => {
   const dispatch = useDispatch();
   const otherUserProfileToggle = useSelector(
     (state) => state.otherUserProfileToggle
@@ -67,13 +68,15 @@ export let TWEED_INFO_AND_USERNAME_CLICK_HANDLER = (props) => {
 
   return (
     <div
-      onClick={props.forCurrentUser === undefined ? handleProfileClick : null}
+      onClick={
+        props.forOtherUser === undefined ? null : handleProfileClick
+      }
     >
-      <div className="tweedInTweedBox">{props.retweetedBy}</div>
-      <div className="userNameInTweedBox">
-        {`Tweed content: ${props.tweedText}`}
-      </div>
-      {props.button}
+      <USER_AVATAR
+        uid={props.uid}
+        tweedText={props.tweedText}
+        username={props.username}
+      />
     </div>
   );
 };

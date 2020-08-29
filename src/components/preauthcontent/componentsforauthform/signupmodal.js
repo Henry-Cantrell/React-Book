@@ -1,9 +1,12 @@
 import React from "react";
 
-export let SIGNUP_MODAL = () => {
+export let SIGNUP_MODAL = (props) => {
   return (
     <div className="show-modal">
-      <div className="modal-box">
+      <div className="modal-box-auth">
+        <div className="exit-modal-icon">
+          <i onClick={props.hideSignup} class="fas fa-times"></i>
+        </div>
         <div className="modal-box-auth-interior">
           <input
             placeholder="email"
@@ -23,7 +26,9 @@ export let SIGNUP_MODAL = () => {
             type="test"
             className="modal-box-auth-interior-child"
           />
-          <button className="modal-box-auth-interior-child">Sign up</button>
+          <button className="modal-box-auth-interior-child-button">
+            <div className="modal-box-auth-button-interior-text">Sign up</div>
+          </button>
         </div>
       </div>
     </div>

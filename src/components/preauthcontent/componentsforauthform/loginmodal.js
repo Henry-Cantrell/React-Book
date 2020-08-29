@@ -1,9 +1,12 @@
 import React from "react";
 
-export let LOGIN_MODAL = () => {
+export let LOGIN_MODAL = (props) => {
   return (
     <div className="show-modal">
-      <div className="modal-box">
+      <div className="modal-box-auth">
+        <div className="exit-modal-icon">
+          <i onClick={props.hideLogin} class="fas fa-times"></i>
+        </div>
         <div className="modal-box-auth-interior">
           <input
             placeholder="email"
@@ -17,7 +20,9 @@ export let LOGIN_MODAL = () => {
             type="password"
             className="modal-box-auth-interior-child"
           ></input>
-          <button className="modal-box-auth-interior-child">Log in</button>
+          <button className="modal-box-auth-interior-child-button">
+            <div className="modal-box-auth-button-interior-text">Log in</div>
+          </button>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ export function UNLIKE_BUTTON(props) {
       .firestore()
       .collection("likedTweeds")
       .doc(userUid)
-      .collection('tweedsLikedByUser')
+      .collection("tweedsLikedByUser")
       .get()
       .then((items) => {
         items.forEach((doc) => {
@@ -22,7 +22,7 @@ export function UNLIKE_BUTTON(props) {
               .firestore()
               .collection("likedTweeds")
               .doc(userUid)
-              .collection('tweedsLikedByUser')
+              .collection("tweedsLikedByUser")
               .doc(doc.id)
               .delete();
           }
@@ -41,8 +41,10 @@ export function UNLIKE_BUTTON(props) {
 
   return (
     <>
-      <button onClick={unlikeTweedInFirebase}>Unlike</button>
-      {props.likeDisplay}
+      <div onClick={unlikeTweedInFirebase} className="unlike-button-div">
+        <div className="unlike-button-div-inner-text">Unlike</div>
+      </div>
+      <div className='like-count'>{props.likeDisplay}</div>
     </>
   );
 }

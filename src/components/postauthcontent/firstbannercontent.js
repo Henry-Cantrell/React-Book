@@ -1,5 +1,5 @@
 import React from "react";
-import {toggleOtherUserProfileOff} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/otherUserProfileOff'
+import { toggleOtherUserProfileOff } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/otherUserProfileOff";
 import { allOffExceptExplore } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/allOffExceptExplore";
 import { allOffExceptHome } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/allOffExceptHome";
 import { allOffExceptProfile } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/allOffExceptProfile";
@@ -13,21 +13,21 @@ export let FIRST_BANNER_CONTENT = (props) => {
   const dispatch = useDispatch();
 
   let showHomePage = () => {
-    dispatch(otherUserProfileFavToggle('OFF'));
+    dispatch(otherUserProfileFavToggle("OFF"));
     dispatch(allOffExceptHome());
     dispatch(homepageToggleOn());
     dispatch(toggleOtherUserProfileOff());
   };
 
   let showProfilePage = () => {
-    dispatch(otherUserProfileFavToggle('OFF'));
+    dispatch(otherUserProfileFavToggle("OFF"));
     dispatch(allOffExceptProfile());
     dispatch(profileToggleOn());
     dispatch(toggleOtherUserProfileOff());
   };
 
   let showExplorePage = () => {
-    dispatch(otherUserProfileFavToggle('OFF'));
+    dispatch(otherUserProfileFavToggle("OFF"));
     dispatch(allOffExceptExplore());
     dispatch(exploreToggleOn());
     dispatch(toggleOtherUserProfileOff());
@@ -35,11 +35,17 @@ export let FIRST_BANNER_CONTENT = (props) => {
 
   return (
     <div class="first">
-      <div class="bannerFlowControlButtons">
-        <button onClick={showHomePage}>Home page</button>
-        <button onClick={showProfilePage}>Profile page</button>
-        <button onClick={showExplorePage}>Explore page</button>
+      <div className="first-banner-content-button-wrapper">
+          <button className="first-banner-flow-button" onClick={showHomePage}>
+            Home page
+          </button>
+          <button className="first-banner-flow-button" onClick={showProfilePage}>
+            Profile page
+          </button>
+          <button className="first-banner-flow-button" onClick={showExplorePage}>
+            Explore page
+          </button>
+        </div>
       </div>
-    </div>
   );
 };

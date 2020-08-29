@@ -11,6 +11,13 @@ body {
 
 /* Modal page auth interior styling */
 
+.exit-modal-icon {
+  position:fixed;
+  margin-left: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
 .show-modal {
     top:0px;
     left:0px;
@@ -32,38 +39,86 @@ body {
     transform: translate(-50%, -50%);
     position: fixed;
   }
+
+  .show-modal .modal-box-auth {
+    background-color: white;
+    height: 250px;
+    width: 375px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    border-radius: 10px;
+  }
  
  .modal-box-auth-interior {
-   margin-top: 225px;
+   margin-top: 50px;
+   border-radius: 25px;
    display: flex;
    flex-direction: column;
    align-items: flex-start;
  }
  
  .modal-box-auth-interior .modal-box-auth-interior-child {
-   align-self: center;
-   margin-bottom: 25px;
+  align-self: center;
+  margin-bottom: 15px
+ }
+
+ .modal-box-auth-interior .modal-box-auth-interior-child-button {
+  align-self: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  background: #66cc91;
+  cursor: pointer;
+  width: 175px;
+  height: 40px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  text-align: center;
+ }
+
+ .modal-box-auth-button-interior-text {
+   font-size: large;
  }
 
   /* Auth field styling */
 
+  .auth-fields-header {
+    align-self: center;
+  }
+
   .auth-fields-container {
+    display: flex;
     position: absolute;
     z-index: 0;
     top: 50%;
     left: 50%;
     margin: -100px 0 0 -150px;
+    justify-content: center;
+    flex-direction: column;
 }
 
   .auth-fields-access-div {
+    height: 45px;
+    width: 225px;
+    border: none;
+    box-shadow: 1px 1px 0px 2px rgba (0,0,0,0.3);
+    background: #66cc91;
+    cursor: pointer;
     position: relative;
     z-index: 1;
-    border-style: solid;
     border-width: 1px;
-    height:30px;
-    width:250px;
+    height:38px;
+    width:300px;
+    border-radius:25px;
     text-align: center;
     margin-bottom: 10px;
+  }
+
+  .auth-fields-inner-div-text {
+    font-size: 15px;
+    margin-top: 10px;
+    font-family: sans-serif;
   }
 
 /* Modal page exterior styling */
@@ -154,21 +209,36 @@ body {
 }
 .first {
   height: auto;
-  overflow: scroll;
   width: 33%;
-  background-color: #657786;
   display: flex;
   flex-direction: column;
 }
 
+.first-banner-content-button-wrapper {
+  display: grid;
+  margin-left:425px;
+  margin-top: 50px;
+}
+
+.first-banner-flow-button {
+  height: 45px;
+  font-size: large;
+  width: 200px;
+  border: none;
+  background: #66cc91;
+  cursor: pointer;
+  border-width: 1px;
+  height:38px;
+  border-radius:25px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .second {
   height: auto;
-  overflow: scroll;
   flex-grow: 1;
-  background-color: #AAB8C2;
   border-style: solid;
   border-width: 1px;
-  border-color: grey;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -177,16 +247,6 @@ body {
   height: auto;
   overflow: scroll;
   width:33%;
-  background: #657786;
-}
-
-/* Banner one interior styling */
-
-.bannerFlowControlButtons {
-  height: 100%;
-  width: 150px;
-  margin-left: auto;
-  margin-right: 0;
 }
 
 /* Styling for banner two profile page content */
@@ -200,11 +260,10 @@ body {
   align-items: flex-start;
 }
 
-.topBanner {
-  background-color: #AAB8C2;
+.top-banner {
+  font-family: sans-serif;
   border-style: solid;
   border-width: 1px;
-  border-color: grey;
   height: 70px;
   align-self: stretch;
   flex-direction: row;
@@ -224,7 +283,6 @@ body {
 }
 
 .middleDiv {
-  background-color: #AAB8C2;
   border-style: solid;
   border-width: 1px;
   border-color: grey;
@@ -236,7 +294,6 @@ body {
 }
 
 .buttonBar {
-  background-color: #AAB8C2;
   height: 45px;
   align-self: stretch;
   margin-bottom: 25px;
@@ -335,13 +392,14 @@ body {
 .tweedDisplayList {
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
 }
 
 .submitButton {
   margin-bottom: 25px;
 }
 
-/* Styling for tweed boxes holding tweeds */
+/* Styling for tweeds on page */
 
 .viewUserProfileInfoFromHover {
   border-width: 1px;
@@ -352,29 +410,6 @@ body {
   background-color: white;
   z-index: 1;
   position: absolute;
-}
-
-.likeAndFav {
-  pointer-events: none;
-}
-
-.tweedBoxHoldingTweeds {
-  height: 125px;
-  width: 100%;
-  display: table;
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
-}
-
-.tweedInTweedBox {
-  margin-bottom: 40px;
-  display: block;
-}
-
-.userNameInTweedBox {
-  display: block;
-  margin-bottom: 15px;
 }
 
 /* Explore page styling */
@@ -394,7 +429,7 @@ body {
 
 /* User avatar styling */
 
-.userAvatarCircle {
+.user-avatar-circle {
   display: block;
   width: 50px;
   height: 50px;
@@ -405,6 +440,7 @@ body {
   float: left;
   margin-top: 5px;
   margin-left: 5px;
+  cursor: pointer;
   }
 
 
@@ -417,6 +453,7 @@ body {
 .username-inside-avatar {
   margin-top: 23px;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 /* Misc */
@@ -428,4 +465,224 @@ body {
 
 .usernameTweedsOnPage {
   margin-top:5px;
+}
+
+/* Like/Favorite div styling */
+
+.unlike-button-div {
+  background-color: white;
+  border-color:#ff9b9b;
+  border-style:solid;
+  display:flex;
+  width:65px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+.unlike-button-div-inner-text {
+  align-self:center;
+  margin-left: 8.5px;
+  font-family: sans-serif;
+  color: #ff9b9b;
+}
+
+.like-button-div {
+  border-color:#ff9b9b;
+  border-style:solid;
+  background-color: #ff9b9b;
+  display:flex;
+  width:65px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+.like-button-div-inner-text {
+  align-self:center;
+  margin-left: 17.5px;
+  font-family: sans-serif;
+  color: white;
+}
+
+.unfav-button-div {
+  background-color: white;
+  border-color: #66cc91;
+  border-style:solid;
+  display:flex;
+  width:84px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+.unfav-button-div-inner-text {
+  align-self:center;
+  margin-left: 0px;
+  font-family: sans-serif;
+  color: #66cc91;
+}
+
+.fav-button-div {
+  border-color:	#66cc91;
+  border-style:solid;
+  background-color:	#66cc91;
+  display:flex;
+  width:80px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+.fav-button-div-inner-text {
+  align-self:center;
+  margin-left: 8.5px;
+  font-family: sans-serif;
+  color: white;
+}
+
+/* Reworked tweedbox */
+
+.tweed-box-holding-tweeds {
+  border-style:solid;
+  border-width:1.5px;
+  border-color:black;
+  height:115px;
+  height: 125px;
+  width: 100%;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+.div-for-username {
+  margin-top: 2.5%;
+  font-family: sans-serif;
+  margin-left: 11%;
+}
+
+.img-for-user-avatar-tweed {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-style: solid;
+  border-width: .5px;
+  overflow: hidden;
+  border-radius: 50%;
+  float: left;
+  margin-left: 1.75%;
+  cursor: pointer;
+}
+
+.div-for-likefav-buttons-tweed {
+  display: flex;
+  margin-left: 5.5%;
+  margin-top: 10px;
+}
+
+.space-between-text-and-buttons-tweed {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.tweed-text {
+  font-family: sans-serif;
+  margin-top: 1.25%;
+  margin-left: 11%;
+}
+
+.unlike-button-div {
+  background-color: white;
+  border-color:#ff9b9b;
+  border-style:solid;
+  display:flex;
+  width:65px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+.unlike-button-div-inner-text {
+  align-self:center;
+  margin-left: 8.5px;
+  font-family: sans-serif;
+  color: #ff9b9b;
+}
+
+.like-button-div {
+  border-color:#ff9b9b;
+  background-color: #ff9b9b;
+  border-style:solid;
+  display:flex;
+  width:65px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+.like-button-div-inner-text {
+  align-self:center;
+  margin-left: 17.5px;
+  font-family: sans-serif;
+  color: white;
+}
+
+.unfav-button-div {
+  background-color: white;
+  border-color: #66cc91;
+  border-style:solid;
+  display:flex;
+  align-content: space-between;
+  width:80px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+  margin-left: 6px;
+}
+
+.unfav-button-div-inner-text {
+  align-self:center;
+  margin-left: 0px;
+  font-family: sans-serif;
+  color: #66cc91;
+}
+
+.fav-button-div {
+  border-color:	#66cc91;
+  background-color:	#66cc91;
+  border-style:solid;
+  display:flex;
+  align-content: space-between;
+  width:80px;
+  height:20px;
+  border-radius: 5px;
+  cursor:pointer;
+  margin-left: 6px;
+}
+
+.fav-button-div-inner-text {
+  align-self:center;
+  margin-left: 8.5px;
+  font-family: sans-serif;
+  color: white;
+}
+
+.like-count {
+  position: sticky;
+  margin-top: 2.5%;
+  margin-left: 2.5%;
+}
+
+.fav-count {
+  position: sticky;
+  margin-top: 2.5%;
+  margin-left: 2.5%;
+}
+
+.div-for-like-button {
+  display: inline-flex;
+}
+
+.div-for-fav-button {
+  display: inline-flex;
 }

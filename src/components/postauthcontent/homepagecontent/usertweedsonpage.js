@@ -15,6 +15,7 @@ export let USER_TWEEDS_ON_PAGE = (props) => {
       ? testVar.map((tweed) => {
           return (
             <TWEED_DIV_ON_PAGE
+              forCurrentUser={true}
               id={tweed.id}
               button={<DELETE_BUTTON id={tweed.id} text="Delete this tweed" />}
               tweedText={tweed.tweed}

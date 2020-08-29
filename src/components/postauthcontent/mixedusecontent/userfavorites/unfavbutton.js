@@ -44,8 +44,10 @@ export function UNFAVORITE_BUTTON(props) {
 
   return (
     <>
-      <button onClick={handleUnfavoriteAction}>Unfavorite</button>
-      {props.favoriteDisplay}
+        <div onClick={handleUnfavoriteAction} className="unfav-button-div">
+          <div class="unfav-button-div-inner-text">Unfavorite</div>
+          <div class="fav-count">{props.favoriteDisplay}</div>
+        </div>
     </>
   );
 }

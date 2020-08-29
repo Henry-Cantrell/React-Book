@@ -21,6 +21,7 @@ export class FAVORITE_BUTTON_HANDLER extends React.Component {
         .onSnapshot((snapshot) => {
           snapshot.forEach((doc) => {
             if (doc.id === this.props.userUid) {
+              console.log('fbh/24')
               firebase
                 .firestore()
                 .collection("favoriteTweeds")
