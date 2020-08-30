@@ -467,80 +467,6 @@ body {
   margin-top:5px;
 }
 
-/* Like/Favorite div styling */
-
-.unlike-button-div {
-  background-color: white;
-  border-color:#ff9b9b;
-  border-style:solid;
-  display:flex;
-  width:65px;
-  height:20px;
-  border-radius: 5px;
-  cursor:pointer;
-}
-
-.unlike-button-div-inner-text {
-  align-self:center;
-  margin-left: 8.5px;
-  font-family: sans-serif;
-  color: #ff9b9b;
-}
-
-.like-button-div {
-  border-color:#ff9b9b;
-  border-style:solid;
-  background-color: #ff9b9b;
-  display:flex;
-  width:65px;
-  height:20px;
-  border-radius: 5px;
-  cursor:pointer;
-}
-
-.like-button-div-inner-text {
-  align-self:center;
-  margin-left: 17.5px;
-  font-family: sans-serif;
-  color: white;
-}
-
-.unfav-button-div {
-  background-color: white;
-  border-color: #66cc91;
-  border-style:solid;
-  display:flex;
-  width:84px;
-  height:20px;
-  border-radius: 5px;
-  cursor:pointer;
-}
-
-.unfav-button-div-inner-text {
-  align-self:center;
-  margin-left: 0px;
-  font-family: sans-serif;
-  color: #66cc91;
-}
-
-.fav-button-div {
-  border-color:	#66cc91;
-  border-style:solid;
-  background-color:	#66cc91;
-  display:flex;
-  width:80px;
-  height:20px;
-  border-radius: 5px;
-  cursor:pointer;
-}
-
-.fav-button-div-inner-text {
-  align-self:center;
-  margin-left: 8.5px;
-  font-family: sans-serif;
-  color: white;
-}
-
 /* Reworked tweedbox */
 
 .tweed-box-holding-tweeds {
@@ -591,98 +517,26 @@ body {
   margin-left: 11%;
 }
 
-.unlike-button-div {
-  background-color: white;
-  border-color:#ff9b9b;
-  border-style:solid;
-  display:flex;
-  width:65px;
-  height:20px;
-  border-radius: 5px;
+.like-icon {
   cursor:pointer;
+  margin-top:2%;
 }
 
-.unlike-button-div-inner-text {
-  align-self:center;
-  margin-left: 8.5px;
-  font-family: sans-serif;
-  color: #ff9b9b;
+.fav-icon {
+  cursor: pointer;
+  margin-top:3%;
 }
 
-.like-button-div {
-  border-color:#ff9b9b;
-  background-color: #ff9b9b;
-  border-style:solid;
-  display:flex;
-  width:65px;
-  height:20px;
-  border-radius: 5px;
-  cursor:pointer;
-}
-
-.like-button-div-inner-text {
-  align-self:center;
-  margin-left: 17.5px;
-  font-family: sans-serif;
-  color: white;
-}
-
-.unfav-button-div {
-  background-color: white;
-  border-color: #66cc91;
-  border-style:solid;
-  display:flex;
-  align-content: space-between;
-  width:80px;
-  height:20px;
-  border-radius: 5px;
-  cursor:pointer;
-  margin-left: 6px;
-}
-
-.unfav-button-div-inner-text {
-  align-self:center;
-  margin-left: 0px;
-  font-family: sans-serif;
-  color: #66cc91;
-}
-
-.fav-button-div {
-  border-color:	#66cc91;
-  background-color:	#66cc91;
-  border-style:solid;
-  display:flex;
-  align-content: space-between;
-  width:80px;
-  height:20px;
-  border-radius: 5px;
-  cursor:pointer;
-  margin-left: 6px;
-}
-
-.fav-button-div-inner-text {
-  align-self:center;
-  margin-left: 8.5px;
-  font-family: sans-serif;
-  color: white;
-}
-
-.like-count {
-  position: sticky;
-  margin-top: 2.5%;
-  margin-left: 2.5%;
-}
-
-.fav-count {
-  position: sticky;
-  margin-top: 2.5%;
-  margin-left: 2.5%;
-}
-
-.div-for-like-button {
+.likefav-icon-wrapper {
   display: inline-flex;
+  margin-left: 1%;
+  margin-top: 2%;
 }
 
-.div-for-fav-button {
-  display: inline-flex;
+.gap-likefav-icon {
+  margin-left:25px;
+}
+
+.like-count-int {
+
 }

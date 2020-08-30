@@ -3,10 +3,9 @@ import React from "react";
 export let LIKE_AND_FAV_BUTTONS = (props) => {
   return (
     <>
-    <div className='div-for-like-button'>
+    <div className='likefav-icon-wrapper'>
       {props.likeButton}
-    </div>
-    <div className='div-for-fav-button'>
+      <div className='gap-likefav-icon'/>
       {props.favoriteButton}
     </div>
     </>

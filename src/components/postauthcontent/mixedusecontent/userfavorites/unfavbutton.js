@@ -41,13 +41,12 @@ export function UNFAVORITE_BUTTON(props) {
     decrementFavCount();
     deleteUnfavoritedTweed();
   };
-
   return (
     <>
-        <div onClick={handleUnfavoriteAction} className="unfav-button-div">
-          <div class="unfav-button-div-inner-text">Unfavorite</div>
-          <div class="fav-count">{props.favoriteDisplay}</div>
-        </div>
+    <div class='fav-icon'>
+      <i class="fas fa-bookmark" onClick={handleUnfavoriteAction} />
+      <div class="fav-count">{props.favoriteDisplay}</div>
+    </div>
     </>
   );
 }

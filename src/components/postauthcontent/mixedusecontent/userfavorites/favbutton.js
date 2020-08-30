@@ -44,9 +44,9 @@ export let FAVORITE_BUTTON = (props) => {
 
   return (
     <>
-    <div onClick={handleFavoriteAction} className="fav-button-div">
-      <div class="fav-button-div-inner-text">Favorite</div>
-      <div class='fav-count'>{props.favoriteDisplay}</div> 
+    <div className='fav-icon'>
+      <i class="far fa-bookmark" onClick={handleFavoriteAction} />
+      <div class="fav-count">{props.favoriteDisplay}</div>
     </div>
     </>
   );

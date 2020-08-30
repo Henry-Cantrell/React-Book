@@ -17,7 +17,7 @@ let TWEEDS_PROFILE = (props) => {
           uid={tweed.uid}
           id={tweed.id}
           tweedText={tweed.tweed}
-          button={<DELETE_BUTTON id={tweed.id} text="Delete this tweed" />}
+          deleteButton={<DELETE_BUTTON id={tweed.id} />}
           username={tweed.username}
         />
       );

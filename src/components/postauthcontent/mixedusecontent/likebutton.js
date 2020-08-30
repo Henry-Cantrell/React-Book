@@ -64,10 +64,10 @@ export let LIKE_BUTTON = (props) => {
 
   return (
     <>
-      <div onClick={handleTweedLike} className="like-button-div">
-        <div className="like-button-div-inner-text">Like</div>
-      </div>
+    <div className='like-icon'>
+      <i class="far fa-heart" onClick={handleTweedLike}/>
       <div className='like-count'>{props.likeDisplay}</div>
+    </div>
     </>
   );
 };

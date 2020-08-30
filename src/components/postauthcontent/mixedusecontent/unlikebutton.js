@@ -41,10 +41,10 @@ export function UNLIKE_BUTTON(props) {
 
   return (
     <>
-      <div onClick={unlikeTweedInFirebase} className="unlike-button-div">
-        <div className="unlike-button-div-inner-text">Unlike</div>
-      </div>
+    <div className='like-icon'>
+      <i class="fas fa-heart" onClick={unlikeTweedInFirebase}/>
       <div className='like-count'>{props.likeDisplay}</div>
+    </div>
     </>
   );
 }

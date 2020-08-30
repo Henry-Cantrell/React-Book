@@ -25,10 +25,15 @@ export class LIKE_COUNT_DISPLAY extends React.Component {
           });
         });
     };
-    likedCountFromFb()
+    likedCountFromFb();
   }
 
   render() {
-    return <div>{this.state.likedCount}</div>;
+    return (
+      <>
+        <div className="like-count-int">{this.state.likedCount}</div>
+        <div></div>
+      </>
+    );
   }
 }

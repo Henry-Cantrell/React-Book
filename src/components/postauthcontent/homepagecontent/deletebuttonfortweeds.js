@@ -12,7 +12,7 @@ export function DELETE_BUTTON(props) {
       .doc(userUid)
       .collection("userTweeds")
       .doc(props.id)
-      .delete()
+      .delete();
   };
 
   let deleteFromLiked = () => {
@@ -110,14 +110,11 @@ export function DELETE_BUTTON(props) {
     deleteFromFollowed();
     deleteFromLiked();
     deleteFromFavorited();
-  }
+  };
 
   return (
     <>
-      <button className="tweedCrudButton" onClick={deleteJoiner}>
-        {props.text}
-      </button>
+      <i class="far fa-trash-alt" onClick={deleteJoiner}></i>
     </>
   );
 }
-
