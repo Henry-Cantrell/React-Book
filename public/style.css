@@ -251,6 +251,20 @@ body {
 
 /* Styling for banner two profile page content */
 
+.profile-edit-div {
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+  background-color: #66cc91;
+  font-family: sans-serif;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 100%;
+  margin-top: 60%;
+  color:white;
+}
+
+
 .followed-count-user {
   margin-left:32.5%;
   margin-top: 25%;
@@ -266,7 +280,8 @@ body {
 }
 
 .user-info-block-lower-div {
-  display:flex;
+  display: flex;
+  margin-right: 72.5%;
 }
 
 .user-join-date-display {
@@ -280,8 +295,8 @@ body {
 }
 
 .user-bio-user-profile-page {
-  margin-top: 15%;
-  margin-left: 32.5%;
+  margin-top: 5%;
+  margin-left: 11.25%;
 }
 
 .wrapper-div-for-info {
@@ -294,12 +309,13 @@ body {
 
 .place-useravatar-on-profile {
   position: fixed;
-  margin-top: 17.5%;
+  margin-top: 17.25%;
+  margin-left: .75%;
 }
 
 .username-user-profile-page {
-  margin-top: 40%;
-  margin-left: 32.5%;
+  margin-top: 10%;
+  margin-left: 11.25%;
   font-weight: bold;
 }
 

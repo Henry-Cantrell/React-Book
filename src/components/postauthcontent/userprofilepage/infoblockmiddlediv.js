@@ -50,11 +50,18 @@ export let USER_INFO_BLOCK_MIDDLE_DIV = (props) => {
           <div className="text-inside-joindate">{props.joinDate}</div>
         </div>
         <div className="followed-count-user">
-          <div className='following-text'>{followedCount}</div> <div className='move-following'>following</div>
+          <div className="following-text">{followedCount}</div>{" "}
+          <div className="move-following">following</div>
         </div>
-        <div className="followerCount"></div>
+        <div className="followed-count-user">
+          <div className="following-text">{followerCount}</div>{" "}
+          <div className="move-following">followers</div>
+        </div>
+        <div className="followed-count-user">
+          <div className="following-text">{followerCount}</div>{" "}
+          <div className="move-following">Tweeds</div>
+        </div>
       </div>
     </>
   );
 };
-
