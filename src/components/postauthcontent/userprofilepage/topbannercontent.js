@@ -3,15 +3,6 @@ import { USER_AVATAR } from "/home/suzuka/Coding/the_odin_project/Projects/websi
 
 export let TOP_BANNER_CONTENT = (props) => {
   return (
-    <div class="topBanner">
-      <USER_AVATAR
-        uid={props.uid}
-        username={
-          props.forOtherUser === undefined
-            ? props.currentUserUsername
-            : props.otherUserUsername
-        }
-      />
-    </div>
+    <i class="far fa-arrow-alt-circle-left"></i>
   );
 };

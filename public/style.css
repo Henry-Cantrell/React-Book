@@ -251,6 +251,58 @@ body {
 
 /* Styling for banner two profile page content */
 
+.followed-count-user {
+  margin-left:32.5%;
+  margin-top: 25%;
+  display:flex;
+}
+
+.move-following {
+  margin-left:5%;
+}
+
+.followed-count-user-interior {
+  display:flex;
+}
+
+.user-info-block-lower-div {
+  display:flex;
+}
+
+.user-join-date-display {
+  margin-top: 25%;
+  margin-left: 32.5%;
+  display: flex;
+}
+
+.text-inside-joindate {
+  margin-left:15%;
+}
+
+.user-bio-user-profile-page {
+  margin-top: 15%;
+  margin-left: 32.5%;
+}
+
+.wrapper-div-for-info {
+  display:flex;
+}
+
+.wrapper-div-user-modal-toggle {
+  margin-top: 16%;
+}
+
+.place-useravatar-on-profile {
+  position: fixed;
+  margin-top: 17.5%;
+}
+
+.username-user-profile-page {
+  margin-top: 40%;
+  margin-left: 32.5%;
+  font-weight: bold;
+}
+
 .parentDiv {
   height: 100%;
   position: absolute;
@@ -286,7 +338,6 @@ body {
   border-style: solid;
   border-width: 1px;
   border-color: grey;
-  /*height:175px;*/
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -324,11 +375,6 @@ body {
   margin-bottom: 15px;
 }
 
-.userBioDisplay {
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-
 .userProfileModalInterior {
   display: flex;
   flex-direction: row;
@@ -356,11 +402,6 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   position: relative;
-}
-
-.userJoinDateDisplay {
-  margin-left: 20px;
-  margin-bottom: 5px;
 }
 
 /* Styling for home page content */
@@ -537,6 +578,4 @@ body {
   margin-left:25px;
 }
 
-.like-count-int {
 
-}

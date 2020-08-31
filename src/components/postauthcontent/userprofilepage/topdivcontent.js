@@ -1,6 +1,6 @@
 import React from "react";
 import firebase from "firebase";
-import { TOP_BANNER_CONTENT } from "./topbannercontent";
+import {USER_AVATAR} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/useravatar.js'
 import { BANNER_IMAGE } from "./bannerimage";
 
 //Note: cannot refactor to use current user uniqueUid/username because
@@ -33,12 +33,10 @@ export class TOP_DIV_CONTENT extends React.Component {
   render() {
     return (
       <>
-        <TOP_BANNER_CONTENT
-          otherUserUsername={this.props.otherUserUsername}
-          uid={this.props.uid}
-          forOtherUser={true}
-        />
         <BANNER_IMAGE urlBanner={this.state.urlBanner} />
+        <div className='place-useravatar-on-profile'>
+          <USER_AVATAR uid={this.props.uid}/>
+        </div>
       </>
     );
   }

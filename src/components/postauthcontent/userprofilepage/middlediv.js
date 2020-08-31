@@ -28,28 +28,39 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
   render() {
     return (
       <div class="middleDiv">
-        <USER_INFO_BLOCK_MIDDLE_DIV
-          username={this.props.username}
-          userBio={this.props.userBio}
-          joinDate={this.props.joinDate}
-        />
-        <div class="uidbModalDiv">
-          {this.props.disableEdit ? null : (
-            <TOGGLE_EDIT_PROFILE_MENU
-              toggleShowTrue={this.toggleShowTrue}
-              hide={this.toggleShowFalse}
+        <div className="wrapper-div-for-info">
+          <div className="wrapper-user-info-div">
+            <USER_INFO_BLOCK_MIDDLE_DIV
+              username={this.props.username}
+              userBio={this.props.userBio}
+              joinDate={this.props.joinDate}
             />
+          </div>
+          <div className="wrapper-div-tweed-info-block">
+            <div class="uidbModalDiv">
+              <TWEED_INFO_BLOCK_MIDDLE_DIV
+                followerCountOtherUser={this.props.followerCountOtherUser}
+                followedCountOtherUser={this.props.followedCountOtherUser}
+                forOtherUser={this.props.forOtherUser}
+                userUid={this.props.userUid}
+                uid={this.props.uid}
+                username={this.props.username}
+              />
+            </div>
+          </div>
+          {this.props.disableEdit ? null : (
+            <div className="wrapper-div-user-modal-toggle">
+              <TOGGLE_EDIT_PROFILE_MENU
+                toggleShowTrue={this.toggleShowTrue}
+                hide={this.toggleShowFalse}
+              />
+            </div>
           )}
-          <TWEED_INFO_BLOCK_MIDDLE_DIV
-            followedCountOtherUser={this.props.followedCountOtherUser}
-            followerCountOtherUser={this.props.followerCountOtherUser}
-            forOtherUser={this.props.forOtherUser}
-            userUid={this.props.userUid}
-            uid={this.props.uid}
-            username={this.props.username}
+          <EDIT_PROFILE_MENU
+            show={this.state.show}
+            hide={this.toggleShowFalse}
           />
         </div>
-        <EDIT_PROFILE_MENU show={this.state.show} hide={this.toggleShowFalse} />
       </div>
     );
   }

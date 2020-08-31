@@ -57,13 +57,10 @@ export class PROFILE_PAGE extends React.Component {
   render() {
     return (
       <div class="parentDiv">
-        <TOP_DIV_CONTENT
-          uid={this.state.userUid}
-          username={this.state.username}
-        />
+        <TOP_DIV_CONTENT uid={this.props.userUid}/>
         <MIDDLE_DIV_CONTENT
           userUid={this.state.userUid}
-          joinDate={this.state.userJoinDate}
+          joinDate={this.state.joinDate}
           userBio={this.state.userBio}
           username={this.state.username}
         />
