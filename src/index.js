@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {App} from '/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/app'; 
+import {App} from './app'; 
 import {createStore} from 'redux'
 import {allReducers} from './reduxdeps/reducers/combineReducers'
 import {Provider} from 'react-redux'
