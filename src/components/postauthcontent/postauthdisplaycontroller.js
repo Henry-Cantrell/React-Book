@@ -1,20 +1,21 @@
 import React from "react";
-import { useSelector,useDispatch } from "react-redux";
-import firebase from 'firebase'
+import { useSelector, useDispatch } from "react-redux";
+import firebase from "firebase";
 import { userNameNet } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/userNameNet";
-import { SIGN_OUT_BOX} from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/signoutboxblb";
+import { USER_PROFILE_BOTTOM_LEFT_BOX } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/mixedusecontent/profilebox";
 import { signOutAction } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/signOutAction";
 import { BANNER_CONTENT_FLOW_CONTROLLER } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/components/postauthcontent/bannercontentflowcontroller";
 
 export let POST_AUTH_DISPLAY_CONTROLLER = () => {
-  const dispatch = useDispatch()
-  const userUid = useSelector((state) => state.userUid)
+  const dispatch = useDispatch();
+  const userUid = useSelector((state) => state.userUid);
+  const username = useSelector((state) => state.username);
 
   let signOutUser = () => {
     firebase.auth().signOut().then(dispatch(signOutAction()));
   };
 
-  let getUsernameFromFirestore = () => {
+  let loadUsername = () => {
     firebase
       .firestore()
       .collection("users")
@@ -32,14 +33,12 @@ export let POST_AUTH_DISPLAY_CONTROLLER = () => {
       });
   };
 
-  getUsernameFromFirestore();
+  loadUsername();
 
   return (
     <>
-      <BANNER_CONTENT_FLOW_CONTROLLER/>
-      <SIGN_OUT_BOX
-        signOut={signOutUser}
-      />
+      <BANNER_CONTENT_FLOW_CONTROLLER />
+      <USER_PROFILE_BOTTOM_LEFT_BOX signOut={signOutUser} username={username} />
     </>
   );
 };

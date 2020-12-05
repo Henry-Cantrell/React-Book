@@ -11,30 +11,53 @@ export class USER_AVATAR extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let assignAvatarImageUrl = () => {
+  render() {
+    let checkAvatar = () => {
       firebase
-        .storage()
-        .ref(`${this.state.uid}/userAvatar`)
-        .getDownloadURL()
-        .then((url) => {
-          this.setState({
-            urlAvatar: url,
-          });
+        .firestore()
+        .collection("userAvatarSet")
+        .doc(`${this.state.uid}`)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            firebase
+              .firestore()
+              .collection("userAvatarSet")
+              .doc(`${this.state.uid}`)
+              .onSnapshot((doc) => {
+                firebase
+                  .storage()
+                  .ref(`${this.state.uid}/userAvatar`)
+                  .getDownloadURL()
+                  .then((url) => {
+                    this.setState({
+                      urlAvatar: url,
+                    });
+                  });
+              });
+          } else {
+            firebase
+              .storage()
+              .ref(`defaultAvatarFolder/icon-avatar-default.png`)
+              .getDownloadURL()
+              .then((url) => {
+                this.setState({
+                  urlAvatar: url,
+                });
+              });
+          }
         });
     };
 
-    assignAvatarImageUrl();
-  }
+    checkAvatar();
 
-  render() {
     return (
       <>
-      <div className='div-for-user-avatar-tweed'>
+        <div className="div-for-user-avatar-tweed">
           <img class="img-for-user-avatar-tweed" src={this.state.urlAvatar} />
           <div class="div-for-username">{this.props.username}</div>
           <div class="tweed-text">{this.props.tweedText}</div>
-      </div>
+        </div>
       </>
     );
   }

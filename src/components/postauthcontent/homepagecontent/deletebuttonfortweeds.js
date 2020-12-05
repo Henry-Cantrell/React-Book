@@ -114,7 +114,9 @@ export function DELETE_BUTTON(props) {
 
   return (
     <>
+    <div className='pointer-only'>
       <i class="far fa-trash-alt" onClick={deleteJoiner}></i>
+    </div>
     </>
   );
 }

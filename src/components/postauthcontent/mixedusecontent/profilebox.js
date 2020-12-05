@@ -32,7 +32,7 @@ export class USER_PROFILE_BOTTOM_LEFT_BOX extends React.Component {
           <div id="blbMaster" onClick={this.toggleShowTrue}>
             <div id="profileNameBlb"></div>
             <div id="usernameBlb">
-              {this.props.userName}
+              {this.props.username}
             </div>
           </div>
         </div>

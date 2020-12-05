@@ -30,7 +30,14 @@ class EXPLORE_PAGE extends React.Component {
         })
       : null;
 
-    return <div className="tweedDisplayList">{allUserInfoDisplay}</div>;
+    return (
+    <>
+      <div class="top-banner">
+        <h3>EXPLORE</h3>
+      </div>
+      <div className="tweedDisplayList">{allUserInfoDisplay}</div>;
+    </>
+    );
   }
 }
 

@@ -15,22 +15,28 @@ export class TOP_DIV_CONTENT extends React.Component {
     };
   }
 
-  componentDidMount() {
+  render() {
     let fetchBannerImageUrl = () => {
       firebase
-        .storage()
-        .ref(`${this.props.uid}/userBanner`)
-        .getDownloadURL()
-        .then((url) => {
-          this.setState({
-            urlBanner: url,
+      .firestore()
+      .collection('userBannerSet')
+      .doc(`${this.props.uid}`)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          firebase
+          .storage()
+          .ref(`${this.props.uid}/userBanner`)
+          .getDownloadURL()
+          .then((url) => {
+            this.setState({
+              urlBanner: url,
+            });
           });
-        });
-    };
-    fetchBannerImageUrl();
-  }
-
-  render() {
+        } 
+      })
+  };
+  fetchBannerImageUrl();
+  
     return (
       <>
         <BANNER_IMAGE urlBanner={this.state.urlBanner} />

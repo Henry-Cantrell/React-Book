@@ -10,21 +10,19 @@ import { toggleOffAll } from "/home/suzuka/Coding/the_odin_project/Projects/webs
 import { useDispatch, useSelector } from "react-redux";
 import { otherUserProfileFavToggle } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfileFavToggle";
 
-
 export let OTHER_USER_INFO_DISPLAY = (props) => {
-
   const dispatch = useDispatch();
   const otherUserProfileToggle = useSelector(
     (state) => state.otherUserProfileToggle
   );
   const otherUserProfileToggleFavorite = useSelector(
     (state) => state.otherUserProfileToggleFavorite
-  )
+  );
 
   let handleProfileClick = () => {
     let checkForFavPageToggle = () => {
       if (otherUserProfileToggle && !otherUserProfileToggleFavorite) {
-        dispatch(toggleOtherUserProfilePage('OFF'));
+        dispatch(toggleOtherUserProfilePage("OFF"));
         dispatch(otherUserProfileFavToggle("ON"));
       } else if (!otherUserProfileToggle && !otherUserProfileToggleFavorite) {
         dispatch(toggleOffAll());
@@ -69,14 +67,14 @@ export let OTHER_USER_INFO_DISPLAY = (props) => {
   };
 
   return (
-  <>
-    <div onClick={handleProfileClick} className="holderForAvatarOnExplore">
-      <USER_AVATAR uid={props.uid} username={props.username}/>
-    {props.userBio === "Set up your bio" ? null : (
-      <div class="userBioDisplay">{props.userBio}</div>
-    )}
-    <div class="userJoinDateDisplay">Joined: {props.joinDate}</div>
-    </div>
-  </>
-  )
+    <>
+      <div onClick={handleProfileClick} className="holderForAvatarOnExplore">
+        <USER_AVATAR uid={props.uid} username={props.username} />
+        {props.userBio === "Set up your bio" ? null : (
+          <div class="userBioDisplay">{props.userBio}</div>
+        )}
+        <div class="userJoinDateDisplay">Joined: {props.joinDate}</div>
+      </div>
+    </>
+  );
 };

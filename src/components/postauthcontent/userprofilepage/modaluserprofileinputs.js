@@ -35,6 +35,14 @@ export function MODAL_USER_PROFILE_INPUTS(props) {
     const storageRef = firebase.storage().ref(`${userUid}/userBanner`);
 
     storageRef.put(file);
+
+    firebase
+    .firestore()
+    .collection('userBannerSet')
+    .doc(userUid)
+    .set({
+      dnd:'dnd'
+    })
   };
 
   let uploadAvatarToFirebase = (e) => {
@@ -42,9 +50,19 @@ export function MODAL_USER_PROFILE_INPUTS(props) {
     const storageRef = firebase.storage().ref(`${userUid}/userAvatar`);
 
     storageRef.put(file);
-  };
-  
 
+    const dndFb = {
+      dnd: Math.random()
+    }
+
+    firebase
+    .firestore()
+    .collection("userAvatarSet")
+    .doc(`${userUid}`)
+    .set(
+      dndFb
+    )
+  };
 
   return (
     <>
@@ -66,5 +84,4 @@ export function MODAL_USER_PROFILE_INPUTS(props) {
       </div>
     </>
   );
-  
 }

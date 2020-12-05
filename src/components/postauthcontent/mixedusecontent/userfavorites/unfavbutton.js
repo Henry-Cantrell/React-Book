@@ -44,7 +44,7 @@ export function UNFAVORITE_BUTTON(props) {
   return (
     <>
     <div class='fav-icon'>
-      <i class="fas fa-bookmark" onClick={handleUnfavoriteAction} />
+      <i class="fas fa-bookmark" style={{marginLeft: 20 + '%'}} onClick={handleUnfavoriteAction} />
       <div class="fav-count">{props.favoriteDisplay}</div>
     </div>
     </>

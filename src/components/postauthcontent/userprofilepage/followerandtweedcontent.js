@@ -6,49 +6,16 @@ import { sendFollowerCount } from "/home/suzuka/Coding/the_odin_project/Projects
 import { useDispatch } from "react-redux";
 
 export function FOLLOWER_AND_FOLLOWED_CONTENT(props) {
-  const userUid = useSelector((state) => state.userUid);
-  const dispatch = useDispatch();
-  const followedCount = useSelector((state) => state.followedCount);
-  const followerCount = useSelector((state) => state.followerCount);
-
-  let retrieveFollowedCountFromFirebaseToRedux = () => {
-    firebase
-      .firestore()
-      .collection("users")
-      .onSnapshot((snapshot) => {
-        snapshot.forEach((doc) => {
-          if (doc.data().uid === userUid) {
-            dispatch(sendFollowedCount(doc.data().followedCount));
-          }
-        });
-      });
-  };
-
-  let retrieveFollowerCountFromFirebaseToRedux = () => {
-    firebase
-      .firestore()
-      .collection("users")
-      .onSnapshot((snapshot) => {
-        snapshot.forEach((doc) => {
-          if (doc.data().uid === userUid) {
-            dispatch(sendFollowerCount(doc.data().followerCount));
-          }
-        });
-      });
-  };
-
-  retrieveFollowedCountFromFirebaseToRedux();
-  retrieveFollowerCountFromFirebaseToRedux();
 
   return (
     <>
       {props.forOtherUser === undefined ? (
-        <div>{`Number of users followed: ${followedCount}`}</div>
+        null
       ) : (
         <div>{`Number of users following: ${props.followedCountOtherUser}`}</div>
       )}
       {props.forOtherUser === undefined ? (
-        <div>{`Number of users following: ${followerCount}`}</div>
+        null
       ) : (
         <div>{`Number of users following: ${props.followerCountOtherUser}`}</div>
       )}

@@ -65,7 +65,7 @@ export let LIKE_BUTTON = (props) => {
   return (
     <>
     <div className='like-icon'>
-      <i class="far fa-heart" onClick={handleTweedLike}/>
+      <i class="far fa-heart" style={{marginRight: 12 + '%'}} onClick={handleTweedLike}/>
       <div className='like-count'>{props.likeDisplay}</div>
     </div>
     </>

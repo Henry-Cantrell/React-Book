@@ -10,7 +10,6 @@ export let HOME_PAGE = (props) => {
     <div class="homePageContainer">
       <HEADER_BAR_HOME_PAGE />
       <TWEED_BOX_FORM />
-      <div className="borderBlock"></div>
       <div className="tweedDisplayList">
         <USER_TWEEDS_ON_PAGE />
         <FOLLOWED_TWEEDS_ON_HOMEPAGE

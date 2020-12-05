@@ -9,7 +9,6 @@ import { toggleOtherUserProfilePage } from "/home/suzuka/Coding/the_odin_project
 import { toggleOffAll } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/postAuthContentActions/toggleAllOff";
 import { otherUserProfileFavToggle } from "/home/suzuka/Coding/the_odin_project/Projects/website-react-remake/my-app/src/reduxdeps/actions/otherUserProfileFavToggle";
 
-
 export function PROFILE_FROM_LIKEDBY_MESSAGE(props) {
   const dispatch = useDispatch();
   const otherUserProfileToggle = useSelector(
@@ -17,25 +16,25 @@ export function PROFILE_FROM_LIKEDBY_MESSAGE(props) {
   );
   const otherUserProfileToggleFavorite = useSelector(
     (state) => state.otherUserProfileToggleFavorite
-  )
+  );
 
   let handleLikedByClick = () => {
     dispatch(otherUserUidClear());
     dispatch(otherUserUidSend(props.uid));
 
     let reduxProcessClick = () => {
-        if (otherUserProfileToggle && !otherUserProfileToggleFavorite) {
-          dispatch(toggleOtherUserProfilePage("OFF"));
-          dispatch(otherUserProfileFavToggle("ON"));
-        } else if (!otherUserProfileToggle && !otherUserProfileToggleFavorite) {
-          dispatch(toggleOffAll());
-          dispatch(toggleOtherUserProfilePage("ON"));
-        } else if (otherUserProfileToggle && otherUserProfileToggleFavorite) {
-          dispatch(otherUserProfileFavToggle("OFF"));
-        } else if (!otherUserProfileToggle && otherUserProfileToggleFavorite) {
-          dispatch(otherUserProfileFavToggle("OFF"));
-          dispatch(toggleOtherUserProfilePage("ON"));
-        }
+      if (otherUserProfileToggle && !otherUserProfileToggleFavorite) {
+        dispatch(toggleOtherUserProfilePage("OFF"));
+        dispatch(otherUserProfileFavToggle("ON"));
+      } else if (!otherUserProfileToggle && !otherUserProfileToggleFavorite) {
+        dispatch(toggleOffAll());
+        dispatch(toggleOtherUserProfilePage("ON"));
+      } else if (otherUserProfileToggle && otherUserProfileToggleFavorite) {
+        dispatch(otherUserProfileFavToggle("OFF"));
+      } else if (!otherUserProfileToggle && otherUserProfileToggleFavorite) {
+        dispatch(otherUserProfileFavToggle("OFF"));
+        dispatch(toggleOtherUserProfilePage("ON"));
+      }
     };
 
     let fbHandleClick = () => {
@@ -62,8 +61,9 @@ export function PROFILE_FROM_LIKEDBY_MESSAGE(props) {
     fbHandleClick();
   };
   return (
-    <div
-      onClick={handleLikedByClick}
-    >{`This tweed liked by: ${props.usernameOfLiker}`}</div>
+    <div className="div-for-likedby-tweed" onClick={handleLikedByClick}>
+      <i class="fas fa-feather-alt"></i>
+      <div className="likedby-div">{`Liked by: ${props.usernameOfLiker}`}</div>
+    </div>
   );
 }

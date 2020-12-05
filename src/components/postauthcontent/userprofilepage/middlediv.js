@@ -1,7 +1,6 @@
 import React from "react";
 import { EDIT_PROFILE_MENU } from "./editprofilemenu";
 import { USER_INFO_BLOCK_MIDDLE_DIV } from "./infoblockmiddlediv";
-import { TWEED_INFO_BLOCK_MIDDLE_DIV } from "./tweedinfoblockmiddlediv";
 import { TOGGLE_EDIT_PROFILE_MENU } from "./toggleprofilemenu";
 
 export class MIDDLE_DIV_CONTENT extends React.Component {
@@ -37,16 +36,15 @@ export class MIDDLE_DIV_CONTENT extends React.Component {
             />
           </div>
           <div className="wrapper-div-tweed-info-block">
-            <div class="uidbModalDiv">
-            </div>
+            <div class="uidbModalDiv"></div>
             {this.props.disableEdit ? null : (
-            <div className="wrapper-div-user-modal-toggle">
-              <TOGGLE_EDIT_PROFILE_MENU
-                toggleShowTrue={this.toggleShowTrue}
-                hide={this.toggleShowFalse}
-              />
-            </div>
-          )}
+              <div className="wrapper-div-user-modal-toggle">
+                <TOGGLE_EDIT_PROFILE_MENU
+                  toggleShowTrue={this.toggleShowTrue}
+                  hide={this.toggleShowFalse}
+                />
+              </div>
+            )}
           </div>
           <EDIT_PROFILE_MENU
             show={this.state.show}

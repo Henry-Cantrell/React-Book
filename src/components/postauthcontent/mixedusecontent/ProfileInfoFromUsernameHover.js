@@ -54,13 +54,14 @@ export class PROFILE_INFO_USERNAME_HOVER extends React.Component {
     return (
       <>
         <div
-          onMouseEnter={
-            this.props.usernameOfCurrentUser === this.props.username ||
-            this.props.forOtherUserProfilePage != undefined
-              ? null
-              : this.mouseHoverOnDiv
-          }
-          onMouseLeave={this.mouseMoveOffDiv}
+          //className='info_hover_div'
+          //onMouseEnter={
+          //  this.props.usernameOfCurrentUser === this.props.username ||
+          //  this.props.forOtherUserProfilePage != undefined
+          //    ? null
+          //    : this.mouseHoverOnDiv
+          //}
+          //onMouseLeave={this.mouseMoveOffDiv}
         >
           {this.state.showProfileInfo ? (
             <INFO_BLOCK_FROM_HOVER

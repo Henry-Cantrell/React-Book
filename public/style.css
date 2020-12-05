@@ -9,6 +9,16 @@ body {
     height:100%;
   }
 
+h3 {
+  font-weight:initial;
+}
+
+/* Misc */
+
+.pointer-only {
+  cursor: pointer;
+}
+
 /* Modal page auth interior styling */
 
 .exit-modal-icon {
@@ -166,11 +176,14 @@ body {
   top: 96%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  border-radius: 25px;
+  border-width: thin;
+  cursor: pointer;
 }
 
 #usernameBlb {
-  margin-top: 30px;
-  margin-left: 20px;
+  margin-top: 9%;
+  margin-left: 45%;
 }
 
 #profileNameBlb {
@@ -182,15 +195,16 @@ body {
 .sobMaster {
   position: fixed;
   display: block;
-  height: 150px;
-  width: 300px;
+  height: 100px;
+  width: 150px;
   border-style: solid;
-  border-width: 2px;
+  border-width: thin;
   border-color: black;
   background-color: white;
   left: 22.2%;
-  top: 83.8%;
+  top: 86.9%;
   transform: translate(-50%, -50%);
+  border-radius: 25px;
 }
 
 #sobInteriorSignoutButton {
@@ -232,6 +246,7 @@ body {
   border-radius:25px;
   text-align: center;
   margin-bottom: 10px;
+  color:white;
 }
 
 .second {
@@ -249,19 +264,68 @@ body {
   width:33%;
 }
 
+/* User profile edit modal interior */
+
+.hide-user-modal-interior {
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.modal-box-edit-profile {
+  background-color: white;
+  height: 175px;
+  width: 675px;
+  border-style: solid;
+  border-width: thin;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  border-radius: 25px;
+  font-family: sans-serif;
+}
+
 /* Styling for banner two profile page content */
+
+.wrapper-for-user-fav {
+  width:50%;
+  cursor: pointer;
+  border-style: solid;
+  border-width:thin;
+}
+
+.wrapper-for-user-tweeds {
+  width: 50%;
+  cursor: pointer;
+  border-style: solid;
+  border-width:thin;
+}
+
+.show-user-tweeds-div {
+  margin-left: 50%;
+  height: 45px;
+  align-items: center;
+  display: flex;
+}
+
+.show-user-favorites-div {
+  margin-left: 50%;
+  height: 45px;
+  align-items: center;
+  display: flex;
+}
+
+.button-bar {
+  height: 45px;
+  align-self: stretch;
+  font-family: sans-serif;
+  display: flex;
+}
 
 .profile-edit-div {
   cursor: pointer;
-  width: 150px;
-  height: 40px;
-  background-color: #66cc91;
-  font-family: sans-serif;
-  border-radius: 5px;
-  text-align: center;
-  margin-left: 100%;
-  margin-top: 60%;
-  color:white;
+  margin-left: 700%;
+  margin-top: 512.5%;
 }
 
 
@@ -301,6 +365,7 @@ body {
 
 .wrapper-div-for-info {
   display:flex;
+  font-family: sans-serif;
 }
 
 .wrapper-div-user-modal-toggle {
@@ -360,12 +425,6 @@ body {
   overflow-y: visible;
 }
 
-.buttonBar {
-  height: 45px;
-  align-self: stretch;
-  margin-bottom: 25px;
-}
-
 .userNameDisplayUidbProfilePage {
   height: 25px;
   margin-left: 20px;
@@ -422,6 +481,17 @@ body {
 
 /* Styling for home page content */
 
+.div-for-likedby-tweed {
+  font-family:sans-serif;
+  display: flex;
+  margin-top:3.25%;
+  cursor: pointer;
+}
+
+.likedby-div {
+  margin-left: 15px;
+}
+
 .homePageContainer {
   height: 100%;
   position: absolute;
@@ -433,7 +503,6 @@ body {
 
 .tweedboxform {
   width: 100%;
-  height: 125px;
   border-style: solid;
   border-width: 1px;
   border-color: grey;
@@ -452,13 +521,33 @@ body {
   overflow-y: scroll;
 }
 
-.submitButton {
+.tweed-create-button {
   margin-bottom: 25px;
+  margin-top: 18.5%;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  height: 30px;
+  width: 100px;
+  background-color: #66cc91;
+  border-radius: 25px;
+  color: white;
+  font-family: sans-serif;
+  margin-left: 10%;
+}
+
+.tweed-parent {
+  display: flex;
+}
+
+.tweed-box {
+  height:25px;
+  margin-top:3%;
 }
 
 /* Styling for tweeds on page */
 
-.viewUserProfileInfoFromHover {
+.profile_view_from_hover {
   border-width: 1px;
   border-style: solid;
   border-color: black;
@@ -467,6 +556,7 @@ body {
   background-color: white;
   z-index: 1;
   position: absolute;
+  margin-top: 25%;
 }
 
 /* Explore page styling */
@@ -576,7 +666,7 @@ body {
 
 .like-icon {
   cursor:pointer;
-  margin-top:2%;
+  margin-top:3%;
 }
 
 .fav-icon {
@@ -594,4 +684,6 @@ body {
   margin-left:25px;
 }
 
-
+.like-count-int {
+  margin-left:25%
+}

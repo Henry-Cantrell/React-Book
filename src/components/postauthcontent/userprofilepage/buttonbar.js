@@ -2,19 +2,23 @@ import React from "react";
 
 export function BUTTON_BAR(props) {
   return (
-    <div class="buttonBar">
-      <button
-        style={{ marginTop: 10 + "px" }}
+    <div className="button-bar">
+      <div
+        className="wrapper-for-user-tweeds"
         onClick={props.showUserProfileToggle}
       >
-        Show user tweeds
-      </button>
-      <button
-        style={{ marginTop: 10 + "px" }}
+        <div className="show-user-tweeds-div">
+          <i class="fas fa-feather-alt"></i>
+        </div>
+      </div>
+      <div
+        className="wrapper-for-user-fav"
         onClick={props.showUserFavoritesToggle}
       >
-        Show user favorites
-      </button>
+        <div className="show-user-favorites-div">
+          <i class="fas fa-bookmark"></i>
+        </div>
+      </div>
     </div>
   );
 }

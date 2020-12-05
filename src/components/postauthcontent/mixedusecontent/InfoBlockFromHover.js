@@ -6,7 +6,7 @@ export function INFO_BLOCK_FROM_HOVER(props) {
   const userUid = useSelector((state) => state.userUid);
 
   return (
-    <div className="viewUserProfileInfoFromHover">
+    <div className="profile_view_from_hover">
       <div>{props.username}</div>
       <div>{props.bio}</div>
       <div>{props.folllowedCount}</div>
